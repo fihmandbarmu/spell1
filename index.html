@@ -148,14 +148,40 @@
             <!-- Main Test Area Card -->
             <div id="test-card" class="glass-panel p-6 md:p-10 rounded-3xl shadow-xl max-w-2xl mx-auto border border-white relative overflow-hidden">
                 
-                <!-- Progress Bar -->
-                <div class="w-full bg-slate-100 rounded-full h-3 mb-8 overflow-hidden p-0.5 border border-slate-200">
-                    <div id="progress-bar" class="bg-gradient-to-r from-amber-400 to-orange-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                <!-- START CHALLENGE SCREEN -->
+                <div id="test-start-view" class="text-center space-y-6 py-6">
+                    <div class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center text-5xl mx-auto text-amber-600 shadow-inner animate-bounce">
+                        🐝
+                    </div>
+                    <div>
+                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Ready for the 1,000 Word Challenge?</h2>
+                        <p class="text-slate-600 text-sm mt-2 max-w-md mx-auto">
+                            Test your spelling speed and accuracy! You have <strong class="text-amber-800">65 minutes</strong> to spell 1,000 words. Listen to each audio pronunciation carefully and type your spelling.
+                        </p>
+                    </div>
+
+                    <div class="bg-amber-50/80 border border-amber-200 p-4 rounded-2xl text-left max-w-md mx-auto space-y-2 text-xs text-amber-900">
+                        <div class="font-bold flex items-center space-x-1.5 text-sm text-amber-950">
+                            <span>📋 Challenge Rules:</span>
+                        </div>
+                        <p>• <strong>No Skipping Allowed:</strong> You must type an answer for every word.</p>
+                        <p>• <strong>Earn Points:</strong> Receive 1 point for every 10 correct words.</p>
+                        <p>• <strong>Finish Early Lock:</strong> Requires at least <strong>1,000 total points</strong> to unlock early submission.</p>
+                    </div>
+
+                    <button type="button" onclick="startTestChallenge()" class="w-full max-w-md bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-display font-extrabold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-lg border-2 border-amber-300">
+                        🚀 Start Challenge Now
+                    </button>
                 </div>
 
-                <!-- Test Active State -->
-                <div id="test-active-view" class="text-center space-y-6">
+                <!-- Test Active State (Hidden until Start is clicked) -->
+                <div id="test-active-view" class="hidden text-center space-y-6">
                     
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-slate-100 rounded-full h-3 mb-8 overflow-hidden p-0.5 border border-slate-200">
+                        <div id="progress-bar" class="bg-gradient-to-r from-amber-400 to-orange-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+
                     <div class="inline-block bg-amber-50 text-amber-800 text-xs font-bold px-3 py-1 rounded-full border border-amber-200">
                         Word #<span id="word-number">1</span> of 1000
                     </div>
@@ -179,7 +205,7 @@
                     <!-- Answer Input Form -->
                     <form onsubmit="submitAnswer(event)" class="max-w-md mx-auto space-y-4">
                         <div class="relative">
-                            <input type="text" id="word-input" autocomplete="off" spellcheck="false" placeholder="Type spelling here..." class="w-full px-6 py-4 text-center font-display font-bold text-2xl rounded-2xl border-2 border-slate-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 outline-none transition-all shadow-inner uppercase tracking-wider text-slate-800" autofocus>
+                            <input type="text" id="word-input" autocomplete="off" spellcheck="false" placeholder="Type spelling here..." class="w-full px-6 py-4 text-center font-display font-bold text-2xl rounded-2xl border-2 border-slate-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 outline-none transition-all shadow-inner uppercase tracking-wider text-slate-800">
                         </div>
 
                         <div class="flex space-x-3">
@@ -194,10 +220,10 @@
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-semibold">
                         <span>Press <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-slate-600">Enter ↵</kbd> to submit</span>
                         
-                        <!-- Locked Finish Early Button -->
-                        <button id="finish-early-btn" type="button" onclick="confirmFinishTest()" disabled class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed">
+                        <!-- Locked Finish Early Button (Requires 1,000 Points) -->
+                        <button id="finish-early-btn" type="button" onclick="confirmFinishTest()" disabled class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed" title="Requires 1,000 Points to Finish Early">
                             <span id="finish-early-lock">🔒</span>
-                            <span id="finish-early-text">Finish Early (0/1,000 Correct)</span>
+                            <span id="finish-early-text">Finish Early (Requires 1,000 Pts)</span>
                         </button>
                     </div>
                 </div>
@@ -544,6 +570,7 @@
             correctCount: 0,
             timeRemaining: TOTAL_SECONDS,
             timerInterval: null,
+            isStarted: false,
             isFinished: false
         };
 
@@ -732,6 +759,16 @@
         /* ==========================================================================
            6. SPELLING TEST CONTROLLER
            ========================================================================== */
+        function startTestChallenge() {
+            playSound('click');
+            testState.isStarted = true;
+            document.getElementById("test-start-view").classList.add("hidden");
+            document.getElementById("test-active-view").classList.remove("hidden");
+
+            startTestTimer();
+            loadCurrentWord();
+        }
+
         function startTestTimer() {
             clearInterval(testState.timerInterval);
             testState.timerInterval = setInterval(() => {
@@ -767,21 +804,23 @@
             const lockIcon = document.getElementById("finish-early-lock");
             const btnText = document.getElementById("finish-early-text");
 
-            if (testState.correctCount >= 1000 || appState.points >= 1000) {
+            if (appState.points >= 1000) {
                 btn.disabled = false;
                 btn.className = "px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold shadow-sm transition-all flex items-center space-x-1.5 cursor-pointer";
                 lockIcon.textContent = "🔓";
                 btnText.textContent = "Finish Early";
+                btn.title = "Click to submit test early";
             } else {
                 btn.disabled = true;
                 btn.className = "px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed";
                 lockIcon.textContent = "🔒";
-                btnText.textContent = `Finish Early (${testState.correctCount}/1,000 Correct)`;
+                btnText.textContent = `Finish Early (${appState.points.toLocaleString()}/1,000 Pts)`;
+                btn.title = "Requires 1,000 Points to Finish Early";
             }
         }
 
         function confirmFinishTest() {
-            if (testState.correctCount < 1000 && appState.points < 1000) return;
+            if (appState.points < 1000) return;
             if (confirm("Are you sure you want to finish the test early? Your score will be calculated for words completed so far.")) {
                 finishTest();
             }
@@ -789,7 +828,7 @@
 
         function submitAnswer(e) {
             if (e) e.preventDefault();
-            if (testState.isFinished) return;
+            if (testState.isFinished || !testState.isStarted) return;
 
             const input = document.getElementById("word-input");
             const userVal = input.value.trim().toLowerCase();
@@ -827,7 +866,7 @@
         }
 
         function loadCurrentWord() {
-            if (testState.currentIndex >= TOTAL_WORDS) return;
+            if (testState.currentIndex >= TOTAL_WORDS || !testState.isStarted) return;
 
             const currentObj = WORD_LIST[testState.currentIndex];
             document.getElementById("word-number").textContent = testState.currentIndex + 1;
@@ -903,14 +942,15 @@
                 correctCount: 0,
                 timeRemaining: TOTAL_SECONDS,
                 timerInterval: null,
+                isStarted: false,
                 isFinished: false
             };
 
             document.getElementById("test-report-view").classList.add("hidden");
-            document.getElementById("test-active-view").classList.remove("hidden");
-
-            startTestTimer();
-            loadCurrentWord();
+            document.getElementById("test-start-view").classList.remove("hidden");
+            document.getElementById("timer-display").textContent = "65:00";
+            document.getElementById("current-index-display").textContent = "0";
+            document.getElementById("speed-display").textContent = "0 WPM";
         }
 
         /* ==========================================================================
@@ -1138,13 +1178,14 @@
            ========================================================================== */
         window.onload = function() {
             loadSavedData();
-            startTestTimer();
-            loadCurrentWord();
+            updateFinishEarlyButtonState();
 
             document.addEventListener("keydown", function(e) {
-                if (e.code === "Tab" || (e.code === "Space" && document.activeElement !== document.getElementById("word-input"))) {
-                    e.preventDefault();
-                    speakCurrentWord();
+                if ((e.code === "Tab" || e.code === "Space") && testState.isStarted && !testState.isFinished) {
+                    if (document.activeElement !== document.getElementById("word-input")) {
+                        e.preventDefault();
+                        speakCurrentWord();
+                    }
                 }
             });
         };
