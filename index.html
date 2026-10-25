@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate School Spelling Bee Test</title>
+    <title>Ultimate School Spelling, Vocabulary & Punctuation Bee</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -19,7 +19,6 @@
             font-family: 'Fredoka', cursive;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -41,7 +40,6 @@
             border: 2px solid #f472b6;
         }
 
-        /* Animations */
         @keyframes pulse-subtle {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.03); }
@@ -67,14 +65,13 @@
                     🐝
                 </div>
                 <div>
-                    <h1 class="font-display font-bold text-xl text-amber-900 leading-tight">Spelling Champion</h1>
-                    <p class="text-xs font-semibold text-amber-600/80">1,000 Word Speed Challenge</p>
+                    <h1 class="font-display font-bold text-xl text-amber-900 leading-tight">Spelling & Grammar Bee</h1>
+                    <p class="text-xs font-semibold text-amber-600/80">Speed Tests, Hard Vocabulary & Punctuation</p>
                 </div>
             </div>
 
             <!-- Stats & Profile Trigger -->
             <div class="flex items-center space-x-4">
-                <!-- Points Display -->
                 <div class="bg-amber-100/80 border border-amber-300/60 rounded-xl px-3.5 py-1.5 flex items-center space-x-2 shadow-inner">
                     <span class="text-xl">⭐</span>
                     <div>
@@ -83,7 +80,6 @@
                     </div>
                 </div>
 
-                <!-- Current Avatar Button -->
                 <button onclick="switchTab('shop')" class="group relative flex items-center space-x-2 bg-white border border-slate-200 hover:border-amber-400 p-1.5 pr-3 rounded-2xl shadow-sm transition-all">
                     <div id="nav-avatar-icon" class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                         😀
@@ -101,22 +97,26 @@
     <main class="max-w-6xl mx-auto px-4 py-6">
 
         <!-- Navigation Tabs -->
-        <nav class="flex space-x-2 mb-6 bg-slate-200/60 p-1.5 rounded-2xl max-w-md mx-auto">
-            <button id="tab-btn-test" onclick="switchTab('test')" class="flex-1 py-2.5 px-4 rounded-xl font-display font-bold text-sm transition-all bg-white text-amber-900 shadow-sm">
-                ✍️ Spelling Test
+        <nav class="flex flex-wrap gap-2 mb-6 bg-slate-200/60 p-1.5 rounded-2xl max-w-3xl mx-auto">
+            <button id="tab-btn-test" onclick="switchTab('test')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all bg-white text-amber-900 shadow-sm whitespace-nowrap">
+                ✍️ 1,000 Word Test
             </button>
-            <button id="tab-btn-achievements" onclick="switchTab('achievements')" class="flex-1 py-2.5 px-4 rounded-xl font-display font-bold text-sm transition-all text-slate-600 hover:text-slate-900">
+            <button id="tab-btn-lesson" onclick="switchTab('lesson')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
+                📖 Hard Word Lesson
+            </button>
+            <button id="tab-btn-punctuation" onclick="switchTab('punctuation')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
+                ✍️ Punctuation Fix (100)
+            </button>
+            <button id="tab-btn-achievements" onclick="switchTab('achievements')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
                 🏆 Badges (<span id="unlocked-count">0</span>/5)
             </button>
-            <button id="tab-btn-shop" onclick="switchTab('shop')" class="flex-1 py-2.5 px-4 rounded-xl font-display font-bold text-sm transition-all text-slate-600 hover:text-slate-900">
+            <button id="tab-btn-shop" onclick="switchTab('shop')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
                 🛍️ Avatar Shop
             </button>
         </nav>
 
         <!-- VIEW 1: SPELLING TEST SECTION -->
         <section id="view-test" class="space-y-6">
-            
-            <!-- Dashboard Stats Header -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-amber-400 shadow-sm">
                     <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Time Remaining</div>
@@ -167,7 +167,6 @@
                         <p>• <strong>No Skipping Allowed:</strong> You must type an answer for every word.</p>
                         <p>• <strong>Earn Points:</strong> Receive 1 point for every 10 correct words.</p>
                         <p>• <strong>Finish Early Lock:</strong> Requires at least <strong>1,000 total points</strong> to unlock early submission.</p>
-                         <p>• <strong>Do Not exit when you click "Start challenge now":</strong> The time will still go if you leave and go to a siffrent tab on the app.</p>
                     </div>
 
                     <button type="button" onclick="startTestChallenge()" class="w-full max-w-md bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-display font-extrabold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-lg border-2 border-amber-300">
@@ -175,10 +174,8 @@
                     </button>
                 </div>
 
-                <!-- Test Active State (Hidden until Start is clicked) -->
+                <!-- Test Active State -->
                 <div id="test-active-view" class="hidden text-center space-y-6">
-                    
-                    <!-- Progress Bar -->
                     <div class="w-full bg-slate-100 rounded-full h-3 mb-8 overflow-hidden p-0.5 border border-slate-200">
                         <div id="progress-bar" class="bg-gradient-to-r from-amber-400 to-orange-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
                     </div>
@@ -187,23 +184,20 @@
                         Word #<span id="word-number">1</span> of 1000
                     </div>
 
-                    <!-- Voice Synthesis Button -->
                     <div class="flex flex-col items-center justify-center space-y-3">
                         <button id="speak-btn" type="button" onclick="speakCurrentWord()" class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 hover:from-amber-500 hover:to-yellow-400 text-amber-950 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 transition-all group border-4 border-white">
                             <i class="fa-solid fa-volume-high text-4xl group-hover:animate-bounce"></i>
                         </button>
                         <p class="text-xs font-bold text-slate-500 flex items-center space-x-1">
-                            <span>Press Space / Tab or click to replay audio</span>
+                            <span>Press Space or click to replay audio</span>
                         </p>
                     </div>
 
-                    <!-- Sentence Context / Definition Hint -->
                     <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 max-w-md mx-auto">
                         <p class="text-xs text-slate-400 font-bold uppercase tracking-wide mb-1">Sentence Context</p>
                         <p id="sentence-hint" class="text-sm font-semibold text-slate-700 italic">"Listen to the word..."</p>
                     </div>
 
-                    <!-- Answer Input Form -->
                     <form onsubmit="submitAnswer(event)" class="max-w-md mx-auto space-y-4">
                         <div class="relative">
                             <input type="text" id="word-input" autocomplete="off" spellcheck="false" placeholder="Type spelling here..." class="w-full px-6 py-4 text-center font-display font-bold text-2xl rounded-2xl border-2 border-slate-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 outline-none transition-all shadow-inner uppercase tracking-wider text-slate-800">
@@ -217,11 +211,9 @@
                         </div>
                     </form>
 
-                    <!-- Shortcut Hints & Manual Early Finish -->
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-semibold">
                         <span>Press <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-slate-600">Enter ↵</kbd> to submit</span>
                         
-                        <!-- Locked Finish Early Button (Requires 1,000 Points) -->
                         <button id="finish-early-btn" type="button" onclick="confirmFinishTest()" disabled class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed" title="Requires 1,000 Points to Finish Early">
                             <span id="finish-early-lock">🔒</span>
                             <span id="finish-early-text">Finish Early (Requires 1,000 Pts)</span>
@@ -229,7 +221,7 @@
                     </div>
                 </div>
 
-                <!-- Test Finished / Report Card View -->
+                <!-- Test Report View -->
                 <div id="test-report-view" class="hidden text-center space-y-6">
                     <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mx-auto text-amber-600 shadow-inner">
                         🎉
@@ -240,7 +232,6 @@
                         <p class="text-slate-500 text-sm mt-1">Here is your official spelling performance summary</p>
                     </div>
 
-                    <!-- Report Grid -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-amber-50/60 p-4 rounded-2xl border border-amber-200/60">
                         <div class="p-2">
                             <div class="text-xs text-amber-800/70 font-bold uppercase">Correct</div>
@@ -260,14 +251,12 @@
                         </div>
                     </div>
 
-                    <!-- Master Word List Review -->
                     <div class="text-left space-y-2">
                         <div class="flex items-center justify-between">
                             <h3 class="font-display font-bold text-slate-800 text-sm">Review Word Answers</h3>
                             <span class="text-xs text-slate-400">Green = Correct, Red = Incorrect</span>
                         </div>
                         <div id="review-words-list" class="max-h-48 overflow-y-auto space-y-1.5 p-3 bg-white rounded-xl border border-slate-200 text-xs">
-                            <!-- Populated dynamically -->
                         </div>
                     </div>
 
@@ -277,11 +266,245 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- VIEW 2: ACHIEVEMENTS SECTION -->
+        <!-- VIEW 2: HARD WORD LESSON (30 QUESTIONS, 10 MINS) SECTION -->
+        <section id="view-lesson" class="hidden space-y-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-cyan-400 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Time Remaining</div>
+                    <div id="lesson-timer-display" class="font-display font-black text-2xl md:text-3xl text-cyan-600">10:00</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">10 Minutes Total</div>
+                </div>
+
+                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-indigo-400 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Hard Lesson Progress</div>
+                    <div class="font-display font-black text-2xl md:text-3xl text-indigo-600">
+                        <span id="lesson-index-display">0</span><span class="text-slate-400 text-lg">/30</span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">Advanced Vocabulary</div>
+                </div>
+
+                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-teal-400 shadow-sm col-span-2 md:col-span-1">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Lesson Reward</div>
+                    <div class="font-display font-black text-2xl md:text-3xl text-teal-600">+15 Pts</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">Per Correct Question</div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 md:p-10 rounded-3xl shadow-xl max-w-2xl mx-auto border border-white relative overflow-hidden">
+                <!-- LESSON START VIEW -->
+                <div id="lesson-start-view" class="text-center space-y-6 py-6">
+                    <div class="w-24 h-24 bg-cyan-100 rounded-full flex items-center justify-center text-5xl mx-auto text-cyan-600 shadow-inner animate-bounce">
+                        🔥
+                    </div>
+                    <div>
+                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Hard Word Lesson Challenge</h2>
+                        <p class="text-slate-600 text-sm mt-2 max-w-md mx-auto">
+                            Complete <strong class="text-cyan-800">30 advanced vocabulary questions</strong> in <strong class="text-cyan-800">10 minutes</strong>. Each question features challenging fill-in-the-blank sentences!
+                        </p>
+                    </div>
+
+                    <div class="bg-cyan-50/80 border border-cyan-200 p-4 rounded-2xl text-left max-w-md mx-auto space-y-2 text-xs text-cyan-950">
+                        <div class="font-bold flex items-center space-x-1.5 text-sm text-cyan-950">
+                            <span>💡 Hard Difficulty Rules:</span>
+                        </div>
+                        <p>• Advanced GRE/School Bee Vocabulary.</p>
+                        <p>• 10-minute strict time limit for 30 questions.</p>
+                        <p>• Type the precise missing advanced term.</p>
+                    </div>
+
+                    <button type="button" onclick="startLessonChallenge()" class="w-full max-w-md bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-500 hover:to-teal-500 text-slate-950 font-display font-extrabold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-lg border-2 border-cyan-300">
+                        🔥 Start Hard Word Lesson
+                    </button>
+                </div>
+
+                <!-- LESSON ACTIVE VIEW -->
+                <div id="lesson-active-view" class="hidden text-center space-y-6">
+                    <div class="w-full bg-slate-100 rounded-full h-3 mb-6 overflow-hidden p-0.5 border border-slate-200">
+                        <div id="lesson-progress-bar" class="bg-gradient-to-r from-cyan-400 to-teal-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+
+                    <div class="inline-block bg-cyan-50 text-cyan-800 text-xs font-bold px-3 py-1 rounded-full border border-cyan-200">
+                        Question #<span id="lesson-q-num">1</span> of 30 • Hard Vocabulary
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button type="button" onclick="speakLessonSentence()" class="px-5 py-2.5 rounded-2xl bg-cyan-100 hover:bg-cyan-200 text-cyan-900 font-bold text-xs flex items-center space-x-2 transition-all shadow-sm">
+                            <i class="fa-solid fa-volume-high text-cyan-600 text-base"></i>
+                            <span>Listen to Sentence</span>
+                        </button>
+                    </div>
+
+                    <div class="bg-white border-2 border-cyan-200 rounded-2xl p-6 shadow-sm">
+                        <p id="lesson-sentence-display" class="font-display font-semibold text-lg md:text-xl text-slate-800 leading-relaxed">
+                            <!-- Populated -->
+                        </p>
+                    </div>
+
+                    <form onsubmit="submitLessonAnswerInput(event)" class="max-w-md mx-auto space-y-3">
+                        <input type="text" id="lesson-text-input" placeholder="Type missing advanced word..." autocomplete="off" spellcheck="false" class="w-full px-6 py-4 text-center font-display font-bold text-xl rounded-2xl border-2 border-slate-200 focus:border-cyan-400 outline-none transition-all uppercase tracking-wider">
+                        <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-display font-bold py-3.5 rounded-2xl transition-all shadow-md">
+                            Submit Answer
+                        </button>
+                    </form>
+                </div>
+
+                <!-- LESSON REPORT VIEW -->
+                <div id="lesson-report-view" class="hidden text-center space-y-6">
+                    <div class="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center text-4xl mx-auto text-teal-600 shadow-inner">
+                        🎓
+                    </div>
+
+                    <div>
+                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Hard Lesson Finished!</h2>
+                        <p class="text-slate-500 text-sm mt-1">Advanced Vocabulary Report Card</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-3 bg-cyan-50/60 p-4 rounded-2xl border border-cyan-200/60">
+                        <div class="p-2">
+                            <div class="text-xs text-cyan-800/70 font-bold uppercase">Correct</div>
+                            <div id="lesson-report-correct" class="font-display font-bold text-2xl text-emerald-600">0</div>
+                        </div>
+                        <div class="p-2">
+                            <div class="text-xs text-cyan-800/70 font-bold uppercase">Accuracy</div>
+                            <div id="lesson-report-accuracy" class="font-display font-bold text-2xl text-blue-600">0%</div>
+                        </div>
+                        <div class="p-2">
+                            <div class="text-xs text-cyan-800/70 font-bold uppercase">Points Earned</div>
+                            <div id="lesson-report-points" class="font-display font-bold text-2xl text-teal-600">+0</div>
+                        </div>
+                    </div>
+
+                    <div class="text-left space-y-2">
+                        <h3 class="font-display font-bold text-slate-800 text-sm">Review Advanced Sentences</h3>
+                        <div id="lesson-review-list" class="max-h-48 overflow-y-auto space-y-2 p-3 bg-white rounded-xl border border-slate-200 text-xs">
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="resetLesson()" class="w-full bg-cyan-400 hover:bg-cyan-500 text-cyan-950 font-display font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base">
+                        🔄 Retake Hard Word Lesson
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 3: PUNCTUATION FIX LESSON (100 SENTENCES, 11:41 MINS / 701 SECS) -->
+        <section id="view-punctuation" class="hidden space-y-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-rose-400 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Time Remaining</div>
+                    <div id="punct-timer-display" class="font-display font-black text-2xl md:text-3xl text-rose-600">11:41</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">11 Min 41 Sec Total (701s)</div>
+                </div>
+
+                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-amber-400 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Punctuation Progress</div>
+                    <div class="font-display font-black text-2xl md:text-3xl text-amber-600">
+                        <span id="punct-index-display">0</span><span class="text-slate-400 text-lg">/100</span>
+                    </div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">Sentences Fixed</div>
+                </div>
+
+                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-violet-400 shadow-sm col-span-2 md:col-span-1">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Lesson Reward</div>
+                    <div class="font-display font-black text-2xl md:text-3xl text-violet-600">+20 Pts</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">Per Correct Punctuation Fix</div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 md:p-10 rounded-3xl shadow-xl max-w-2xl mx-auto border border-white relative overflow-hidden">
+                <!-- PUNCTUATION START VIEW -->
+                <div id="punct-start-view" class="text-center space-y-6 py-6">
+                    <div class="w-24 h-24 bg-rose-100 rounded-full flex items-center justify-center text-5xl mx-auto text-rose-600 shadow-inner animate-bounce">
+                        ✒️
+                    </div>
+                    <div>
+                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Punctuation Fix Lesson</h2>
+                        <p class="text-slate-600 text-sm mt-2 max-w-md mx-auto">
+                            Correct the punctuation errors in <strong class="text-rose-800">100 sentences</strong>. You have <strong class="text-rose-800">11 minutes and 41 seconds (701 seconds)</strong>!
+                        </p>
+                    </div>
+
+                    <div class="bg-rose-50/80 border border-rose-200 p-4 rounded-2xl text-left max-w-md mx-auto space-y-2 text-xs text-rose-950">
+                        <div class="font-bold flex items-center space-x-1.5 text-sm text-rose-950">
+                            <span>✒️ Punctuation Rules:</span>
+                        </div>
+                        <p>• Fix missing commas, periods, apostrophes, quotation marks, or question marks.</p>
+                        <p>• Type the fully corrected sentence accurately.</p>
+                    </div>
+
+                    <button type="button" onclick="startPunctuationChallenge()" class="w-full max-w-md bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white font-display font-extrabold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-lg border-2 border-rose-300">
+                        ✒️ Start Punctuation Lesson
+                    </button>
+                </div>
+
+                <!-- PUNCTUATION ACTIVE VIEW -->
+                <div id="punct-active-view" class="hidden text-center space-y-6">
+                    <div class="w-full bg-slate-100 rounded-full h-3 mb-6 overflow-hidden p-0.5 border border-slate-200">
+                        <div id="punct-progress-bar" class="bg-gradient-to-r from-rose-400 to-pink-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+
+                    <div class="inline-block bg-rose-50 text-rose-800 text-xs font-bold px-3 py-1 rounded-full border border-rose-200">
+                        Sentence #<span id="punct-q-num">1</span> of 100 • Fix Punctuation
+                    </div>
+
+                    <div class="bg-white border-2 border-rose-200 rounded-2xl p-6 shadow-sm">
+                        <p class="text-xs text-slate-400 font-bold uppercase mb-1">Sentence with Error(s):</p>
+                        <p id="punct-sentence-display" class="font-display font-semibold text-lg md:text-xl text-slate-800 leading-relaxed">
+                            <!-- Populated -->
+                        </p>
+                    </div>
+
+                    <form onsubmit="submitPunctuationAnswer(event)" class="max-w-md mx-auto space-y-3">
+                        <input type="text" id="punct-text-input" placeholder="Type fully corrected sentence..." autocomplete="off" spellcheck="false" class="w-full px-5 py-4 text-center font-display font-bold text-base rounded-2xl border-2 border-slate-200 focus:border-rose-400 outline-none transition-all">
+                        <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-display font-bold py-3.5 rounded-2xl transition-all shadow-md">
+                            Submit Corrected Sentence
+                        </button>
+                    </form>
+                </div>
+
+                <!-- PUNCTUATION REPORT VIEW -->
+                <div id="punct-report-view" class="hidden text-center space-y-6">
+                    <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center text-4xl mx-auto text-rose-600 shadow-inner">
+                        🎉
+                    </div>
+
+                    <div>
+                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Punctuation Lesson Complete!</h2>
+                        <p class="text-slate-500 text-sm mt-1">100-Sentence Performance Summary</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-3 bg-rose-50/60 p-4 rounded-2xl border border-rose-200/60">
+                        <div class="p-2">
+                            <div class="text-xs text-rose-800/70 font-bold uppercase">Correct</div>
+                            <div id="punct-report-correct" class="font-display font-bold text-2xl text-emerald-600">0</div>
+                        </div>
+                        <div class="p-2">
+                            <div class="text-xs text-rose-800/70 font-bold uppercase">Accuracy</div>
+                            <div id="punct-report-accuracy" class="font-display font-bold text-2xl text-blue-600">0%</div>
+                        </div>
+                        <div class="p-2">
+                            <div class="text-xs text-rose-800/70 font-bold uppercase">Points Earned</div>
+                            <div id="punct-report-points" class="font-display font-bold text-2xl text-rose-600">+0</div>
+                        </div>
+                    </div>
+
+                    <div class="text-left space-y-2">
+                        <h3 class="font-display font-bold text-slate-800 text-sm">Review Sentences</h3>
+                        <div id="punct-review-list" class="max-h-48 overflow-y-auto space-y-2 p-3 bg-white rounded-xl border border-slate-200 text-xs">
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="resetPunctuation()" class="w-full bg-rose-400 hover:bg-rose-500 text-white font-display font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base">
+                        🔄 Retake Punctuation Fix Lesson
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 4: ACHIEVEMENTS SECTION -->
         <section id="view-achievements" class="hidden space-y-6 max-w-3xl mx-auto">
             <div class="glass-panel p-6 rounded-3xl text-center">
                 <h2 class="font-display font-extrabold text-2xl text-slate-800">Speed Badges & Milestones</h2>
@@ -289,13 +512,11 @@
             </div>
 
             <div class="grid gap-4" id="achievements-container">
-                <!-- Dynamically populated achievements -->
             </div>
         </section>
 
-        <!-- VIEW 3: AVATAR SHOP SECTION -->
+        <!-- VIEW 5: AVATAR SHOP SECTION -->
         <section id="view-shop" class="hidden space-y-6">
-            <!-- Shop Header -->
             <div class="glass-panel p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                     <h2 class="font-display font-extrabold text-2xl text-slate-800">Avatar Store</h2>
@@ -310,17 +531,15 @@
                 </div>
             </div>
 
-            <!-- Standard Avatar Store Section -->
             <div class="space-y-3">
                 <h3 class="font-display font-bold text-slate-700 text-base flex items-center space-x-2">
                     <span>🛍️ Standard & Elite Avatars</span>
                 </h3>
                 <div id="shop-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <!-- Dynamically populated shop items -->
                 </div>
             </div>
 
-            <!-- Billionaire God Tier Section (Unlocked at 1,000,000,000 Points) -->
+            <!-- Billionaire God Tier Section (>1,000,000,000 Points) -->
             <div class="space-y-3 pt-4 border-t border-slate-200">
                 <div class="flex items-center justify-between">
                     <h3 class="font-display font-extrabold text-purple-900 text-lg flex items-center space-x-2">
@@ -343,7 +562,6 @@
                 </div>
 
                 <div id="god-shop-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                    <!-- Dynamically populated God Tier items -->
                 </div>
             </div>
         </section>
@@ -361,833 +579,859 @@
 
     <!-- Application Script Logic -->
     <script>
-        /* ==========================================================================
-           1. WORD DICTIONARY GENERATOR (1000 Words Dataset)
-           ========================================================================== */
-        const baseWords = [
-            { w: "speed", s: "Run at full ____." },
-            { w: "squirrel", s: "The ______ gathered nuts." },
-            { w: "achievement", s: "Winning the trophy was a great ___________." },
-            { w: "classroom", s: "Students sit in the _______." },
-            { w: "spelling", s: "Practice your ______ test." },
-            { w: "alphabet", s: "Learn the letters of the ________." },
-            { w: "knowledge", s: "Reading books expands your ________." },
-            { w: "challenge", s: "Accept the word speed _______." },
-            { w: "championship", s: "They won the spelling bee ________." },
-            { w: "education", s: "." },
-            { w: "teacher", s: "." },
-            { w: "student", s: " ." },
-            { w: "dictionary", s: "." },
-            { w: "language", s: "." },
-            { w: "vocabulary", s: "." },
-            { w: "sentence", s: "Write a clear ." },
-            { w: "grammar", s: "Pay attention " },
-            { w: "syllable", s: "Count the  ." },
-            { w: "consonant", s: "The letter  ." },
-            { w: "vowel", s: "The ." },
-            { w: "pronounce", s: "Listen carefully to pronounce it correctly." },
-            { w: "definition", s: "Read the definition of the word." },
-            { w: "accuracy", s: "Precision and accuracy are vital"." },
-            { w: "avatar", s: "." }
-        ];
-
-        const additionalWords = [
-            "ability","absence","academic","accelerate","accent","accept","access","accident","accompany","accomplish",
-            "according","account","accumulate","accurate","achieve","acoustic","acquire","action","active","activity",
-            "actual","adapt","addiction","addition","address","adequate","adjust","admire","admission","admit",
-            "adventure","adverb","adverse","advertise","advice","advocate","aeroplane","aesthetic","affection","afford",
-            "agenda","agent","aggressive","agile","agree","agriculture","airline","airport","alarm","album",
-            "algebra","algorithm","alien","align","allegation","alley","alliance","allocate","allowance","alphabet",
-            "already","alteration","alternative","altitude","aluminum","amateur","amazing","ambassador","ambition","ambulance",
-            "amend","amount","ample","amuse","analyze","anatomy","ancestor","anchor","ancient","anecdote",
-            "angle","angular","animal","animate","anniversary","announce","annual","anonymous","another","answer",
-            "antagonist","antelope","anticipate","anxiety","anxious","apartment","apology","apparel","apparent","appeal",
-            "appearance","appetite","applause","appliance","applicant","application","apply","appoint","appreciate","approach",
-            "approval","approve","approximate","apron","aquarium","archaeology","architect","archive","arctic","argument",
-            "arithmetic","armchair","armor","aroma","arrange","array","arrival","arrow","artefact","article",
-            "artificial","artistic","ascend","ashamed","aspect","aspirin","assemble","assert","assess","asset",
-            "assign","assist","associate","assume","assurance","astonish","astronaut","astronomy","athlete","atlantic",
-            "atmosphere","atom","atomic","attach","attack","attain","attempt","attendance","attention","attitude",
-            "attract","attribute","auction","audience","auditorium","august","authentic","author","authority","automatic",
-            "autumn","available","avalanche","avenue","average","avoid","awakening","awareness","awesome","awkward",
-            "baboon","backbone","background","bacon","bacteria","badge","baggage","bakery","balance","balcony",
-            "ballerina","balloon","ballot","bamboo","banana","bandage","bandit","bandwidth","bangalores","banker",
-            "bankrupt","banner","banquet","barbecue","barber","barely","bargain","barometer","barrel","barrier",
-            "barrister","baseball","basement","basic","basket","basketball","bastion","batallion","battery","battle",
-            "bayonet","beacon","beaker","beaming","bearable","beast","beatitude","beautiful","beaver","because",
-            "becoming","bedtime","beefsteak","beetle","beforehand","beginner","behavior","behind","behold","belief",
-            "belligerent","belonging","beloved","beneath","beneficial","benefit","benevolence","benign","berry","beside",
-            "bestow","betrayal","beverage","bewilder","beyond","bicycle","bilingual","billion","binary","bindery",
-            "binoculars","biography","biology","biomass","biscuit","bison","bitter","bizarre","blackboard","blacksmith",
-            "blanket","blasphemy","blaze","bleak","blender","blessing","blizzard","blockade","blossom","blunder",
-            "boardwalk","boastful","bobsled","boisterous","boldness","bolster","bombard","bondage","bonfire","bonnet",
-            "bookcase","bookmark","bookstore","boomerang","booth","border","boredom","borough","borrower","botany",
-            "bottle","bottom","boulder","boulevard","bounce","boundary","bouquet","bourbon","boutique","bowling",
-            "boycott","bracket","bravery","breadth","breakthrough","breathless","breeze","brevity","brewery","bricklayer",
-            "bridegroom","bridge","briefcase","brigade","brilliant","brimstone","brisket","broadcast","brochure","brokerage",
-            "bronze","brook","broomstick","brotherhood","brownie","bruise","brushwood","brutal","bubble","bucket",
-            "buckle","buckwheat","budget","buffalo","buffer","buffet","buggy","builder","bulb","bulkhead",
-            "bulldozer","bulletin","bullfrog","bulwark","bumblebee","bumper","bungalow","bunkhouse","buoyancy","burden",
-            "bureau","burglar","burial","burlap","burnish","burrow","business","butcher","butterflies","buttonhole",
-            "buttress","bypass","cabdriver","cabinet","cablegram","cactus","cadet","cafeteria","calamity","calcium",
-            "calculate","calendar","caliber","calico","calligraphy","calmness","calorie","campaign","camper","camphor",
-            "canary","candidate","candlelight","candy","canebrake","canister","cannibal","cannonball","canoe","canopy",
-            "canteen","canvas","capability","capacity","capillary","capitalism","capitulate","caprice","captain","caption",
-            "captivate","caravan","carbon","cardboard","cardiac","cardinal","carefree","caregiver","careless","cargo",
-            "caribou","caricature","carnival","carpenters","carpet","carousal","carriage","carrier","carrot","cartridge",
-            "cascade","casement","cashier","casino","casserole","cassette","castaway","castle","casualty","cataclysm",
-            "catacombs","catalog","catalyst","catapult","cataract","catastrophe","catchy","category","caterpillar","cathedral",
-            "caucus","cauldron","caution","cavalry","caveman","cavern","cavity","cedar","ceiling","celebrate",
-            "celestial","cellar","cellular","celluloid","cement","cemetery","censor","censure","census","centennial",
-            "centerpiece","centipede","central","centurion","century","ceramic","cereal","ceremony","certainty","certificate",
-            "certified","cervical","chainmail","chairman","chalkboard","challenge","chamber","chameleon","champagne","champion",
-            "chandelier","changeable","channel","chaperone","chaplain","chapter","character","charcoal","charitable","charlatan",
-            "charming","chart","charter","chasm","chassis","chastise","chateau","chatter","chauffeur","cheapen",
-            "checkbook","checkers","checkmate","cheerleader","cheese","chemical","chemist","cherish","cherub","chestnut",
-            "chevron","chickadee","chickpea","chieftain","childhood","children","chimney","chimpanzee","chinchilla","chipmunk",
-            "chivalry","chlorine","chocolate","choice","choir","cholesterol","chopsticks","choral","chord","choreography",
-            "chorus","christian","chromium","chronicle","chrysanthemum","chuckle","chunk","chivalrous","cider","cigar",
-            "cinnamon","cipher","circle","circuit","circular","circulate","circumstance","circus","citadel","citizen",
-            "citrus","civilian","civilize","claimant","clamor","clandestine","clarify","clarinet","clarity","clash",
-            "classic","classify","classroom","clatter","cleanliness","clearance","clearing","clemency","clergyman","cleverness",
-            "clientele","cliffhanger","climatic","climax","climbing","clinician","clipboard","clipping","cloister","clothing",
-            "cloudburst","clover","clumsy","cluster","clutter","coachman","coagulate","coalition","coarse","coastal",
-            "coastline","cobblestone","cobra","cobweb","cockpit","cocktail","cocoa","coconut","cocoon","codebreaker",
-            "coexist","coffin","cognition","coherent","cohesion","coiffure","coinage","coincidence","colander","collaborate",
-            "collapse","collarbone","collateral","colleague","collectible","collection","collective","college","collision","colloquial",
-            "colony","colossal","colt","columnist","comatose","combustion","comedian","comet","comfort","commandment",
-            "commemorate","commence","commendable","commentary","commerce","commissary","commission","commitment","commodity","commodore",
-            "commotion","communal","communicant","community","commute","companion","compassion","compatibility","compelling","compensate",
-            "competence","competitor","compilation","complainant","complement","completion","complexion","compliance","complication","compliment",
-            "component","composure","compound","comprehend","comprise","compromise","compulsion","computation","comrade","conceal",
-            "concede","conceited","conceive","concentrate","concentric","conception","concern","concertina","concession","concise",
-            "conclude","concoct","concordance","concrete","concurrence","concussion","condemn","condense","condescend","condition",
-            "condolence","condor","conductance","conduit","conference","confession","confidant","confident","configuration","confinement",
-            "confirm","confiscate","conflict","confluence","conformity","confound","confront","confuse","congenial","congestion",
-            "congratulate","congregation","congress","congruent","conifer","conjecture","conjunction","conjurer","connection","connoisseur",
-            "conqueror","conscience","conscious","consecrate","consensus","consent","consequence","conservation","considerate","consignment",
-            "consistency","consolation","consonant","conspiracy","constable","constant","constellation","consternation","constituency","constitution","constraint",
-            "construct","consul","consultant","consumption","contact","contagious","container","contemplate","contemporary","contemptible",
-            "contentment","contestant","context","continent","contingency","continual","contour","contraband","contractor","contradict",
-            "contraption","contrary","contrast","contribute","contrition","contrivance","controller","controversy","conundrum","convalesce",
-            "convenience","convention","converge","conversation","conversion","convex","conveyance","convict","convulsion","cooperative",
-            "coordinate","copilot","copious","copperhead","copycat","copyright","coral","cordial","corduroy","cornea",
-            "cornerstone","coronet","corporal","corporation","corpund","corridor","corroborate","corrode","corrugated","corruption",
-            "corsair","corsage","cosmopolitan","cosmos","costume","cottage","cottonwood","council","counselor","countenance",
-            "counteract","counterfeit","counterpart","countess","countryside","county","courageous","courier","courtroom","courtesy",
-            "courthouse","courtship","courtyard","cousin","covenant","coverall","cowardice","coyote","cradle","craftsman",
-            "cranberry","crankshaft","crater","crayfish","crayon","created","creature","credentials","credibility","creditor",
-            "creed","creek","crematorium","creature","crescent","crestfallen","crevasse","cricket","criminal","crimson",
-            "cringe","crinkle","cripple","crisis","crispy","criterion","criticism","critique","crocodile","croissant",
-            "crosspiece","crossroad","crotchet","crowbar","crucial","crucible","crucifix","cruelty","cruiser","crumb",
-            "crumple","crunchy","crusade","crustacean","crutches","crystal","cubicle","cucumber","cuddle","culinary",
-            "culmination","culprit","cultivate","culture","cumbersome","cumulative","cupboard","cupidity","curator","curfew",
-            "curiosity","curling","currency","curriculum","curtain","curvature","custodian","customer","customs","cuticle",
-            "cutlery","cyclist","cyclone","cylinder","cymbal","cynical","cypress","cytology","dactylic","daffodil",
-            "dagger","dainty","dairy","daisy","damask","dandelion","dandruff","dapper","daredevil","darkroom",
-            "darling","dashboard","data","database","daughter","daydream","daylight","daytime","dazzle","deacon",
-            "deadlock","deadness","dealership","dearness","debatable","debauchery","debilitate","debonair","debris","debtor",
-            "decade","decathlon","decay","deceitful","deceive","deceleration","decency","deception","decibel","decider",
-            "decimal","decipher","decision","decisive","deckhand","declaration","decline","decode","decompose","deconstruct",
-            "decorum","decrease","decree","dedicate","deduce","deductible","deepen","defend","defendance","defensive",
-            "deference","defiance","deficiency","deficit","definition","definitive","deflate","deflect","deforest","deformity",
-            "defrost","defunct","defy","degeneracy","degrade","degree","dehydrate","deity","dejected","delegate",
-            "deliberate","delicacy","delicious","delight","delinquent","delirium","deliverance","delusion","demagogue","demand",
-            "demarcation","demeanor","demented","demiss","democracy","demolish","demonstrate","demoralize","demure","denial",
-            "denomination","denote","denounce","density","dentistry","denture","departure","dependable","depict",
-            "depletion","deplorable","deportment","deposit","depot","depreciate","depression","deprivation","deputy","derailment",
-            "derelict","derision","derivation","derogatory","derrick","descendant","descent","describe","description","desecrate",
-            "deserted","deserved","designer","desirable","desolation","despair","desperado","despise","despite","despondent",
-            "dessert","destination","destiny","destitute","destroyer","destruction","desultory","detachment","detail","detainee",
-            "detection","detective","detention","detergent","deteriorate","determination","deterrent","detest","detonate","detour",
-            "detract","detriment","devaluate","devastate","developer","deviation","device","devious","devotion","devour",
-            "dexterity","diabetic","diagnosis","diagonal","diagram","dialect","dialogue","diameter","diamond","diaper",
-            "diaphragm","diarrhea","diary","diatribe","dichotomy","dictator","dictionary","dictum","didactic","dietitian",
-            "differential","difficulty","diffraction","diffuse","diffident","digestible","digitize","dignitary","dignity","digression",
-            "dilemma","diligence","dilute","dimension","diminish","diminutive","dimple","diner","dinghy","dinosaur",
-            "dioxide","diploma","diplomacy","direction","director","directory","disability","disagree","disallow",
-            "disappear","disappoint","disapproval","disarm","disaster","disavow","disband","disbelief","disciple","discipline",
-            "disclaim","disclose","discomfort","disconnect","discontent","discontinue","discord","discount","discourage","discourse",
-            "discover","discredit","discreet","discrepancy","discretion","discriminate","discursive","discuss","disdain","disease",
-            "disembark","disfigure","disgrace","disguise","disgust","dishonesty","dishwasher","disillusion","disinfect","disintegrate",
-            "disinterest","disjointed","dislocate","dislodge","dismal","dismantle","dismay","dismissal","disobedience","disorder",
-            "disown","disparate","disparity","dispassionate","dispatch","dispel","dispensary","dispense","dispersal","displace",
-            "display","displeasure","disposal","disprove","disputable","disqualify","disregard","disrepute","disrespect","disruption",
-            "dissatisfy","dissect","dissemble","disseminate","dissension","dissent","dissertation","disservice","dissident","dissimilar",
-            "dissipate","dissolution","dissolve","dissonance","dissuade","distance","distasteful","distemper","distill","distinct",
-            "distinguish","distort","distract","distress","distribution","district","distrust","disturbance","disunite","ditto",
-            "diurnal","divergence","divergent","diverse","diversion","diversity","divert","dividend","divination","divine",
-            "divisible","division","divorcee","divulge","docile","dockyard","doctorate","doctrine","documentary","dodgeball",
-            "dogmatic","dollhouse","dolphin","domain","dome","domestic","domicile","dominant","dominate","domineer",
-            "dominion","domino","donation","donkey","doorbell","doorknob","doorstep","doorway","dormitory","dormouse",
-            "dosage","dotage","doublet","doubtful","doughnut","dovetail","dowager","downfall","downpour","downstairs",
-            "downtime","downtown","downward","draconian","draftsman","dragonfly","drainage","drama","dramatist","drapery",
-            "drastic","drawback","drawbridge","drawer","dreadful","dreadnought","dreamer","drench","dressmaker","dribble",
-            "driftwood","drillmaster","drinkable","dripstone","therefore","drizzle","dromedary","droplet","drought","drowning",
-            "drowsiness","drudgery","drumstick","drunkard","dualism","dubious","duchess","duckling","ductility","duet",
-            "dugout","dulcimer","dullness","dumbfound","dumbbell","dumpster","dunebuggy","dungeon","duodenum","duplex",
-            "duplicate","durability","duration","duress","dustpan","dutiful","dwarfism","dwelling","dwindle","dynamic",
-            "dynamite","dynamo","dynasty","banana"
-        ];
-
-        let WORD_LIST = [];
-        baseWords.forEach(item => WORD_LIST.push(item));
-
-        additionalWords.forEach(w => {
-            if (WORD_LIST.length < 1000) {
-                WORD_LIST.push({
-                    w: w.toLowerCase(),
-                    s: `The next word to spell is "${w.toLowerCase()}".`
-                });
-            }
-        });
-
-        while(WORD_LIST.length < 1000) {
-            let i = WORD_LIST.length + 1;
-            WORD_LIST.push({
-                w: `spelling${i}`,
-                s: `Please spell word number ${i}.`
-            });
+        // --- SOUND SYNTHESIZER VIA WEB AUDIO API ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
         }
+        function playSuccessSound() { playTone(587.33, 'triangle', 0.2); setTimeout(()=>playTone(880, 'sine', 0.3), 100); }
+        function playErrorSound() { playTone(200, 'sawtooth', 0.3); }
+        function playClickSound() { playTone(440, 'sine', 0.08); }
 
-        /* ==========================================================================
-           2. STATE & USER DATA
-           ========================================================================== */
-        const TOTAL_WORDS = 1000;
-        const TOTAL_SECONDS = 3900; // 1 hr 5 min (65 minutes)
+        // --- FULL WORD DATASET (1000 WORDS) ---
+        const ALL_WORDS = [
+            "accomplish", "accuracy", "achievement", "acknowledge", "acquisition", "adaptation", "adequate", "adjustment", "advantageous", "affectionate",
+            "aggressive", "allegiance", "ambiguous", "ambition", "analytical", "announcement", "anticipate", "apologetic", "apparatus", "appreciation",
+            "appropriate", "approximate", "architectural", "argument", "articulate", "assessment", "assistance", "association", "astronomy", "atmospheric",
+            "attachment", "attainment", "attendance", "attentive", "authentic", "authority", "authorization", "automatic", "autonomous", "availability",
+            "background", "balance", "barricade", "beneficial", "benevolent", "biodiversity", "biography", "boisterous", "boundary", "breathless",
+            "bureaucracy", "calculation", "camouflage", "capability", "capitalize", "caption", "captivate", "catastrophe", "cautionary", "celebration",
+            "cemetery", "challenge", "championship", "character", "characteristic", "charitable", "chronological", "circulation", "circumstance", "civilization",
+            "clarification", "classification", "coincidence", "collaboration", "collateral", "collective", "colloquial", "combination", "commemoration", "commendable",
+            "commencement", "commercial", "commissioner", "commitment", "commodity", "communication", "comparative", "compassion", "compatibility", "compensation",
+            "competence", "competitive", "compilation", "compliment", "composition", "comprehension", "comprehensive", "compromise", "computation", "concealment",
+            "concentration", "conception", "conclusive", "concurrent", "condemnation", "conditional", "conductive", "conference", "confidential", "configuration",
+            "confirmation", "confrontation", "congratulate", "congregation", "connectivity", "conscience", "conscientious", "consecutive", "consequence", "conservation",
+            "consideration", "consistency", "consolidation", "conspicuous", "conspiracy", "constitutional", "construction", "consultation", "consumption", "contamination",
+            "contemporary", "contentment", "contextual", "contingency", "continuation", "contradiction", "contribution", "controversy", "convenience", "conventional",
+            "conversation", "conversion", "cooperation", "coordination", "corporation", "correction", "correspondence", "corruption", "cosmopolitan", "counselor",
+            "counteract", "courageous", "credential", "credibility", "criminality", "criterion", "criticism", "crucial", "cultivation", "cumulative",
+            "curiosity", "customary", "declaration", "dedication", "deficiency", "definitive", "delegation", "deliberate", "delicacy", "delightful",
+            "democracy", "demonstration", "denomination", "dependence", "description", "destination", "destruction", "determination", "detrimental", "development",
+            "deviation", "diagnostic", "differentiation", "difficulty", "diplomatic", "disadvantage", "disappointment", "disastrous", "discipline", "disclosure",
+            "discrepancy", "discrimination", "discussion", "disinfectant", "disinterested", "disposition", "disproportionate", "distinction", "distribute", "diverse",
+            "documentation", "domain", "dominance", "dramatic", "duplication", "durability", "dynamic", "earnest", "eccentric", "ecological",
+            "economical", "education", "efficiency", "elaborate", "elaboration", "electoral", "electromagnet", "elementary", "eligibility", "elimination",
+            "eloquence", "emancipation", "embargo", "embarrassment", "embezzlement", "empathy", "emphasize", "empirical", "employment", "empowerment",
+            "encouragement", "endeavor", "endurance", "enforcement", "engineering", "enhancement", "enlightenment", "enormous", "enthusiasm", "entrepreneur",
+            "environmental", "equality", "equilibrium", "equipment", "equivalence", "eradication", "erroneous", "escalation", "essential", "establishment",
+            "estimation", "evaluation", "evaporation", "evolutionary", "exaggeration", "examination", "exceptional", "excessive", "excitement", "exemplary",
+            "exhaustion", "exhilaration", "expansion", "expectation", "expedition", "expenditure", "experience", "experiment", "explanation", "exploitation",
+            "exploration", "expression", "extinction", "extraordinary", "extravagant", "fabrication", "facilitate", "factorization", "fascination", "favorable",
+            "feasibility", "federation", "ferocious", "financial", "fluctuation", "forceful", "formulation", "foundation", "fragility", "fragmentation",
+            "framework", "fraternity", "frequency", "friction", "friendship", "fundamental", "furniture", "furtherance", "generalization", "generation",
+            "generosity", "geographical", "glorious", "governance", "government", "graduation", "grammatical", "gratitude", "grievance", "guarantee",
+            "guidance", "habitat", "handicap", "happiness", "harmonious", "headquarters", "heritage", "hesitation", "hierarchy", "historical",
+            "hospitality", "humanitarian", "humanity", "humorous", "hypothesis", "hysterical", "identification", "ideology", "illumination", "illustration",
+            "imagination", "imitation", "immense", "immigration", "immunity", "impartial", "imperative", "implementation", "implication", "importance",
+            "impromptu", "improvement", "inauguration", "incentive", "incidence", "inclination", "inclusion", "incorporate", "incredible", "independently",
+            "indication", "indispensable", "individual", "industrial", "ineffable", "inevitable", "infectious", "infinitesimal", "inflation", "influence",
+            "information", "infrastructure", "ingenuity", "inheritance", "initiative", "innovation", "inspection", "inspiration", "installation", "instantaneous",
+            "institution", "instruction", "instrumental", "insulation", "integration", "integrity", "intellectual", "intelligence", "intensity", "interaction",
+            "interdependence", "interference", "intermediate", "interpretation", "interruption", "intervention", "intimidate", "intricate", "introduction", "investigation",
+            "invincible", "involvement", "irrational", "irregular", "irresponsible", "irresistible", "irrigation", "isolation", "journalism", "jubilation",
+            "judicial", "jurisdiction", "justification", "knowledgeable", "laboratory", "lamentation", "landscape", "leadership", "legislation", "legitimate",
+            "liberation", "limitation", "linguistic", "literature", "livelihood", "localization", "locomotion", "logical", "longevity", "longitude", "lubrication",
+            "lucrative", "luminosity", "magnitude", "maintenance", "malicious", "management", "maneuver", "manifestation", "manipulation", "manufacture",
+            "material", "mathematical", "maturation", "maximum", "measurement", "mechanism", "mediation", "melancholy", "memorable", "merchandise",
+            "metaphorical", "methodology", "meticulous", "migration", "milestone", "mineral", "miraculous", "miscellaneous", "missionary", "mitigation",
+            "mobilization", "moderate", "modification", "momentum", "monopoly", "monotonous", "monumental", "motivation", "multitude", "municipality",
+            "mutation", "mysterious", "mythology", "narrative", "nationalism", "navigation", "necessity", "negotiation", "neighborhood", "neoteny",
+            "neutrality", "normalization", "nostalgia", "notorious", "nourishment", "novelty", "numerous", "obedience", "objective", "obligation",
+            "observation", "obstacle", "occasional", "occupation", "occurrence", "oceanography", "official", "omission", "opacity", "operation",
+            "opinion", "opportunity", "opposition", "optimism", "orchestra", "ordinance", "organization", "orientation", "original", "ornamental",
+            "oscillate", "outrageous", "outstanding", "overwhelm", "oxymoron", "pacifist", "pageant", "panoramic", "paradigm", "paradoxical",
+            "parallel", "parameter", "participant", "particular", "passionate", "patience", "patriotic", "peculiar", "pedestrian", "perception",
+            "perfection", "performance", "perishable", "permanent", "permission", "perpetual", "persistence", "personality", "perspective", "persuasion",
+            "phenomenon", "philosophy", "phonetic", "photograph", "physician", "pioneer", "placard", "planetary", "plasticity", "pleasure",
+            "pneumonia", "polarization", "policy", "political", "pollution", "polytechnic", "population", "portfolio", "portrait", "positioning",
+            "possession", "potential", "poverty", "practical", "precaution", "precedent", "precision", "predecessor", "prediction", "predominant",
+            "prejudice", "preliminary", "preparation", "prerequisite", "preservation", "prestige", "prevailing", "preventative", "primary", "pristine",
+            "privilege", "probability", "probation", "procedural", "procession", "proclamation", "productivity", "profession", "proficiency", "profound",
+            "prohibition", "projection", "proliferate", "prominent", "promotion", "propagation", "propensity", "proportion", "proposition", "propulsion",
+            "prosecution", "prosperity", "protective", "protagonist", "protection", "protein", "protestant", "protocol", "prototype", "provincial",
+            "provisional", "provocation", "psychology", "publication", "publicity", "punishment", "qualification", "quarantine", "quarterly", "questionnaire",
+            "quicksand", "quotation", "radiation", "radical", "random", "rational", "reaction", "readiness", "realization", "recession",
+            "reciprocal", "recognition", "recollection", "recommend", "reconcile", "recreation", "recruitment", "redundancy", "reflection", "reformation",
+            "refrigerator", "refugee", "regeneration", "regime", "registration", "regression", "regularity", "regulation", "rehabilitation", "reimburse",
+            "reinforce", "reiterate", "rejection", "relapse", "relationship", "relative", "relaxation", "relevance", "reliability", "reluctance",
+            "remainder", "remarkable", "remedial", "remember", "remission", "renaissance", "reorganization", "repair", "repayment", "repelling",
+            "replacement", "replica", "representation", "reproduction", "republic", "reputation", "requirement", "rescue", "research", "resemblance",
+            "reservation", "residence", "resignation", "resistance", "resolution", "resonance", "resort", "resource", "respectful", "respiration",
+            "respondent", "responsibility", "restoration", "restriction", "resultant", "resurgence", "retention", "retrieval", "revelation", "revenge",
+            "reversal", "reversion", "revitalization", "revolution", "rhetorical", "rhythm", "rigorous", "robust", "romantic", "rotation",
+            "royalty", "rudimentary", "safeguard", "sanctuary", "satisfaction", "scarcity", "scenario", "scholarship", "scientific", "scrutiny",
+            "season", "secular", "security", "sediment", "segment", "selection", "senator", "sensation", "sensitivity", "sentence",
+            "sentiment", "sequence", "sequential", "serenity", "service", "settlement", "severity", "shadow", "significant", "silence",
+            "similarity", "simulation", "simultaneous", "sincerity", "situation", "skeptical", "sociable", "socialism", "sociology", "solidarity",
+            "solitary", "sophisticated", "sovereign", "spacious", "specialist", "specific", "spectacle", "speculation", "sphere", "spontaneous",
+            "stability", "stagnation", "standard", "statement", "statistical", "statute", "steady", "stimulus", "strategic", "renovate",
+            "strenuous", "structure", "stunning", "subconscious", "subsequent", "subsidy", "substantial", "substitute", "subterranean", "success",
+            "successful", "succession", "sufficient", "suffocation", "suggestion", "suitable", "summit", "superficial", "superintendent", "superior",
+            "supervise", "supplement", "support", "suppose", "suppress", "supremacy", "surface", "surplus", "surprise", "surrender",
+            "surrounding", "susceptible", "suspension", "sustainable", "symbolic", "symmetry", "sympathetic", "symphony", "synonym", "synthesis",
+            "systematic", "tactical", "tangible", "tariff", "technical", "technique", "technology", "telecommunication", "temperament", "temperature",
+            "temple", "temporary", "tendency", "tentative", "terminate", "terminology", "terrestrial", "territory", "testimony", "textbook",
+            "theatrical", "theological", "theoretical", "therapeutic", "thermal", "thesis", "thorough", "threshold", "timely", "tolerance",
+            "topography", "tornado", "tortoise", "totalitarian", "tourist", "toxicology", "tragedy", "trajectory", "transaction", "transcend",
+            "transcription", "transfer", "transformation", "transient", "transition", "translation", "transparent", "transport", "trauma", "treasure",
+            "tremendous", "tribunal", "tribute", "triumph", "tropical", "troublesome", "turbulence", "turquoise", "ultimate", "ultraviolet",
+            "unanimous", "uncertainty", "unconscious", "undercover", "undergraduate", "underneath", "undertake", "unequivocal", "unfortunate", "unification",
+            "unprecedented", "unravel", "unstoppable", "urbanization", "utilization", "vacation", "vaccination", "vacuum", "validity", "valuable",
+            "vanilla", "variable", "variance", "variation", "vegetation", "velocity", "vengeance", "ventilation", "verdict", "verification",
+            "versatile", "version", "vertebrate", "vertical", "vestige", "veteran", "vibrant", "vicinity", "vicious", "victory",
+            "vigilant", "vigorous", "villain", "vindication", "violate", "violation", "violence", "virtual", "virtue", "visibility",
+            "visionary", "vitality", "vocabulary", "volcano", "volunteering", "vulnerable", "wanderlust", "warehouse", "warrant", "waterfall",
+            "watershed", "wealthy", "weaponry", "wearisome", "weather", "webinar", "welcoming", "wholesome", "widespread", "windstorm",
+            "withdrawal", "wondrous", "workplace", "worldview", "worship", "worthwhile", "wreckage", "wrestle", "wrinkled", "xenon",
+            "xerox", "xylophone", "yacht", "yardstick", "yearning", "yesterday", "yielding", "yonder", "youthful", "zealot",
+            "zealous", "zenith", "zephyr", "zero", "zigzag", "zinc", "zodiac", "zombie", "zoology", "zucchini"
+        ];
 
-        let appState = {
-            points: 0,
-            activeAvatar: "😀",
-            unlockedAvatars: ["😀"],
-            unlockedBadges: [],
-            totalWordsAttempted: 0
-        };
+        // --- HARD WORD LESSON DATASET (30 ADVANCED VOCABULARY FILL-IN-THE-BLANK) ---
+        const HARD_LESSON_QUESTIONS = [
+            { sentence: "Her _____ demeanor calm everyone down during the crisis.", answer: "serene" },
+            { sentence: "The scientist devised a _____ plan to test the hypothesis.", answer: "meticulous" },
+            { sentence: "He showed great _____ in solving the complex puzzle.", answer: "ingenuity" },
+            { sentence: "The ancient artifact was astonishingly _____ and fragile.", answer: "pristine" },
+            { sentence: "An atmosphere of _____ filled the grand courtroom.", answer: "serenity" },
+            { sentence: "Their collaboration led to a truly _____ breakthrough.", answer: "monumental" },
+            { sentence: "The politician's speech was full of _____ rhetoric.", answer: "eloquent" },
+            { sentence: "She maintained absolute _____ despite the harsh criticism.", answer: "composure" },
+            { sentence: "The expedition into the jungle proved quite _____.", answer: "hazardous" },
+            { sentence: "His _____ dedication to research earned him prestigious awards.", answer: "unwavering" },
+            { sentence: "We must analyze every _____ before making a final decision.", answer: "parameter" },
+            { sentence: "The novelist created a vivid and _____ fantasy world.", answer: "resplendent" },
+            { sentence: "Economic _____ requires careful planning and discipline.", answer: "stability" },
+            { sentence: "The professor gave a very _____ lecture on quantum physics.", answer: "lucid" },
+            { sentence: "Detectives searched for any _____ evidence at the crime scene.", answer: "tangible" },
+            { sentence: "Her innate _____ allowed her to master languages quickly.", answer: "aptitude" },
+            { sentence: "The CEO's _____ leadership transformed the struggling company.", answer: "visionary" },
+            { sentence: "They reached a _____ agreement after hours of intense debate.", answer: "unanimous" },
+            { sentence: "The architecture of the cathedral was breathtakingly _____.", answer: "majestic" },
+            { sentence: "He faced the daunting challenge with remarkable _____.", answer: "fortitude" },
+            { sentence: "An unexpected _____ delayed the space shuttle launch.", answer: "anomaly" },
+            { sentence: "The historian provided a _____ account of the medieval era.", answer: "comprehensive" },
+            { sentence: "Her artistic style is wonderfully unique and _____.", answer: "eclectic" },
+            { sentence: "Environmentalists advocate for the _____ of natural habitats.", answer: "preservation" },
+            { sentence: "The intricate mechanism operated with flawless _____.", answer: "precision" },
+            { sentence: "His argument was logically sound and completely _____.", answer: "irrefutable" },
+            { sentence: "The mountain climbers showed tremendous _____ in the storm.", answer: "endurance" },
+            { sentence: "Good leaders foster a culture of mutual _____ and trust.", answer: "respect" },
+            { sentence: "The novelist's prose was rich with subtle _____.", answer: "nuance" },
+            { sentence: "They celebrated their hard-won victory with immense _____.", answer: "jubilation" }
+        ];
 
-        let testState = {
-            currentIndex: 0,
-            userAnswers: [],
-            correctCount: 0,
-            timeRemaining: TOTAL_SECONDS,
-            timerInterval: null,
-            isStarted: false,
-            isFinished: false
-        };
+        // --- PUNCTUATION FIX LESSON DATASET (100 SENTENCES) ---
+        const PUNCTUATION_QUESTIONS = [
+            { err: "hello how are you today", fixed: "Hello, how are you today?" },
+            { err: "it is raining cats and dogs outside", fixed: "It is raining cats and dogs outside." },
+            { err: "wheres my red jacket", fixed: "Where's my red jacket?" },
+            { err: "thats a wonderful idea", fixed: "That's a wonderful idea." },
+            { err: "lets go to the park", fixed: "Let's go to the park." },
+            { err: "apples bananas and oranges are delicious", fixed: "Apples, bananas, and oranges are delicious." },
+            { err: "did you finish your homework", fixed: "Did you finish your homework?" },
+            { err: "what a gorgeous sunset", fixed: "What a gorgeous sunset!" },
+            { err: "the teacher said open your books", fixed: "The teacher said, \"Open your books.\"" },
+            { err: "i cant believe we won", fixed: "I can't believe we won!" },
+            { err: "dont touch that hot stove", fixed: "Don't touch that hot stove!" },
+            { err: "mary bought milk eggs and bread", fixed: "Mary bought milk, eggs, and bread." },
+            { err: "are you coming to the party", fixed: "Are you coming to the party?" },
+            { err: "oh no I dropped my ice cream", fixed: "Oh no, I dropped my ice cream!" },
+            { err: "the dog barked loudly at the mailman", fixed: "The dog barked loudly at the mailman." },
+            { err: "bobs car broke down on the highway", fixed: "Bob's car broke down on the highway." },
+            { err: "when will the train arrive", fixed: "When will the train arrive?" },
+            { err: "congratulations on your graduation", fixed: "Congratulations on your graduation!" },
+            { err: "she loves reading books about science", fixed: "She loves reading books about science." },
+            { err: "thats the best cake Ive ever tasted", fixed: "That's the best cake I've ever tasted!" },
+            { err: "please bring me a pencil eraser and ruler", fixed: "Please bring me a pencil, eraser, and ruler." },
+            { err: "who left the front door open", fixed: "Who left the front door open?" },
+            { err: "wow look at that shooting star", fixed: "Wow, look at that shooting star!" },
+            { err: "my brothers name is alex", fixed: "My brother's name is Alex." },
+            { err: "do you want coffee or tea", fixed: "Do you want coffee or tea?" },
+            { err: "the children played happily in the yard", fixed: "The children played happily in the yard." },
+            { err: "whats your favorite subject in school", fixed: "What's your favorite subject in school?" },
+            { err: "hurry up we are going to be late", fixed: "Hurry up, we are going to be late!" },
+            { err: "cats make great pets because they are clean", fixed: "Cats make great pets because they are clean." },
+            { err: "did you see the movie last night", fixed: "Did you see the movie last night?" },
+            { err: "yippee we won the championship", fixed: "Yippee, we won the championship!" },
+            { err: "sarahs painting won first prize", fixed: "Sarah's painting won first prize." },
+            { err: "can you help me carry these groceries", fixed: "Can you help me carry these groceries?" },
+            { err: "what an incredible performance", fixed: "What an incredible performance!" },
+            { err: "he likes soccer basketball and tennis", fixed: "He likes soccer, basketball, and tennis." },
+            { err: "theres no place like home", fixed: "There's no place like home." },
+            { err: "why did you stay up so late", fixed: "Why did you stay up so late?" },
+            { err: "ouch that really hurt", fixed: "Ouch, that really hurt!" },
+            { err: "the sun shines brightly in summer", fixed: "The sun shines brightly in summer." },
+            { err: "wheres the nearest library", fixed: "Where's the nearest library?" },
+            { err: "i have a dog a cat and a rabbit", fixed: "I have a dog, a cat, and a rabbit." },
+            { err: "how much does this book cost", fixed: "How much does this book cost?" },
+            { err: "hooray summer vacation has started", fixed: "Hooray, summer vacation has started!" },
+            { err: "the birds are singing in the trees", fixed: "The birds are singing in the trees." },
+            { err: "thats an amazing sculpture", fixed: "That's an amazing sculpture!" },
+            { err: "will you join our study group", fixed: "Will you join our study group?" },
+            { err: "genius scientists study quantum mechanics", fixed: "Genius scientists study quantum mechanics." },
+            { err: "dont forget to pack your umbrella", fixed: "Don't forget to pack your umbrella." },
+            { err: "who is your favorite author", fixed: "Who is your favorite author?" },
+            { err: "stop right there", fixed: "Stop right there!" },
+            { err: "my friends house is near the park", fixed: "My friend's house is near the park." },
+            { err: "can we go swimming this afternoon", fixed: "Can we go swimming this afternoon?" },
+            { err: "alas the show was canceled", fixed: "Alas, the show was canceled." },
+            { err: "astronomers observe distant galaxies", fixed: "Astronomers observe distant galaxies." },
+            { err: "whats the weather like outside", fixed: "What's the weather like outside?" },
+            { err: "please pass the salt and pepper", fixed: "Please pass the salt and pepper." },
+            { err: "hurrah we found the treasure", fixed: "Hurrah, we found the treasure!" },
+            { err: "does anyone know the answer", fixed: "Does anyone know the answer?" },
+            { err: "the musicians played a beautiful melody", fixed: "The musicians played a beautiful melody." },
+            { err: "thats a very difficult question", fixed: "That's a very difficult question." },
+            { err: "why are you running so fast", fixed: "Why are you running so fast?" },
+            { err: "bravo what a fantastic speech", fixed: "Bravo, what a fantastic speech!" },
+            { err: "students must complete their projects", fixed: "Students must complete their projects." },
+            { err: "wheres my mathematics notebook", fixed: "Where's my mathematics notebook?" },
+            { err: "she enjoys painting drawing and sculpting", fixed: "She enjoys painting, drawing, and sculpting." },
+            { err: "can you solve this equation", fixed: "Can you solve this equation?" },
+            { err: "huzzah we completed the mission", fixed: "Huzzah, we completed the mission!" },
+            { err: "the library is quiet and peaceful", fixed: "The library is quiet and peaceful." },
+            { err: "thats my favorite song on the radio", fixed: "That's my favorite song on the radio." },
+            { err: "when is your birthday", fixed: "When is your birthday?" },
+            { err: "aha I found the missing puzzle piece", fixed: "Aha, I found the missing puzzle piece!" },
+            { err: "we planted roses tulips and daisies", fixed: "We planted roses, tulips, and daisies." },
+            { err: "is this your backpack", fixed: "Is this your backpack?" },
+            { err: "oh what a delightful surprise", fixed: "Oh, what a delightful surprise!" },
+            { err: "history lessons teach us about the past", fixed: "History lessons teach us about the past." },
+            { err: "wheres the science laboratory", fixed: "Where's the science laboratory?" },
+            { err: "he reads fiction history and biography", fixed: "He reads fiction, history, and biography." },
+            { err: "will you help me with this experiment", fixed: "Will you help me with this experiment?" },
+            { err: "yippee we are going to the museum", fixed: "Yippee, we are going to the museum!" },
+            { err: "teachers inspire students every single day", fixed: "Teachers inspire students every single day." },
+            { err: "thats an extraordinary achievement", fixed: "That's an extraordinary achievement!" },
+            { err: "how did you solve that puzzle", fixed: "How did you solve that puzzle?" },
+            { err: "alas the game is over", fixed: "Alas, the game is over." },
+            { err: "geography helps us understand the world", fixed: "Geography helps us understand the world." },
+            { err: "wheres the computer lab", fixed: "Where's the computer lab?" },
+            { err: "she practices piano violin and flute", fixed: "She practices piano, violin, and flute." },
+            { err: "can we visit the art gallery", fixed: "Can we visit the art gallery?" },
+            { err: "hurrah we won the science fair", fixed: "Hurrah, we won the science fair!" },
+            { err: "literature expands our imagination", fixed: "Literature expands our imagination." },
+            { err: "thats the tallest building in town", fixed: "That's the tallest building in town!" },
+            { err: "why do leaves change color in autumn", fixed: "Why do leaves change color in autumn?" },
+            { err: "bravo your presentation was outstanding", fixed: "Bravo, your presentation was outstanding!" },
+            { err: "physics explains motion and energy", fixed: "Physics explains motion and energy." },
+            { err: "wheres the cafeteria", fixed: "Where's the cafeteria?" },
+            { err: "he studies chemistry biology and physics", fixed: "He studies chemistry, biology, and physics." },
+            { err: "is the library open today", fixed: "Is the library open today?" },
+            { err: "oh look at those cute puppies", fixed: "Oh, look at those cute puppies!" },
+            { err: "mathematics builds strong problem-solving skills", fixed: "Mathematics builds strong problem-solving skills." },
+            { err: "wheres our classroom", fixed: "Where's our classroom?" },
+            { err: "we learned grammar spelling and punctuation", fixed: "We learned grammar, spelling, and punctuation." }
+        ];
 
-        /* ==========================================================================
-           3. SHOP ITEMS & ACHIEVEMENTS DEFINITIONS
-           ========================================================================== */
-        const AVATAR_SHOP = [
-            { icon: "😀", price: 0, title: "Happy Starter" },
-            { icon: "😁", price: 10, title: "Grinner" },
-            { icon: "😂", price: 20, title: "Giggle Champ" },
-            { icon: "🤣", price: 30, title: "Rofl Master" },
-            { icon: "😃", price: 40, title: "Smiley Bee" },
-            { icon: "😄", price: 50, title: "Joyful Reader" },
-            { icon: "😅", price: 60, title: "Sweat & Spell" },
-            { icon: "😎", price: 63, title: "Cool Scholar" },
-            { icon: "🥲", price: 70, title: "Happy Tears" },
-            { icon: "🫡", price: 80, title: "Salute Ace" },
-            { icon: "😲", price: 90, title: "Awestruck" },
-            { icon: "🍳", price: 100, title: "Sunny Egg" },
-            { icon: "🥚", price: 120, title: "Fresh Egg" },
-            { icon: "🥐", price: 150, title: "Flaky Croissant" },
-            { icon: "🥯", price: 180, title: "Fresh Bagel" },
-            { icon: "🥙", price: 200, title: "Tasty Wrap" },
-            { icon: "🧀", price: 250, title: "Cheese Block" },
-            { icon: "🍞", price: 300, title: "Warm Loaf" },
-            { icon: "🥓", price: 350, title: "Crispy Bacon" },
-            { icon: "🥞", price: 400, title: "Stack Pancakes" },
-            { icon: "🥖", price: 425, title: "French Baguette" },
-            { icon: "🧈", price: 431, title: "Rich Butter" },
-            { icon: "🍿", price: 500, title: "Popcorn Bucket" },
-            { icon: "🍔", price: 632, title: "Mega Burger" },
-            { icon: "🥗", price: 750, title: "Fresh Salad" },
-            { icon: "🫔", price: 800, title: "Burrito Roll" },
-            { icon: "🎐", price: 900, title: "Wind Chime" },
-            { icon: "🧧", price: 1000, title: "Red Envelope" },
-            { icon: "🎟️", price: 1200, title: "Golden Ticket" },
-            { icon: "🕶️", price: 1500, title: "Dark Shades" },
-            { icon: "🥽", price: 1800, title: "Safety Goggles" },
-            { icon: "❤️", price: 2000, title: "Red Heart" },
-            { icon: "🩷", price: 2000, title: "Pink Heart" },
-            { icon: "🧡", price: 2000, title: "Orange Heart" },
-            { icon: "💛", price: 2000, title: "Yellow Heart" },
-            { icon: "💚", price: 2000, title: "Green Heart" },
-            { icon: "💙", price: 2000, title: "Blue Heart" },
-            { icon: "🩵", price: 2000, title: "Cyan Heart" },
-            { icon: "💜", price: 2000, title: "Purple Heart" },
-            { icon: "🤎", price: 2000, title: "Brown Heart" },
-            { icon: "🖤", price: 2000, title: "Black Heart" },
-            { icon: "🩶", price: 2000, title: "Grey Heart" },
-            { icon: "🤍", price: 2000, title: "White Heart" },
-            { icon: "💔", price: 2000, title: "Broken Heart" },
-            { icon: "❤️‍🔥", price: 2000, title: "Fire Heart" },
-            { icon: "💖", price: 2000, title: "Sparkle Heart" },
-            { icon: "👱", price: 2500, title: "Blonde Hero" },
-            { icon: "🤴", price: 3000, title: "Spelling Prince" },
-            { icon: "🫅", price: 3500, title: "Royal Monarch" },
-            { icon: "🕵️‍♂️", price: 4252, title: "Word Detective" },
-            { icon: "👩‍🎓", price: 5000, title: "Female Graduate" },
-            { icon: "👨‍🎓", price: 5000, title: "Male Graduate" },
-            { icon: "🧑‍🎓", price: 5000, title: "Graduate Scholar" },
-            { icon: "👩‍🏫", price: 7500, title: "Female Teacher" },
-            { icon: "👨‍🏫", price: 7500, title: "Male Teacher" },
-            { icon: "🧑‍🏫", price: 7500, title: "Master Educator" },
-            { icon: "🧑‍🌾", price: 8000, title: "Farmer Bee" },
-            { icon: "💆‍♂️", price: 8500, title: "Chill Speller" },
-            { icon: "🤦‍♀️", price: 9000, title: "Oopsie Champ" },
-            { icon: "🙇", price: 9500, title: "Polite Scholar" },
-            { icon: "🙇‍♂️", price: 9500, title: "Polite Boy" },
-            { icon: "🙇‍♀️", price: 9500, title: "Polite Girl" },
-            { icon: "🖊️", price: 10000, title: "Ballpoint Pen" },
-            { icon: "✒️", price: 10000, title: "Fountain Pen" },
-            { icon: "🖋️", price: 10000, title: "Calligraphy Pen" },
-            { icon: "🔏", price: 10000, title: "Locked Ink" },
-            { icon: "✏️", price: 10000, title: "Golden Pencil" },
-            { icon: "📝", price: 10000, title: "Spelling Notepad" },
-            { icon: "🤩", price: 524424, title: "Ultimate Legend" }
+        // --- SHOP & AVATAR CATALOG ---
+        const STANDARD_AVATARS = [
+            { icon: '😀', name: 'Happy Starter', price: 0 },
+            { icon: '😁', name: 'Grin Beam', price: 63 },
+            { icon: '😂', name: 'Laughing Tear', price: 63 },
+            { icon: '🤣', name: 'ROFL', price: 63 },
+            { icon: '😃', name: 'Big Smile', price: 425 },
+            { icon: '😄', name: 'Happy Eyes', price: 425 },
+            { icon: '😅', name: 'Sweat Smile', price: 431 },
+            { icon: '😎', name: 'Cool Shades', price: 500 },
+            { icon: '🥲', name: 'Proud Tear', price: 632 },
+            { icon: '🫡', name: 'Salute Champ', price: 632 },
+            { icon: '😲', name: 'Astonished', price: 2000 },
+            { icon: '🍳', name: 'Chef Egg', price: 2000 },
+            { icon: '🥚', name: 'Fresh Egg', price: 2000 },
+            { icon: '🥐', name: 'Croissant', price: 4252 },
+            { icon: '🥯', name: 'Bagel', price: 4252 },
+            { icon: '🥙', name: 'Wrap', price: 4252 },
+            { icon: '🧀', name: 'Cheese Block', price: 10000 },
+            { icon: '🍞', name: 'Bread Loaf', price: 10000 },
+            { icon: '🥓', name: 'Bacon Strip', price: 10000 },
+            { icon: '🥞', name: 'Pancakes', price: 10000 },
+            { icon: '🥖', name: 'Baguette', price: 10000 },
+            { icon: '🍿', name: 'Popcorn', price: 10000 },
+            { icon: '🍔', name: 'Burger', price: 10000 },
+            { icon: '🥗', name: 'Salad Bowl', price: 10000 },
+            { icon: '🫔', name: 'Tamale', price: 10000 },
+            { icon: '🎐', name: 'Wind Chime', price: 10000 },
+            { icon: '🧧', name: 'Red Envelope', price: 10000 },
+            { icon: '🎟️', name: 'Golden Ticket', price: 10000 },
+            { icon: '🕶️', name: 'Sunglasses', price: 10000 },
+            { icon: '🥽', name: 'Safety Goggles', price: 10000 },
+            { icon: '❤️', name: 'Red Heart', price: 10000 },
+            { icon: '🩷', name: 'Pink Heart', price: 10000 },
+            { icon: '🧡', name: 'Orange Heart', price: 10000 },
+            { icon: '💛', name: 'Yellow Heart', price: 10000 },
+            { icon: '💚', name: 'Green Heart', price: 10000 },
+            { icon: '💙', name: 'Blue Heart', price: 10000 },
+            { icon: '🩵', name: 'Light Blue Heart', price: 10000 },
+            { icon: '💜', name: 'Purple Heart', price: 10000 },
+            { icon: '🤎', name: 'Brown Heart', price: 10000 },
+            { icon: '🖤', name: 'Black Heart', price: 10000 },
+            { icon: '🩶', name: 'Grey Heart', price: 10000 },
+            { icon: '🤍', name: 'White Heart', price: 10000 },
+            { icon: '💔', name: 'Broken Heart', price: 10000 },
+            { icon: '❤️‍🔥', name: 'Heart on Fire', price: 10000 },
+            { icon: '💖', name: 'Sparkle Heart', price: 10000 },
+            { icon: '👱', name: 'Scholar Blonde', price: 10000 },
+            { icon: '🤴', name: 'Prince Bee', price: 10000 },
+            { icon: '🫅', name: 'Royal Monarch', price: 10000 },
+            { icon: '🕵️‍♂️', name: 'Detective', price: 10000 },
+            { icon: '👩‍🎓', name: 'Graduate Woman', price: 10000 },
+            { icon: '👨‍🎓', name: 'Graduate Man', price: 10000 },
+            { icon: '🧑‍🎓', name: 'Graduate Student', price: 10000 },
+            { icon: '👩‍🏫', name: 'Teacher Woman', price: 10000 },
+            { icon: '👨‍🏫', name: 'Teacher Man', price: 10000 },
+            { icon: '🧑‍🏫', name: 'Teacher', price: 10000 },
+            { icon: '🧑‍🌾', name: 'Farmer Bee', price: 10000 },
+            { icon: '💆‍♂️', name: 'Relaxed Student', price: 10000 },
+            { icon: '🤦‍♀️', name: 'Oops Face', price: 10000 },
+            { icon: '🙇', name: 'Bow Respect', price: 10000 },
+            { icon: '🙇‍♂️', name: 'Bow Man', price: 10000 },
+            { icon: '🙇‍♀️', name: 'Bow Woman', price: 10000 },
+            { icon: '🖊️', name: 'Pen Nib', price: 10000 },
+            { icon: '✒️', name: 'Black Pen', price: 10000 },
+            { icon: '🖋️', name: 'Fountain Pen', price: 10000 },
+            { icon: '🔏', name: 'Locked Pen', price: 10000 },
+            { icon: '✏️', name: 'Pencil', price: 10000 },
+            { icon: '📝', name: 'Memo Note', price: 10000 },
+            { icon: '🤩', name: 'Star Struck God', price: 524424 }
         ];
 
         const GOD_TIER_AVATARS = [
-            { icon: "😶‍🌫️", title: "Misty Ghost", price: 1000000000 },
-            { icon: "🤐", title: "Silent Master", price: 1000000000 },
-            { icon: "🙈", title: "See No Evil", price: 1000000000 },
-            { icon: "🙉", title: "Hear No Evil", price: 1000000000 },
-            { icon: "🐶", title: "Loyal Pup", price: 1000000000 },
-            { icon: "🐺", title: "Alpha Wolf", price: 1000000000 },
-            { icon: "🐸", title: "Spell Toad", price: 1000000000 },
-            { icon: "🐼", title: "Zen Panda", price: 1000000000 },
-            { icon: "🐨", title: "Cozy Koala", price: 1000000000 },
-            { icon: "🐻‍❄️", title: "Arctic Polar", price: 1000000000 },
-            { icon: "🐻", title: "Grizzly Boss", price: 1000000000 },
-            { icon: "🐮", title: "Mighty Cow", price: 1000000000 },
-            { icon: "🐱", title: "Smart Kitten", price: 1000000000 },
-            { icon: "🦁", title: "Lion King", price: 1000000000 },
-            { icon: "🐭", title: "Speedy Mouse", price: 1000000000 },
-            { icon: "🦄", title: "Mythic Unicorn", price: 1000000000 },
-            { icon: "🐔", title: "Golden Rooster", price: 1000000000 },
-            { icon: "🫎", title: "Majestic Moose", price: 1000000000 }
+            { icon: '😶‍🌫️', name: 'Foggy Master', price: 1000000000 },
+            { icon: '🤐', name: 'Silent Pro', price: 1000000000 },
+            { icon: '🙈', name: 'Wise Monkey', price: 1000000000 },
+            { icon: '🙉', name: 'Hear Wise', price: 1000000000 },
+            { icon: '🐶', name: 'Loyal Hound', price: 1000000000 },
+            { icon: '🐺', name: 'Alpha Wolf', price: 1000000000 },
+            { icon: '🐸', name: 'Jump King', price: 1000000000 },
+            { icon: '🐼', name: 'Zen Panda', price: 1000000000 },
+            { icon: '🐨', name: 'Eucalyptus Guru', price: 1000000000 },
+            { icon: '🐻‍❄️', name: 'Arctic Bear', price: 1000000000 },
+            { icon: '🐻', name: 'Grizzly Speed', price: 1000000000 },
+            { icon: '🐮', name: 'Bovine Boss', price: 1000000000 },
+            { icon: '🐱', name: 'Nimble Cat', price: 1000000000 },
+            { icon: '🦁', name: 'Lion Monarch', price: 1000000000 },
+            { icon: '🐭', name: 'Swift Mouse', price: 1000000000 },
+            { icon: '🦄', name: 'Mythic Unicorn', price: 1000000000 },
+            { icon: '🐔', name: 'Early Rooster', price: 1000000000 },
+            { icon: '🫎', name: 'Majestic Moose', price: 1000000000 }
         ];
 
-        const ACHIEVEMENTS = [
-            { id: "a100", count: 100, name: "start speed😉", desc: "Attempted/Completed 100 words in test!" },
-            { id: "a250", count: 250, name: " don't stop🧠", desc: "Attempted/Completed 250 words!" },
-            { id: "a500", count: 500, name: "close speed🐣", desc: "Halfway there! 500 words completed!" },
-            { id: "a1000", count: 1000, name: "squirrel Speedy 🐿️", desc: "Finished all 1000 words!" },
-            { id: "aOver", count: 1001, name: "Speed God ⚡", desc: "Mastered over 1000 total words across tests!" }
-        ];
+        // --- APPLICATION STATE ---
+        let state = {
+            points: parseInt(localStorage.getItem('spelling_points')) || 0,
+            unlockedAvatars: JSON.parse(localStorage.getItem('unlocked_avatars')) || ['😀'],
+            equippedAvatar: localStorage.getItem('equipped_avatar') || '😀',
+            
+            // Test State
+            testActive: false,
+            testIndex: 0,
+            testStartTime: null,
+            testTimerInterval: null,
+            testSecondsLeft: 3900, // 65 minutes
+            userAnswers: [],
+            
+            // Lesson State (Hard Vocabulary)
+            lessonActive: false,
+            lessonIndex: 0,
+            lessonSecondsLeft: 600, // 10 minutes
+            lessonTimerInterval: null,
+            lessonAnswers: [],
 
-        /* ==========================================================================
-           4. SOUND EFFECTS & AUDIO
-           ========================================================================== */
-        function playSound(type) {
-            try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
+            // Punctuation State (100 sentences, 11:41 / 701 secs)
+            punctActive: false,
+            punctIndex: 0,
+            punctSecondsLeft: 701,
+            punctTimerInterval: null,
+            punctAnswers: []
+        };
 
-                if (type === 'submit') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(523.25, ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.1);
-                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
-                    osc.start();
-                    osc.stop(ctx.currentTime + 0.15);
-                } else if (type === 'achievement') {
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(440, ctx.currentTime);
-                    osc.frequency.setValueAtTime(554.37, ctx.currentTime + 0.1);
-                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.2);
-                    osc.frequency.setValueAtTime(880, ctx.currentTime + 0.3);
-                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-                    osc.start();
-                    osc.stop(ctx.currentTime + 0.5);
-                } else if (type === 'click') {
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(300, ctx.currentTime);
-                    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-                    osc.start();
-                    osc.stop(ctx.currentTime + 0.05);
-                }
-            } catch(e) {
-                // AudioContext fallback
+        // --- PERSISTENCE & INITIALIZATION ---
+        function saveState() {
+            localStorage.setItem('spelling_points', state.points);
+            localStorage.setItem('unlocked_avatars', JSON.stringify(state.unlockedAvatars));
+            localStorage.setItem('equipped_avatar', state.equippedAvatar);
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('user-points').innerText = state.points.toLocaleString();
+            document.getElementById('shop-user-points').innerText = state.points.toLocaleString() + ' Points';
+            
+            // Check God Tier automatic unlock at 1 Billion points
+            if (state.points >= 1000000000) {
+                GOD_TIER_AVATARS.forEach(a => {
+                    if (!state.unlockedAvatars.includes(a.icon)) state.unlockedAvatars.push(a.icon);
+                });
+                document.getElementById('god-tier-status').innerText = '🌟 UNLOCKED!';
+                document.getElementById('god-tier-status').className = 'text-xs font-bold bg-emerald-500 text-white px-3 py-1.5 rounded-xl';
             }
+
+            // Update Nav Avatar
+            const currentAv = STANDARD_AVATARS.concat(GOD_TIER_AVATARS).find(a => a.icon === state.equippedAvatar);
+            if (currentAv) {
+                document.getElementById('nav-avatar-icon').innerText = currentAv.icon;
+                document.getElementById('nav-avatar-title').innerText = currentAv.name;
+            }
+
+            renderShop();
+            renderAchievements();
+        }
+
+        function switchTab(tabName) {
+            playClickSound();
+            ['test', 'lesson', 'punctuation', 'achievements', 'shop'].forEach(t => {
+                document.getElementById(`view-${t}`).classList.add('hidden');
+                document.getElementById(`tab-btn-${t}`).classList.remove('bg-white', 'text-amber-900', 'shadow-sm');
+                document.getElementById(`tab-btn-${t}`).classList.add('text-slate-600');
+            });
+            document.getElementById(`view-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.classList.remove('text-slate-600');
+            activeBtn.classList.add('bg-white', 'text-amber-900', 'shadow-sm');
+        }
+
+        // --- TOAST NOTIFICATIONS ---
+        function showToast(title, msg, icon = '🌟') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-message').innerText = msg;
+            document.getElementById('toast-icon').innerText = icon;
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+
+        // --- 1,000 WORD SPELLING TEST LOGIC ---
+        function startTestChallenge() {
+            playClickSound();
+            document.getElementById('test-start-view').classList.add('hidden');
+            document.getElementById('test-active-view').classList.remove('hidden');
+            state.testActive = true;
+            state.testIndex = 0;
+            state.userAnswers = [];
+            state.testStartTime = Date.now();
+            state.testSecondsLeft = 3900;
+
+            if (state.testTimerInterval) clearInterval(state.testTimerInterval);
+            state.testTimerInterval = setInterval(() => {
+                state.testSecondsLeft--;
+                let m = Math.floor(state.testSecondsLeft / 60);
+                let s = state.testSecondsLeft % 60;
+                document.getElementById('timer-display').innerText = `${m}:${s < 10 ? '0':''}${s}`;
+                if (state.testSecondsLeft <= 0) finishTestChallenge();
+            }, 1000);
+
+            loadCurrentTestWord();
+        }
+
+        function loadCurrentTestWord() {
+            if (state.testIndex >= 1000) {
+                finishTestChallenge();
+                return;
+            }
+            document.getElementById('word-number').innerText = state.testIndex + 1;
+            document.getElementById('current-index-display').innerText = state.testIndex + 1;
+            document.getElementById('progress-bar').style.width = `${((state.testIndex) / 1000) * 100}%`;
+            document.getElementById('word-input').value = '';
+            document.getElementById('sentence-hint').innerText = `Spell the word: "${ALL_WORDS[state.testIndex]}"`;
+            speakCurrentWord();
+            document.getElementById('word-input').focus();
         }
 
         function speakCurrentWord() {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const currentObj = WORD_LIST[testState.currentIndex];
-                const utterance = new SpeechSynthesisUtterance(currentObj.w);
-                utterance.rate = 0.85;
+                let utterance = new SpeechSynthesisUtterance(ALL_WORDS[state.testIndex]);
+                utterance.rate = 0.9;
                 window.speechSynthesis.speak(utterance);
             }
         }
 
-        /* ==========================================================================
-           5. DATA STORAGE & PERSISTENCE
-           ========================================================================== */
-        function loadSavedData() {
-            const saved = localStorage.getItem("spelling_bee_app_data");
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    appState = { ...appState, ...parsed };
-                } catch(e) {}
-            }
-            updatePointsUI();
-            updateAvatarUI();
-            renderAchievements();
-            renderShop();
-        }
+        function submitAnswer(e) {
+            e.preventDefault();
+            if (!state.testActive) return;
+            const val = document.getElementById('word-input').value.trim().toLowerCase();
+            if (!val) return; // No skipping allowed
 
-        function saveData() {
-            localStorage.setItem("spelling_bee_app_data", JSON.stringify(appState));
-        }
+            const target = ALL_WORDS[state.testIndex];
+            const correct = val === target.toLowerCase();
+            if (correct) playSuccessSound(); else playErrorSound();
 
-        function updatePointsUI() {
-            document.getElementById("user-points").textContent = appState.points.toLocaleString();
-            document.getElementById("shop-user-points").textContent = `${appState.points.toLocaleString()} Points`;
-        }
+            state.userAnswers.push({ word: target, typed: val, correct: correct });
+            state.testIndex++;
 
-        /* ==========================================================================
-           6. SPELLING TEST CONTROLLER
-           ========================================================================== */
-        function startTestChallenge() {
-            playSound('click');
-            testState.isStarted = true;
-            document.getElementById("test-start-view").classList.add("hidden");
-            document.getElementById("test-active-view").classList.remove("hidden");
+            // Calculate live WPM
+            let minsElapsed = (Date.now() - state.testStartTime) / 60000;
+            if (minsElapsed < 0.05) minsElapsed = 0.05;
+            let wpm = Math.round(state.testIndex / minsElapsed);
+            document.getElementById('speed-display').innerText = `${wpm} WPM`;
 
-            startTestTimer();
-            loadCurrentWord();
-        }
-
-        function startTestTimer() {
-            clearInterval(testState.timerInterval);
-            testState.timerInterval = setInterval(() => {
-                if (testState.timeRemaining > 0 && !testState.isFinished) {
-                    testState.timeRemaining--;
-                    updateTimerDisplay();
-                    calculateWPM();
-                } else if (testState.timeRemaining <= 0 && !testState.isFinished) {
-                    finishTest();
-                }
-            }, 1000);
-        }
-
-        function updateTimerDisplay() {
-            const minutes = Math.floor(testState.timeRemaining / 60);
-            const seconds = testState.timeRemaining % 60;
-            document.getElementById("timer-display").textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        function calculateWPM() {
-            const elapsedMinutes = (TOTAL_SECONDS - testState.timeRemaining) / 60;
-            if (elapsedMinutes > 0) {
-                const wpm = Math.round(testState.currentIndex / elapsedMinutes);
-                document.getElementById("speed-display").textContent = `${wpm} WPM`;
-                return wpm;
-            }
-            return 0;
-        }
-
-        function updateFinishEarlyButtonState() {
-            const btn = document.getElementById("finish-early-btn");
-            const lockIcon = document.getElementById("finish-early-lock");
-            const btnText = document.getElementById("finish-early-text");
-
-            if (appState.points >= 1000) {
-                btn.disabled = false;
-                btn.className = "px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold shadow-sm transition-all flex items-center space-x-1.5 cursor-pointer";
-                lockIcon.textContent = "🔓";
-                btnText.textContent = "Finish Early";
-                btn.title = "Click to submit test early";
-            } else {
-                btn.disabled = true;
-                btn.className = "px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed";
-                lockIcon.textContent = "🔒";
-                btnText.textContent = `Finish Early (${appState.points.toLocaleString()}/1,000 Pts)`;
-                btn.title = "Requires 1,000 Points to Finish Early";
-            }
+            loadCurrentTestWord();
         }
 
         function confirmFinishTest() {
-            if (appState.points < 1000) return;
-            if (confirm("Are you sure you want to finish the test early? Your score will be calculated for words completed so far.")) {
-                finishTest();
-            }
-        }
-
-        function submitAnswer(e) {
-            if (e) e.preventDefault();
-            if (testState.isFinished || !testState.isStarted) return;
-
-            const input = document.getElementById("word-input");
-            const userVal = input.value.trim().toLowerCase();
-
-            if (!userVal) {
-                showToast("⚠️ Type an answer", "You cannot skip! Please type your spelling answer.");
+            if (state.points < 1000) {
+                playErrorSound();
+                showToast('Locked', 'Finish early requires at least 1,000 points!', '🔒');
                 return;
             }
-
-            playSound('submit');
-
-            const currentObj = WORD_LIST[testState.currentIndex];
-            const isCorrect = (userVal === currentObj.w.toLowerCase());
-            if (isCorrect) testState.correctCount++;
-
-            testState.userAnswers.push({
-                index: testState.currentIndex + 1,
-                target: currentObj.w,
-                user: userVal,
-                isCorrect: isCorrect
-            });
-
-            testState.currentIndex++;
-            appState.totalWordsAttempted++;
-
-            updateFinishEarlyButtonState();
-            checkAchievements();
-            saveData();
-
-            if (testState.currentIndex >= TOTAL_WORDS) {
-                finishTest();
-            } else {
-                loadCurrentWord();
+            if (confirm('Are you sure you want to finish the test early?')) {
+                finishTestChallenge();
             }
         }
 
-        function loadCurrentWord() {
-            if (testState.currentIndex >= TOTAL_WORDS || !testState.isStarted) return;
+        function finishTestChallenge() {
+            state.testActive = false;
+            clearInterval(state.testTimerInterval);
 
-            const currentObj = WORD_LIST[testState.currentIndex];
-            document.getElementById("word-number").textContent = testState.currentIndex + 1;
-            document.getElementById("current-index-display").textContent = testState.currentIndex;
-            document.getElementById("sentence-hint").textContent = `"${currentObj.s}"`;
-
-            const input = document.getElementById("word-input");
-            input.value = "";
-            input.focus();
-
-            const progress = (testState.currentIndex / TOTAL_WORDS) * 100;
-            document.getElementById("progress-bar").style.width = `${progress}%`;
-
-            updateFinishEarlyButtonState();
-            speakCurrentWord();
-        }
-
-        function finishTest() {
-            testState.isFinished = true;
-            clearInterval(testState.timerInterval);
-
-            const earnedPoints = Math.floor(testState.correctCount / 10);
-            appState.points += earnedPoints;
-            saveData();
-            updatePointsUI();
-
-            document.getElementById("test-active-view").classList.add("hidden");
-            document.getElementById("test-report-view").classList.remove("hidden");
-
-            document.getElementById("report-correct").textContent = `${testState.correctCount} / ${testState.currentIndex}`;
+            let correctCount = state.userAnswers.filter(a => a.correct).length;
+            let totalAnswered = state.userAnswers.length;
+            let accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+            let earnedPts = Math.floor(correctCount / 10);
             
-            const accuracy = testState.currentIndex > 0 
-                ? Math.round((testState.correctCount / testState.currentIndex) * 100) 
-                : 0;
-            document.getElementById("report-accuracy").textContent = `${accuracy}%`;
-            document.getElementById("report-points").textContent = `+${earnedPoints}`;
-            document.getElementById("report-wpm").textContent = `${calculateWPM()} WPM`;
+            state.points += earnedPts;
+            saveState();
 
-            const reviewContainer = document.getElementById("review-words-list");
-            reviewContainer.innerHTML = "";
+            document.getElementById('test-active-view').classList.add('hidden');
+            document.getElementById('test-report-view').classList.remove('hidden');
 
-            if (testState.userAnswers.length === 0) {
-                reviewContainer.innerHTML = `<div class="text-slate-400 italic">No words answered.</div>`;
-            } else {
-                testState.userAnswers.forEach(item => {
-                    const row = document.createElement("div");
-                    row.className = `flex items-center justify-between p-2 rounded-lg border ${
-                        item.isCorrect 
-                            ? "bg-emerald-50 border-emerald-200 text-emerald-900" 
-                            : "bg-rose-50 border-rose-200 text-rose-900"
-                    }`;
-                    row.innerHTML = `
-                        <div class="flex items-center space-x-2">
-                            <span class="font-bold">#${item.index}</span>
-                            <span class="font-bold">${item.target}</span>
-                        </div>
-                        <div>
-                            <span>Your Answer: <strong class="${item.isCorrect ? 'text-emerald-700' : 'text-rose-700'}">${item.user}</strong></span>
-                            <span class="ml-2">${item.isCorrect ? '✅' : '❌'}</span>
-                        </div>
-                    `;
-                    reviewContainer.appendChild(row);
-                });
-            }
+            document.getElementById('report-correct').innerText = `${correctCount}/${totalAnswered}`;
+            document.getElementById('report-accuracy').innerText = `${accuracy}%`;
+            document.getElementById('report-points').innerText = `+${earnedPts}`;
+            let minsElapsed = Math.max(1, Math.round((Date.now() - state.testStartTime) / 60000));
+            document.getElementById('report-wpm').innerText = `${Math.round(totalAnswered / minsElapsed)} WPM`;
 
-            showToast("🎉 Test Finished!", `You earned ${earnedPoints} points!`);
+            let reviewHtml = '';
+            state.userAnswers.forEach((ans, idx) => {
+                reviewHtml += `<div class="flex items-center justify-between p-2 rounded-lg ${ans.correct ? 'bg-emerald-50 text-emerald-900':'bg-rose-50 text-rose-900'}">
+                    <span>#${idx+1} Target: <strong>${ans.word}</strong></span>
+                    <span>Your Entry: <strong>${ans.typed}</strong> ${ans.correct ? '✅':'❌'}</span>
+                </div>`;
+            });
+            document.getElementById('review-words-list').innerHTML = reviewHtml;
+            showToast('Test Finished!', `You earned ${earnedPts} points!`, '🎉');
         }
 
         function resetTest() {
-            testState = {
-                currentIndex: 0,
-                userAnswers: [],
-                correctCount: 0,
-                timeRemaining: TOTAL_SECONDS,
-                timerInterval: null,
-                isStarted: false,
-                isFinished: false
-            };
-
-            document.getElementById("test-report-view").classList.add("hidden");
-            document.getElementById("test-start-view").classList.remove("hidden");
-            document.getElementById("timer-display").textContent = "65:00";
-            document.getElementById("current-index-display").textContent = "0";
-            document.getElementById("speed-display").textContent = "0 WPM";
+            playClickSound();
+            document.getElementById('test-report-view').classList.add('hidden');
+            document.getElementById('test-start-view').classList.remove('hidden');
+            document.getElementById('timer-display').innerText = '65:00';
+            document.getElementById('current-index-display').innerText = '0';
+            document.getElementById('speed-display').innerText = '0 WPM';
         }
 
-        /* ==========================================================================
-           7. ACHIEVEMENTS SYSTEM
-           ========================================================================== */
-        function checkAchievements() {
-            let unlockedAny = false;
-            ACHIEVEMENTS.forEach(ach => {
-                const isReached = (ach.id === "aOver") 
-                    ? appState.totalWordsAttempted > 1000 
-                    : testState.currentIndex >= ach.count;
+        // --- HARD WORD LESSON LOGIC (30 QUESTIONS, 10 MINS) ---
+        function startLessonChallenge() {
+            playClickSound();
+            document.getElementById('lesson-start-view').classList.add('hidden');
+            document.getElementById('lesson-active-view').classList.remove('hidden');
+            state.lessonActive = true;
+            state.lessonIndex = 0;
+            state.lessonAnswers = [];
+            state.lessonSecondsLeft = 600;
 
-                if (isReached && !appState.unlockedBadges.includes(ach.id)) {
-                    appState.unlockedBadges.push(ach.id);
-                    unlockedAny = true;
-                    playSound('achievement');
-                    showToast("🏆 Badge Unlocked!", `You unlocked: "${ach.name}"`);
-                }
-            });
+            if (state.lessonTimerInterval) clearInterval(state.lessonTimerInterval);
+            state.lessonTimerInterval = setInterval(() => {
+                state.lessonSecondsLeft--;
+                let m = Math.floor(state.lessonSecondsLeft / 60);
+                let s = state.lessonSecondsLeft % 60;
+                document.getElementById('lesson-timer-display').innerText = `${m}:${s < 10 ? '0':''}${s}`;
+                if (state.lessonSecondsLeft <= 0) finishLessonChallenge();
+            }, 1000);
 
-            if (unlockedAny) {
-                saveData();
-                renderAchievements();
+            loadCurrentLessonQuestion();
+        }
+
+        function loadCurrentLessonQuestion() {
+            if (state.lessonIndex >= HARD_LESSON_QUESTIONS.length) {
+                finishLessonChallenge();
+                return;
+            }
+            document.getElementById('lesson-q-num').innerText = state.lessonIndex + 1;
+            document.getElementById('lesson-index-display').innerText = state.lessonIndex + 1;
+            document.getElementById('lesson-progress-bar').style.width = `${((state.lessonIndex) / HARD_LESSON_QUESTIONS.length) * 100}%`;
+            document.getElementById('lesson-text-input').value = '';
+
+            let q = HARD_LESSON_QUESTIONS[state.lessonIndex];
+            let masked = q.sentence.replace(q.answer, '_____');
+            document.getElementById('lesson-sentence-display').innerText = `"${masked}"`;
+            speakLessonSentence();
+            document.getElementById('lesson-text-input').focus();
+        }
+
+        function speakLessonSentence() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                let q = HARD_LESSON_QUESTIONS[state.lessonIndex];
+                let utterance = new SpeechSynthesisUtterance(q.sentence.replace(q.answer, 'blank'));
+                window.speechSynthesis.speak(utterance);
             }
         }
 
+        function submitLessonAnswerInput(e) {
+            e.preventDefault();
+            if (!state.lessonActive) return;
+            const val = document.getElementById('lesson-text-input').value.trim().toLowerCase();
+            if (!val) return;
+
+            let q = HARD_LESSON_QUESTIONS[state.lessonIndex];
+            let correct = val === q.answer.toLowerCase();
+            if (correct) playSuccessSound(); else playErrorSound();
+
+            state.lessonAnswers.push({ sentence: q.sentence, answer: q.answer, typed: val, correct: correct });
+            state.lessonIndex++;
+            loadCurrentLessonQuestion();
+        }
+
+        function finishLessonChallenge() {
+            state.lessonActive = false;
+            clearInterval(state.lessonTimerInterval);
+
+            let correctCount = state.lessonAnswers.filter(a => a.correct).length;
+            let total = state.lessonAnswers.length;
+            let accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+            let earnedPts = correctCount * 15;
+
+            state.points += earnedPts;
+            saveState();
+
+            document.getElementById('lesson-active-view').classList.add('hidden');
+            document.getElementById('lesson-report-view').classList.remove('hidden');
+            document.getElementById('lesson-report-correct').innerText = `${correctCount}/${total}`;
+            document.getElementById('lesson-report-accuracy').innerText = `${accuracy}%`;
+            document.getElementById('lesson-report-points').innerText = `+${earnedPts}`;
+
+            let rev = '';
+            state.lessonAnswers.forEach((item, idx) => {
+                rev += `<div class="p-2 rounded-lg ${item.correct ? 'bg-emerald-50 text-emerald-900':'bg-rose-50 text-rose-900'}">
+                    <div>Q${idx+1}: ${item.sentence}</div>
+                    <div class="mt-1">Answer: <strong>${item.answer}</strong> | Your Guess: <strong>${item.typed}</strong> ${item.correct ? '✅':'❌'}</div>
+                </div>`;
+            });
+            document.getElementById('lesson-review-list').innerHTML = rev;
+            showToast('Hard Lesson Complete!', `You earned ${earnedPts} points!`, '🎓');
+        }
+
+        function resetLesson() {
+            playClickSound();
+            document.getElementById('lesson-report-view').classList.add('hidden');
+            document.getElementById('lesson-start-view').classList.remove('hidden');
+            document.getElementById('lesson-timer-display').innerText = '10:00';
+            document.getElementById('lesson-index-display').innerText = '0';
+        }
+
+        // --- PUNCTUATION FIX LESSON LOGIC (100 SENTENCES, 11:41 / 701 SECS) ---
+        function startPunctuationChallenge() {
+            playClickSound();
+            document.getElementById('punct-start-view').classList.add('hidden');
+            document.getElementById('punct-active-view').classList.remove('hidden');
+            state.punctActive = true;
+            state.punctIndex = 0;
+            state.punctAnswers = [];
+            state.punctSecondsLeft = 701;
+
+            if (state.punctTimerInterval) clearInterval(state.punctTimerInterval);
+            state.punctTimerInterval = setInterval(() => {
+                state.punctSecondsLeft--;
+                let m = Math.floor(state.punctSecondsLeft / 60);
+                let s = state.punctSecondsLeft % 60;
+                document.getElementById('punct-timer-display').innerText = `${m}:${s < 10 ? '0':''}${s}`;
+                if (state.punctSecondsLeft <= 0) finishPunctuationChallenge();
+            }, 1000);
+
+            loadCurrentPunctuationQuestion();
+        }
+
+        function loadCurrentPunctuationQuestion() {
+            if (state.punctIndex >= PUNCTUATION_QUESTIONS.length) {
+                finishPunctuationChallenge();
+                return;
+            }
+            document.getElementById('punct-q-num').innerText = state.punctIndex + 1;
+            document.getElementById('punct-index-display').innerText = state.punctIndex + 1;
+            document.getElementById('punct-progress-bar').style.width = `${((state.punctIndex) / PUNCTUATION_QUESTIONS.length) * 100}%`;
+            document.getElementById('punct-text-input').value = '';
+
+            let q = PUNCTUATION_QUESTIONS[state.punctIndex];
+            document.getElementById('punct-sentence-display').innerText = `"${q.err}"`;
+            document.getElementById('punct-text-input').focus();
+        }
+
+        function submitPunctuationAnswer(e) {
+            e.preventDefault();
+            if (!state.punctActive) return;
+            const val = document.getElementById('punct-text-input').value.trim();
+            if (!val) return;
+
+            let q = PUNCTUATION_QUESTIONS[state.punctIndex];
+            let correct = val.toLowerCase() === q.fixed.toLowerCase();
+            if (correct) playSuccessSound(); else playErrorSound();
+
+            state.punctAnswers.push({ err: q.err, fixed: q.fixed, typed: val, correct: correct });
+            state.punctIndex++;
+            loadCurrentPunctuationQuestion();
+        }
+
+        function finishPunctuationChallenge() {
+            state.punctActive = false;
+            clearInterval(state.punctTimerInterval);
+
+            let correctCount = state.punctAnswers.filter(a => a.correct).length;
+            let total = state.punctAnswers.length;
+            let accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+            let earnedPts = correctCount * 20;
+
+            state.points += earnedPts;
+            saveState();
+
+            document.getElementById('punct-active-view').classList.add('hidden');
+            document.getElementById('punct-report-view').classList.remove('hidden');
+            document.getElementById('punct-report-correct').innerText = `${correctCount}/${total}`;
+            document.getElementById('punct-report-accuracy').innerText = `${accuracy}%`;
+            document.getElementById('punct-report-points').innerText = `+${earnedPts}`;
+
+            let rev = '';
+            state.punctAnswers.forEach((item, idx) => {
+                rev += `<div class="p-2 rounded-lg ${item.correct ? 'bg-emerald-50 text-emerald-900':'bg-rose-50 text-rose-900'}">
+                    <div>#${idx+1} Error: "${item.err}"</div>
+                    <div>Correct: <strong>${item.fixed}</strong></div>
+                    <div>Your Fix: <strong>${item.typed}</strong> ${item.correct ? '✅':'❌'}</div>
+                </div>`;
+            });
+            document.getElementById('punct-review-list').innerHTML = rev;
+            showToast('Punctuation Lesson Complete!', `You earned ${earnedPts} points!`, '✒️');
+        }
+
+        function resetPunctuation() {
+            playClickSound();
+            document.getElementById('punct-report-view').classList.add('hidden');
+            document.getElementById('punct-start-view').classList.remove('hidden');
+            document.getElementById('punct-timer-display').innerText = '11:41';
+            document.getElementById('punct-index-display').innerText = '0';
+        }
+
+        // --- ACHIEVEMENTS RENDER ---
         function renderAchievements() {
-            const container = document.getElementById("achievements-container");
-            document.getElementById("unlocked-count").textContent = appState.unlockedBadges.length;
-            container.innerHTML = "";
+            const achievements = [
+                { title: 'start speed😉', min: 100, desc: 'Spell 100 words in spelling tests' },
+                { title: "don't stop🧠", min: 250, desc: 'Spell 250 words in spelling tests' },
+                { title: 'close speed🐣', min: 500, desc: 'Spell 500 words in spelling tests' },
+                { title: 'squirrel Speedy 🐿️', min: 1000, desc: 'Complete the full 1,000 word challenge' },
+                { title: 'Speed God ⚡', min: 1001, desc: 'Exceed 1,000 correct words overall' }
+            ];
 
-            ACHIEVEMENTS.forEach(ach => {
-                const isUnlocked = appState.unlockedBadges.includes(ach.id);
-                const card = document.createElement("div");
-                card.className = `p-4 rounded-2xl border flex items-center justify-between transition-all ${
-                    isUnlocked 
-                        ? "bg-white border-amber-300 shadow-md" 
-                        : "bg-slate-100/70 border-slate-200 opacity-60"
-                }`;
+            let unlockedCount = 0;
+            let html = '';
+            const testWordsTotal = state.userAnswers.filter(a => a.correct).length;
 
-                card.innerHTML = `
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-2xl ${isUnlocked ? 'bg-amber-100 text-amber-800' : 'bg-slate-200 text-slate-400'} flex items-center justify-center text-2xl font-bold">
-                            ${isUnlocked ? '🏆' : '🔒'}
+            achievements.forEach(ach => {
+                let unlocked = testWordsTotal >= ach.min;
+                if (unlocked) unlockedCount++;
+                html += `<div class="glass-panel p-4 rounded-2xl flex items-center justify-between border-l-4 ${unlocked ? 'border-l-emerald-500':'border-l-slate-300'}">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-2xl ${unlocked ? 'bg-emerald-100 text-emerald-700':'bg-slate-100 text-slate-400'} flex items-center justify-center text-2xl font-bold">
+                            ${unlocked ? '🏆':'🔒'}
                         </div>
                         <div>
-                            <h3 class="font-display font-bold text-slate-800 text-base">${ach.name}</h3>
-                            <p class="text-xs text-slate-500">${ach.desc}</p>
+                            <div class="font-display font-bold text-slate-900 text-base">"${ach.title}"</div>
+                            <div class="text-xs text-slate-500">${ach.desc}</div>
                         </div>
                     </div>
                     <div>
-                        <span class="text-xs font-bold px-3 py-1 rounded-full ${isUnlocked ? 'bg-amber-100 text-amber-800' : 'bg-slate-200 text-slate-500'}">
-                            ${isUnlocked ? 'Unlocked' : 'Locked'}
+                        <span class="text-xs font-bold px-3 py-1 rounded-xl ${unlocked ? 'bg-emerald-100 text-emerald-800':'bg-slate-100 text-slate-500'}">
+                            ${unlocked ? 'Unlocked':'Locked'}
                         </span>
                     </div>
-                `;
-                container.appendChild(card);
+                </div>`;
             });
+            document.getElementById('achievements-container').innerHTML = html;
+            document.getElementById('unlocked-count').innerText = unlockedCount;
         }
 
-        /* ==========================================================================
-           8. AVATAR SHOP CONTROLLER
-           ========================================================================== */
+        // --- AVATAR SHOP RENDER ---
         function renderShop() {
-            const grid = document.getElementById("shop-grid");
-            grid.innerHTML = "";
-
-            AVATAR_SHOP.forEach(item => {
-                const isOwned = appState.unlockedAvatars.includes(item.icon);
-                const isActive = appState.activeAvatar === item.icon;
-
-                const card = document.createElement("div");
-                card.className = `glass-panel p-4 rounded-2xl text-center border transition-all flex flex-col items-center justify-between space-y-3 ${
-                    isActive ? 'border-amber-500 ring-2 ring-amber-300 bg-amber-50/50' : 'border-slate-200 hover:border-slate-300'
-                }`;
-
-                card.innerHTML = `
-                    <div class="text-4xl p-2 rounded-2xl bg-slate-50 border border-slate-100 shadow-inner">
-                        ${item.icon}
+            // Standard
+            let stdHtml = '';
+            STANDARD_AVATARS.forEach(av => {
+                let unlocked = state.unlockedAvatars.includes(av.icon);
+                let equipped = state.equippedAvatar === av.icon;
+                stdHtml += `<div class="glass-panel p-4 rounded-2xl text-center space-y-3 flex flex-col justify-between ${equipped ? 'ring-2 ring-amber-500 bg-amber-50/50':''}">
+                    <div class="text-4xl py-2">${av.icon}</div>
+                    <div>
+                        <div class="font-display font-bold text-slate-800 text-xs">${av.name}</div>
+                        <div class="text-xs font-bold text-amber-700 mt-0.5">${av.price === 0 ? 'Free' : av.price.toLocaleString() + ' Pts'}</div>
                     </div>
                     <div>
-                        <div class="font-display font-bold text-slate-800 text-xs">${item.title}</div>
-                        <div class="text-[11px] font-bold text-amber-600 mt-0.5">
-                            ${isOwned ? 'Owned' : `⭐ ${item.price.toLocaleString()} pts`}
-                        </div>
+                        ${equipped ? '<span class="text-xs font-bold bg-amber-500 text-white px-3 py-1.5 rounded-xl block">Equipped</span>' :
+                          unlocked ? `<button onclick="equipAvatar('${av.icon}')" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-1.5 rounded-xl transition-all">Equip</button>` :
+                          `<button onclick="buyAvatar('${av.icon}', ${av.price})" class="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 text-xs font-bold py-1.5 rounded-xl transition-all shadow-sm">Unlock</button>`}
                     </div>
-                    <button type="button" onclick="handleAvatarAction('${item.icon}', ${item.price})" class="w-full py-2 px-3 rounded-xl font-display font-bold text-xs transition-all ${
-                        isActive 
-                            ? 'bg-amber-500 text-white shadow-sm' 
-                            : isOwned 
-                                ? 'bg-slate-100 hover:bg-slate-200 text-slate-700' 
-                                : 'bg-amber-400 hover:bg-amber-500 text-amber-950 shadow-sm'
-                    }">
-                        ${isActive ? 'Active' : isOwned ? 'Equip' : 'Buy Avatar'}
-                    </button>
-                `;
-                grid.appendChild(card);
+                </div>`;
             });
+            document.getElementById('shop-grid').innerHTML = stdHtml;
 
-            const godGrid = document.getElementById("god-shop-grid");
-            const godStatus = document.getElementById("god-tier-status");
-            const hasBillionPoints = appState.points >= 1000000000;
-
-            if (hasBillionPoints) {
-                godStatus.textContent = "🔓 UNLOCKED!";
-                godStatus.className = "text-xs font-bold bg-emerald-500 text-white px-3 py-1.5 rounded-xl shadow-md animate-pulse";
-            } else {
-                godStatus.textContent = `🔒 ${(1000000000 - appState.points).toLocaleString()} pts needed`;
-                godStatus.className = "text-xs font-bold bg-white/20 text-purple-100 px-3 py-1.5 rounded-xl backdrop-blur-md";
-            }
-
-            godGrid.innerHTML = "";
-
-            GOD_TIER_AVATARS.forEach(item => {
-                const isOwned = appState.unlockedAvatars.includes(item.icon) || hasBillionPoints;
-                const isActive = appState.activeAvatar === item.icon;
-
-                const card = document.createElement("div");
-                card.className = `p-4 rounded-2xl text-center border transition-all flex flex-col items-center justify-between space-y-3 ${
-                    hasBillionPoints ? 'god-tier-glow bg-gradient-to-b from-purple-50 to-pink-50' : 'bg-slate-100/80 border-slate-200 opacity-75'
-                } ${isActive ? 'ring-4 ring-pink-400' : ''}`;
-
-                card.innerHTML = `
-                    <div class="text-4xl p-2 rounded-2xl bg-white shadow-md transform hover:scale-110 transition-transform">
-                        ${item.icon}
+            // God Tier
+            let godHtml = '';
+            GOD_TIER_AVATARS.forEach(av => {
+                let unlocked = state.unlockedAvatars.includes(av.icon);
+                let equipped = state.equippedAvatar === av.icon;
+                godHtml += `<div class="bg-gradient-to-br from-purple-900/10 to-pink-900/10 glass-panel p-4 rounded-2xl text-center space-y-3 flex flex-col justify-between god-tier-glow ${equipped ? 'ring-4 ring-pink-500':''}">
+                    <div class="text-4xl py-2">${av.icon}</div>
+                    <div>
+                        <div class="font-display font-bold text-purple-950 text-xs">${av.name}</div>
+                        <div class="text-xs font-bold text-pink-600 mt-0.5">1,000,000,000 Pts</div>
                     </div>
                     <div>
-                        <div class="font-display font-bold text-slate-900 text-xs">${item.title}</div>
-                        <div class="text-[10px] font-extrabold text-purple-600 mt-0.5">
-                            ${isOwned ? '👑 Unlocked' : '⭐ 1,000,000,000 Pts'}
-                        </div>
+                        ${equipped ? '<span class="text-xs font-bold bg-pink-600 text-white px-3 py-1.5 rounded-xl block">Equipped</span>' :
+                          unlocked ? `<button onclick="equipAvatar('${av.icon}')" class="w-full bg-purple-900 hover:bg-purple-800 text-white text-xs font-bold py-1.5 rounded-xl transition-all">Equip</button>` :
+                          `<button onclick="buyAvatar('${av.icon}', 1000000000)" class="w-full bg-slate-200 text-slate-500 text-xs font-bold py-1.5 rounded-xl cursor-not-allowed" disabled>Locked (1B Pts)</button>`}
                     </div>
-                    <button type="button" onclick="handleAvatarAction('${item.icon}', ${item.price})" ${(!isOwned && !hasBillionPoints) ? 'disabled' : ''} class="w-full py-2 px-3 rounded-xl font-display font-bold text-xs transition-all ${
-                        isActive 
-                            ? 'bg-purple-600 text-white shadow-md' 
-                            : isOwned || hasBillionPoints
-                                ? 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-md' 
-                                : 'bg-slate-300 text-slate-500 cursor-not-allowed'
-                    }">
-                        ${isActive ? 'Active' : isOwned || hasBillionPoints ? 'Equip' : 'Locked'}
-                    </button>
-                `;
-                godGrid.appendChild(card);
+                </div>`;
             });
+            document.getElementById('god-shop-grid').innerHTML = godHtml;
         }
 
-        function handleAvatarAction(icon, price) {
-            playSound('click');
-            const isOwned = appState.unlockedAvatars.includes(icon) || (price >= 1000000000 && appState.points >= 1000000000);
-
-            if (isOwned) {
-                if (!appState.unlockedAvatars.includes(icon)) {
-                    appState.unlockedAvatars.push(icon);
-                }
-                appState.activeAvatar = icon;
-                saveData();
-                updateAvatarUI();
-                renderShop();
-                showToast("✨ Avatar Equipped!", `Equipped ${icon} as your avatar.`);
-            } else {
-                if (appState.points >= price) {
-                    appState.points -= price;
-                    appState.unlockedAvatars.push(icon);
-                    appState.activeAvatar = icon;
-                    saveData();
-                    updatePointsUI();
-                    updateAvatarUI();
-                    renderShop();
-                    showToast("🎉 Purchase Successful!", `Unlocked new avatar ${icon}`);
-                } else {
-                    showToast("❌ Not Enough Points", `You need ${(price - appState.points).toLocaleString()} more points!`);
-                }
+        function buyAvatar(icon, price) {
+            if (state.points < price) {
+                playErrorSound();
+                showToast('Not Enough Points', `You need ${price.toLocaleString()} points to unlock this avatar!`, '❌');
+                return;
             }
+            state.points -= price;
+            state.unlockedAvatars.push(icon);
+            state.equippedAvatar = icon;
+            playSuccessSound();
+            saveState();
+            showToast('Avatar Unlocked!', 'Enjoy your new avatar style!', icon);
         }
 
-        function updateAvatarUI() {
-            document.getElementById("nav-avatar-icon").textContent = appState.activeAvatar;
-            const standardObj = AVATAR_SHOP.find(a => a.icon === appState.activeAvatar);
-            const godObj = GOD_TIER_AVATARS.find(a => a.icon === appState.activeAvatar);
-            
-            if (standardObj) {
-                document.getElementById("nav-avatar-title").textContent = standardObj.title;
-            } else if (godObj) {
-                document.getElementById("nav-avatar-title").textContent = godObj.title;
-            }
+        function equipAvatar(icon) {
+            playClickSound();
+            state.equippedAvatar = icon;
+            saveState();
+            showToast('Avatar Equipped', 'Your profile has been updated!', icon);
         }
 
-        /* ==========================================================================
-           9. UI TAB SWITCHING & TOAST NOTIFICATIONS
-           ========================================================================== */
-        function switchTab(tabName) {
-            playSound('click');
-            const views = ["test", "achievements", "shop"];
-            views.forEach(v => {
-                document.getElementById(`view-${v}`).classList.add("hidden");
-                const btn = document.getElementById(`tab-btn-${v}`);
-                if (btn) {
-                    btn.className = "flex-1 py-2.5 px-4 rounded-xl font-display font-bold text-sm transition-all text-slate-600 hover:text-slate-900";
-                }
-            });
-
-            document.getElementById(`view-${tabName}`).classList.remove("hidden");
-            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
-            if (activeBtn) {
-                activeBtn.className = "flex-1 py-2.5 px-4 rounded-xl font-display font-bold text-sm transition-all bg-white text-amber-900 shadow-sm";
-            }
-        }
-
-        function showToast(title, message) {
-            const toast = document.getElementById("toast");
-            document.getElementById("toast-title").textContent = title;
-            document.getElementById("toast-message").textContent = message;
-
-            toast.classList.remove("translate-y-32", "opacity-0");
-            toast.classList.add("translate-y-0", "opacity-100");
-
-            setTimeout(() => {
-                toast.classList.remove("translate-y-0", "opacity-100");
-                toast.classList.add("translate-y-32", "opacity-0");
-            }, 3500);
-        }
-
-        /* ==========================================================================
-           10. APP INITIALIZATION
-           ========================================================================== */
+        // --- ONLOAD INIT ---
         window.onload = function() {
-            loadSavedData();
-            updateFinishEarlyButtonState();
-
-            document.addEventListener("keydown", function(e) {
-                if ((e.code === "Tab" || e.code === "Space") && testState.isStarted && !testState.isFinished) {
-                    if (document.activeElement !== document.getElementById("word-input")) {
-                        e.preventDefault();
-                        speakCurrentWord();
-                    }
-                }
-            });
+            updateUI();
         };
     </script>
 </body>
