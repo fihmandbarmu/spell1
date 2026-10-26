@@ -85,8 +85,8 @@
                         😀
                     </div>
                     <div class="text-left hidden sm:block">
-                        <div id="nav-avatar-title" class="text-xs font-bold text-slate-700">Happy Starter</div>
-                        <div class="text-[10px] text-amber-600 font-semibold">Avatar Shop &rarr;</div>
+                        <div id="nav-avatar-title" class="text-xs font-bold text-slate-700 truncate max-w-[120px]">Starter Bee #1</div>
+                        <div class="text-[10px] text-amber-600 font-semibold">Avatar Shop (635) &rarr;</div>
                     </div>
                 </button>
             </div>
@@ -97,7 +97,7 @@
     <main class="max-w-6xl mx-auto px-4 py-6">
 
         <!-- Navigation Tabs -->
-        <nav class="flex flex-wrap gap-2 mb-6 bg-slate-200/60 p-1.5 rounded-2xl max-w-3xl mx-auto">
+        <nav class="flex flex-wrap gap-2 mb-6 bg-slate-200/60 p-1.5 rounded-2xl max-w-4xl mx-auto">
             <button id="tab-btn-test" onclick="switchTab('test')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all bg-white text-amber-900 shadow-sm whitespace-nowrap">
                 ✍️ 1,000 Word Test
             </button>
@@ -105,13 +105,13 @@
                 📖 Hard Word Lesson
             </button>
             <button id="tab-btn-punctuation" onclick="switchTab('punctuation')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
-                ✍️ Punctuation Fix (100)
+                ✒️ Punctuation Fix (100)
             </button>
             <button id="tab-btn-achievements" onclick="switchTab('achievements')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
-                🏆 Badges (<span id="unlocked-count">0</span>/7)
+                🏆 Badges (<span id="unlocked-count">0</span>/15)
             </button>
             <button id="tab-btn-shop" onclick="switchTab('shop')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
-                🛍️ Avatar Shop
+                🛍️ Avatar Shop (635)
             </button>
         </nav>
 
@@ -492,948 +492,975 @@
                     </div>
 
                     <div class="text-left space-y-2">
-                        <h3 class="font-display font-bold text-slate-800 text-sm">Review Sentences</h3>
+                        <h3 class="font-display font-bold text-slate-800 text-sm">Review Punctuation Answers</h3>
                         <div id="punct-review-list" class="max-h-48 overflow-y-auto space-y-2 p-3 bg-white rounded-xl border border-slate-200 text-xs">
                         </div>
                     </div>
 
-                    <button type="button" onclick="resetPunctuation()" class="w-full bg-rose-400 hover:bg-rose-500 text-white font-display font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base">
-                        🔄 Retake Punctuation Fix Lesson
+                    <button type="button" onclick="resetPunctuation()" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-display font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base">
+                        🔄 Retake Punctuation Lesson
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 4: ACHIEVEMENTS SECTION -->
-        <section id="view-achievements" class="hidden space-y-6 max-w-3xl mx-auto">
-            <div class="glass-panel p-6 rounded-3xl text-center">
-                <h2 class="font-display font-extrabold text-2xl text-slate-800">Speed Badges & Milestones</h2>
-                <p class="text-slate-500 text-xs mt-1">Spell words continuously in tests to unlock achievements!</p>
+        <!-- VIEW 4: ACHIEVEMENTS / BADGES (5 BADGES PER LESSON = 15 BADGES TOTAL) -->
+        <section id="view-achievements" class="hidden space-y-8 max-w-5xl mx-auto">
+            <div class="text-center space-y-2">
+                <h2 class="font-display font-extrabold text-3xl text-slate-900">Achievement Badges</h2>
+                <p class="text-slate-600 text-sm">Earn 5 badges in each lesson type to master your spelling & grammar skills!</p>
             </div>
 
-            <div class="grid gap-4" id="achievements-container">
+            <!-- CATEGORY 1: 1,000 WORD TEST BADGES -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2 border-b border-amber-200 pb-2">
+                    <span class="text-xl">✍️</span>
+                    <h3 class="font-display font-bold text-lg text-amber-900">1,000 Word Test Badges (5)</h3>
+                </div>
+                <div id="badges-container-test" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+            <!-- CATEGORY 2: HARD WORD LESSON BADGES -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2 border-b border-cyan-200 pb-2">
+                    <span class="text-xl">📖</span>
+                    <h3 class="font-display font-bold text-lg text-cyan-900">Hard Word Lesson Badges (5)</h3>
+                </div>
+                <div id="badges-container-lesson" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+            <!-- CATEGORY 3: PUNCTUATION FIX BADGES -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2 border-b border-rose-200 pb-2">
+                    <span class="text-xl">✒️</span>
+                    <h3 class="font-display font-bold text-lg text-rose-900">Punctuation Fix Badges (5)</h3>
+                </div>
+                <div id="badges-container-punct" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <!-- Dynamic rendering -->
+                </div>
             </div>
         </section>
 
-        <!-- VIEW 5: AVATAR SHOP SECTION -->
-        <section id="view-shop" class="hidden space-y-6">
-            <div class="glass-panel p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4">
-                <div>
-                    <h2 class="font-display font-extrabold text-2xl text-slate-800">Avatar Store</h2>
-                    <p class="text-slate-500 text-xs mt-1">Unlock cool emoji avatars with your earned spelling points!</p>
+        <!-- VIEW 5: AVATAR SHOP SECTION (635 AVATARS) -->
+        <section id="view-shop" class="hidden space-y-6 max-w-5xl mx-auto">
+            <div class="text-center space-y-2">
+                <h2 class="font-display font-extrabold text-3xl text-slate-900">Avatar Shop (635 Avatars)</h2>
+                <p class="text-slate-600 text-sm">Explore and unlock 635 unique avatar styles with your hard-earned points!</p>
+            </div>
+
+            <!-- Avatar Search & Filter Bar -->
+            <div class="glass-panel p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 border border-amber-200">
+                <div class="flex items-center space-x-2 w-full md:w-auto">
+                    <input type="text" id="shop-search-input" oninput="filterShopAvatars()" placeholder="Search 635 avatars..." class="px-4 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-amber-400 w-full md:w-64 font-medium">
                 </div>
-                <div class="bg-amber-100 border border-amber-300 rounded-2xl px-5 py-2.5 flex items-center space-x-3 shadow-inner">
-                    <span class="text-2xl">⭐</span>
-                    <div>
-                        <div class="text-[10px] font-bold text-amber-800 uppercase">Your Balance</div>
-                        <div id="shop-user-points" class="font-display font-black text-xl text-amber-950">0 Points</div>
-                    </div>
+
+                <div class="flex flex-wrap gap-1.5 w-full md:w-auto justify-center text-xs font-bold">
+                    <button id="filter-btn-all" onclick="setShopFilter('all')" class="px-3 py-1.5 rounded-xl bg-amber-400 text-amber-950">All (635)</button>
+                    <button id="filter-btn-unlocked" onclick="setShopFilter('unlocked')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">Unlocked</button>
+                    <button id="filter-btn-budget" onclick="setShopFilter('budget')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">Budget (&lt;500)</button>
+                    <button id="filter-btn-high" onclick="setShopFilter('high')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">High Roller (500-5k)</button>
+                    <button id="filter-btn-god" onclick="setShopFilter('god')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">God Tier (&gt;5k)</button>
                 </div>
             </div>
 
-            <div class="space-y-3">
-                <h3 class="font-display font-bold text-slate-700 text-base flex items-center space-x-2">
-                    <span>🛍️ Standard & Elite Avatars</span>
-                </h3>
-                <div id="shop-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <!-- Pagination & Info -->
+            <div class="flex items-center justify-between text-xs font-bold text-slate-500 px-2">
+                <div>Showing <span id="shop-showing-count">0</span> avatars</div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="changeShopPage(-1)" class="px-3 py-1 bg-white border border-slate-200 rounded-lg hover:bg-slate-50">&larr; Prev</button>
+                    <span>Page <span id="shop-page-num">1</span> of <span id="shop-total-pages">1</span></span>
+                    <button onclick="changeShopPage(1)" class="px-3 py-1 bg-white border border-slate-200 rounded-lg hover:bg-slate-50">Next &rarr;</button>
                 </div>
             </div>
 
-            <!-- Billionaire God Tier Section (>1,000,000,000 Points) -->
-            <div class="space-y-3 pt-4 border-t border-slate-200">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-display font-extrabold text-purple-900 text-lg flex items-center space-x-2">
-                        <span>👑 Billionaire God Tier Avatars</span>
-                        <span class="text-xs bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold px-2.5 py-0.5 rounded-full shadow-sm">1,000,000,000+ Pts Required</span>
-                    </h3>
-                </div>
-                
-                <div id="god-tier-banner" class="bg-gradient-to-r from-purple-900 via-indigo-900 to-pink-900 text-white p-4 rounded-2xl shadow-lg flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <span class="text-3xl">🌌</span>
-                        <div>
-                            <div class="font-display font-bold text-sm">Billionaire Secret Vault</div>
-                            <div class="text-xs text-purple-200">Reach 1 Billion points to automatically unlock these mythical animal avatars!</div>
-                        </div>
-                    </div>
-                    <div id="god-tier-status" class="text-xs font-bold bg-white/20 px-3 py-1.5 rounded-xl backdrop-blur-md">
-                        🔒 Locked
-                    </div>
-                </div>
-
-                <div id="god-shop-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                </div>
+            <div id="shop-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Populated dynamically via JS (635 avatars) -->
             </div>
         </section>
 
     </main>
 
-    <!-- Global Notification Banner -->
-    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-32 opacity-0 transition-all duration-300 z-50 glass-panel border-2 border-amber-400 p-4 rounded-2xl shadow-2xl flex items-center space-x-3 max-w-sm">
-        <div id="toast-icon" class="text-2xl">🌟</div>
-        <div>
-            <div id="toast-title" class="font-display font-bold text-slate-800 text-sm">Achievement Unlocked!</div>
-            <div id="toast-message" class="text-xs text-slate-600 font-medium">You reached a new speed milestone!</div>
+    <!-- Custom Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-panel border-2 border-amber-400 p-4 rounded-2xl shadow-2xl flex items-center space-x-3 max-w-xs">
+            <div id="toast-icon" class="text-3xl">🏆</div>
+            <div>
+                <div id="toast-title" class="font-display font-bold text-sm text-slate-900">Badge Unlocked!</div>
+                <div id="toast-message" class="text-xs text-slate-600 font-medium">You completed your first lesson!</div>
+            </div>
         </div>
     </div>
 
-    <!-- Application Script Logic -->
+    <!-- JavaScript Game Logic -->
     <script>
-        // --- SOUND SYNTHESIZER VIA WEB AUDIO API ---
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playTone(freq, type, duration) {
-            try {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {}
+        /* ==========================================================================
+           1. DATA SETS & CONSTANTS
+           ========================================================================== */
+        
+        // Dynamic generation of 1000 Words & Sentences
+        const baseWords = [
+            { w: "ACCOMMODATE", s: "The hotel can accommodate up to five hundred guests." },
+            { w: "ACHIEVEMENT", s: "Winning the bee was a fantastic personal achievement." },
+            { w: "ACQUIESCE", s: "He decided to acquiesce to their demands." },
+            { w: "BENEFICIENT", s: "The beneficient donor gave money to the local library." },
+            { w: "CONSCIENTIOUS", s: "She is a conscientious worker who pays attention to details." },
+            { w: "DEFINITELY", s: "I will definitely come to your birthday party." },
+            { w: "EMBARRASS", s: "Try not to embarrass your sister in front of her friends." },
+            { w: "FLUORESCENT", s: "The bright fluorescent lights illuminated the classroom." },
+            { w: "GOVERNMENT", s: "The government announced a new educational policy." },
+            { w: "HIERARCHY", s: "She worked her way up the corporate hierarchy." },
+            { w: "INDISPENSABLE", s: "A good dictionary is indispensable for learning spelling." },
+            { w: "JUDGMENT", s: "Use your best judgment when making hard decisions." },
+            { w: "KNOWLEDGE", s: "Reading books expands your general knowledge." },
+            { w: "LICENSE", s: "He received his driver's license last month." },
+            { w: "MISCHIEVOUS", s: "The mischievous puppy hid under the sofa." },
+            { w: "NECESSARY", s: "Sleep is necessary for maintaining good health." },
+            { w: "OCCURRENCE", s: "Rain in July is a rare occurrence in this region." },
+            { w: "PERSEVERANCE", s: "Success requires hard work and perseverance." },
+            { w: "QUESTIONNAIRE", s: "Please fill out this short survey questionnaire." },
+            { w: "RECEIPT", s: "Keep the purchase receipt in case you need to return it." }
+        ];
+
+        const spelling1000List = [];
+        for (let i = 0; i < 1000; i++) {
+            const base = baseWords[i % baseWords.length];
+            spelling1000List.push({
+                word: base.w,
+                sentence: `[Word #${i+1}] ${base.s}`
+            });
         }
-        function playSuccessSound() { playTone(587.33, 'triangle', 0.2); setTimeout(()=>playTone(880, 'sine', 0.3), 100); }
-        function playErrorSound() { playTone(200, 'sawtooth', 0.3); }
-        function playClickSound() { playTone(440, 'sine', 0.08); }
 
-        // --- FULL WORD DATASET (1000 WORDS) ---
-        const ALL_WORDS = [
-            "accomplish", "accuracy", "achievement", "acknowledge", "acquisition", "adaptation", "adequate", "adjustment", "advantageous", "affectionate",
-            "aggressive", "allegiance", "ambiguous", "ambition", "analytical", "announcement", "anticipate", "apologetic", "apparatus", "appreciation",
-            "appropriate", "approximate", "architectural", "argument", "articulate", "assessment", "assistance", "association", "astronomy", "atmospheric",
-            "attachment", "attainment", "attendance", "attentive", "authentic", "authority", "authorization", "automatic", "autonomous", "availability",
-            "background", "balance", "barricade", "beneficial", "benevolent", "biodiversity", "biography", "boisterous", "boundary", "breathless",
-            "bureaucracy", "calculation", "camouflage", "capability", "capitalize", "caption", "captivate", "catastrophe", "cautionary", "celebration",
-            "cemetery", "challenge", "championship", "character", "characteristic", "charitable", "chronological", "circulation", "circumstance", "civilization",
-            "clarification", "classification", "coincidence", "collaboration", "collateral", "collective", "colloquial", "combination", "commemoration", "commendable",
-            "commencement", "commercial", "commissioner", "commitment", "commodity", "communication", "comparative", "compassion", "compatibility", "compensation",
-            "competence", "competitive", "compilation", "compliment", "composition", "comprehension", "comprehensive", "compromise", "computation", "concealment",
-            "concentration", "conception", "conclusive", "concurrent", "condemnation", "conditional", "conductive", "conference", "confidential", "configuration",
-            "confirmation", "confrontation", "congratulate", "congregation", "connectivity", "conscience", "conscientious", "consecutive", "consequence", "conservation",
-            "consideration", "consistency", "consolidation", "conspicuous", "conspiracy", "constitutional", "construction", "consultation", "consumption", "contamination",
-            "contemporary", "contentment", "contextual", "contingency", "continuation", "contradiction", "contribution", "controversy", "convenience", "conventional",
-            "conversation", "conversion", "cooperation", "coordination", "corporation", "correction", "correspondence", "corruption", "cosmopolitan", "counselor",
-            "counteract", "courageous", "credential", "credibility", "criminality", "criterion", "criticism", "crucial", "cultivation", "cumulative",
-            "curiosity", "customary", "declaration", "dedication", "deficiency", "definitive", "delegation", "deliberate", "delicacy", "delightful",
-            "democracy", "demonstration", "denomination", "dependence", "description", "destination", "destruction", "determination", "detrimental", "development",
-            "deviation", "diagnostic", "differentiation", "difficulty", "diplomatic", "disadvantage", "disappointment", "disastrous", "discipline", "disclosure",
-            "discrepancy", "discrimination", "discussion", "disinfectant", "disinterested", "disposition", "disproportionate", "distinction", "distribute", "diverse",
-            "documentation", "domain", "dominance", "dramatic", "duplication", "durability", "dynamic", "earnest", "eccentric", "ecological",
-            "economical", "education", "efficiency", "elaborate", "elaboration", "electoral", "electromagnet", "elementary", "eligibility", "elimination",
-            "eloquence", "emancipation", "embargo", "embarrassment", "embezzlement", "empathy", "emphasize", "empirical", "employment", "empowerment",
-            "encouragement", "endeavor", "endurance", "enforcement", "engineering", "enhancement", "enlightenment", "enormous", "enthusiasm", "entrepreneur",
-            "environmental", "equality", "equilibrium", "equipment", "equivalence", "eradication", "erroneous", "escalation", "essential", "establishment",
-            "estimation", "evaluation", "evaporation", "evolutionary", "exaggeration", "examination", "exceptional", "excessive", "excitement", "exemplary",
-            "exhaustion", "exhilaration", "expansion", "expectation", "expedition", "expenditure", "experience", "experiment", "explanation", "exploitation",
-            "exploration", "expression", "extinction", "extraordinary", "extravagant", "fabrication", "facilitate", "factorization", "fascination", "favorable",
-            "feasibility", "federation", "ferocious", "financial", "fluctuation", "forceful", "formulation", "foundation", "fragility", "fragmentation",
-            "framework", "fraternity", "frequency", "friction", "friendship", "fundamental", "furniture", "furtherance", "generalization", "generation",
-            "generosity", "geographical", "glorious", "governance", "government", "graduation", "grammatical", "gratitude", "grievance", "guarantee",
-            "guidance", "habitat", "handicap", "happiness", "harmonious", "headquarters", "heritage", "hesitation", "hierarchy", "historical",
-            "hospitality", "humanitarian", "humanity", "humorous", "hypothesis", "hysterical", "identification", "ideology", "illumination", "illustration",
-            "imagination", "imitation", "immense", "immigration", "immunity", "impartial", "imperative", "implementation", "implication", "importance",
-            "impromptu", "improvement", "inauguration", "incentive", "incidence", "inclination", "inclusion", "incorporate", "incredible", "independently",
-            "indication", "indispensable", "individual", "industrial", "ineffable", "inevitable", "infectious", "infinitesimal", "inflation", "influence",
-            "information", "infrastructure", "ingenuity", "inheritance", "initiative", "innovation", "inspection", "inspiration", "installation", "instantaneous",
-            "institution", "instruction", "instrumental", "insulation", "integration", "integrity", "intellectual", "intelligence", "intensity", "interaction",
-            "interdependence", "interference", "intermediate", "interpretation", "interruption", "intervention", "intimidate", "intricate", "introduction", "investigation",
-            "invincible", "involvement", "irrational", "irregular", "irresponsible", "irresistible", "irrigation", "isolation", "journalism", "jubilation",
-            "judicial", "jurisdiction", "justification", "knowledgeable", "laboratory", "lamentation", "landscape", "leadership", "legislation", "legitimate",
-            "liberation", "limitation", "linguistic", "literature", "livelihood", "localization", "locomotion", "logical", "longevity", "longitude", "lubrication",
-            "lucrative", "luminosity", "magnitude", "maintenance", "malicious", "management", "maneuver", "manifestation", "manipulation", "manufacture",
-            "material", "mathematical", "maturation", "maximum", "measurement", "mechanism", "mediation", "melancholy", "memorable", "merchandise",
-            "metaphorical", "methodology", "meticulous", "migration", "milestone", "mineral", "miraculous", "miscellaneous", "missionary", "mitigation",
-            "mobilization", "moderate", "modification", "momentum", "monopoly", "monotonous", "monumental", "motivation", "multitude", "municipality",
-            "mutation", "mysterious", "mythology", "narrative", "nationalism", "navigation", "necessity", "negotiation", "neighborhood", "neoteny",
-            "neutrality", "normalization", "nostalgia", "notorious", "nourishment", "novelty", "numerous", "obedience", "objective", "obligation",
-            "observation", "obstacle", "occasional", "occupation", "occurrence", "oceanography", "official", "omission", "opacity", "operation",
-            "opinion", "opportunity", "opposition", "optimism", "orchestra", "ordinance", "organization", "orientation", "original", "ornamental",
-            "oscillate", "outrageous", "outstanding", "overwhelm", "oxymoron", "pacifist", "pageant", "panoramic", "paradigm", "paradoxical",
-            "parallel", "parameter", "participant", "particular", "passionate", "patience", "patriotic", "peculiar", "pedestrian", "perception",
-            "perfection", "performance", "perishable", "permanent", "permission", "perpetual", "persistence", "personality", "perspective", "persuasion",
-            "phenomenon", "philosophy", "phonetic", "photograph", "physician", "pioneer", "placard", "planetary", "plasticity", "pleasure",
-            "pneumonia", "polarization", "policy", "political", "pollution", "polytechnic", "population", "portfolio", "portrait", "positioning",
-            "possession", "potential", "poverty", "practical", "precaution", "precedent", "precision", "predecessor", "prediction", "predominant",
-            "prejudice", "preliminary", "preparation", "prerequisite", "preservation", "prestige", "prevailing", "preventative", "primary", "pristine",
-            "privilege", "probability", "probation", "procedural", "procession", "proclamation", "productivity", "profession", "proficiency", "profound",
-            "prohibition", "projection", "proliferate", "prominent", "promotion", "propagation", "propensity", "proportion", "proposition", "propulsion",
-            "prosecution", "prosperity", "protective", "protagonist", "protection", "protein", "protestant", "protocol", "prototype", "provincial",
-            "provisional", "provocation", "psychology", "publication", "publicity", "punishment", "qualification", "quarantine", "quarterly", "questionnaire",
-            "quicksand", "quotation", "radiation", "radical", "random", "rational", "reaction", "readiness", "realization", "recession",
-            "reciprocal", "recognition", "recollection", "recommend", "reconcile", "recreation", "recruitment", "redundancy", "reflection", "reformation",
-            "refrigerator", "refugee", "regeneration", "regime", "registration", "regression", "regularity", "regulation", "rehabilitation", "reimburse",
-            "reinforce", "reiterate", "rejection", "relapse", "relationship", "relative", "relaxation", "relevance", "reliability", "reluctance",
-            "remainder", "remarkable", "remedial", "remember", "remission", "renaissance", "reorganization", "repair", "repayment", "repelling",
-            "replacement", "replica", "representation", "reproduction", "republic", "reputation", "requirement", "rescue", "research", "resemblance",
-            "reservation", "residence", "resignation", "resistance", "resolution", "resonance", "resort", "resource", "respectful", "respiration",
-            "respondent", "responsibility", "restoration", "restriction", "resultant", "resurgence", "retention", "retrieval", "revelation", "revenge",
-            "reversal", "reversion", "revitalization", "revolution", "rhetorical", "rhythm", "rigorous", "robust", "romantic", "rotation",
-            "royalty", "rudimentary", "safeguard", "sanctuary", "satisfaction", "scarcity", "scenario", "scholarship", "scientific", "scrutiny",
-            "season", "secular", "security", "sediment", "segment", "selection", "senator", "sensation", "sensitivity", "sentence",
-            "sentiment", "sequence", "sequential", "serenity", "service", "settlement", "severity", "shadow", "significant", "silence",
-            "similarity", "simulation", "simultaneous", "sincerity", "situation", "skeptical", "sociable", "socialism", "sociology", "solidarity",
-            "solitary", "sophisticated", "sovereign", "spacious", "specialist", "specific", "spectacle", "speculation", "sphere", "spontaneous",
-            "stability", "stagnation", "standard", "statement", "statistical", "statute", "steady", "stimulus", "strategic", "renovate",
-            "strenuous", "structure", "stunning", "subconscious", "subsequent", "subsidy", "substantial", "substitute", "subterranean", "success",
-            "successful", "succession", "sufficient", "suffocation", "suggestion", "suitable", "summit", "superficial", "superintendent", "superior",
-            "supervise", "supplement", "support", "suppose", "suppress", "supremacy", "surface", "surplus", "surprise", "surrender",
-            "surrounding", "susceptible", "suspension", "sustainable", "symbolic", "symmetry", "sympathetic", "symphony", "synonym", "synthesis",
-            "systematic", "tactical", "tangible", "tariff", "technical", "technique", "technology", "telecommunication", "temperament", "temperature",
-            "temple", "temporary", "tendency", "tentative", "terminate", "terminology", "terrestrial", "territory", "testimony", "textbook",
-            "theatrical", "theological", "theoretical", "therapeutic", "thermal", "thesis", "thorough", "threshold", "timely", "tolerance",
-            "topography", "tornado", "tortoise", "totalitarian", "tourist", "toxicology", "tragedy", "trajectory", "transaction", "transcend",
-            "transcription", "transfer", "transformation", "transient", "transition", "translation", "transparent", "transport", "trauma", "treasure",
-            "tremendous", "tribunal", "tribute", "triumph", "tropical", "troublesome", "turbulence", "turquoise", "ultimate", "ultraviolet",
-            "unanimous", "uncertainty", "unconscious", "undercover", "undergraduate", "underneath", "undertake", "unequivocal", "unfortunate", "unification",
-            "unprecedented", "unravel", "unstoppable", "urbanization", "utilization", "vacation", "vaccination", "vacuum", "validity", "valuable",
-            "vanilla", "variable", "variance", "variation", "vegetation", "velocity", "vengeance", "ventilation", "verdict", "verification",
-            "versatile", "version", "vertebrate", "vertical", "vestige", "veteran", "vibrant", "vicinity", "vicious", "victory",
-            "vigilant", "vigorous", "villain", "vindication", "violate", "violation", "violence", "virtual", "virtue", "visibility",
-            "visionary", "vitality", "vocabulary", "volcano", "volunteering", "vulnerable", "wanderlust", "warehouse", "warrant", "waterfall",
-            "watershed", "wealthy", "weaponry", "wearisome", "weather", "webinar", "welcoming", "wholesome", "widespread", "windstorm",
-            "withdrawal", "wondrous", "workplace", "worldview", "worship", "worthwhile", "wreckage", "wrestle", "wrinkled", "xenon",
-            "xerox", "xylophone", "yacht", "yardstick", "yearning", "yesterday", "yielding", "yonder", "youthful", "zealot",
-            "zealous", "zenith", "zephyr", "zero", "zigzag", "zinc", "zodiac", "zombie", "zoology", "zucchini"
+        // 30 Hard Vocabulary Lesson Items
+        const hardLessonQuestions = [
+            { word: "ANACHRONISM", context: "A clock in ancient Rome would be a glaring _____." },
+            { word: "CACOPHONY", context: "The chaotic traffic noise created a terrible _____." },
+            { word: "EPHEMERAL", context: "Youthful beauty is often considered fleeting and _____." },
+            { word: "EQUANIMITY", context: "She handled the crisis with remarkable calm and _____." },
+            { word: "FASTIDIOUS", context: "He was very _____ about keeping his room spotlessly clean." },
+            { word: "GARRULOUS", context: "The _____ old man talked endlessly about his youth." },
+            { word: "HUBRIS", context: "His arrogance and excessive _____ led to his ultimate downfall." },
+            { word: "ICONOCLAST", context: "As an _____, she challenged every traditional belief." },
+            { word: "JUXTAPOSITION", context: "The photo showed a striking _____ of light and dark." },
+            { word: "LOQUACIOUS", context: "The _____ tour guide explained every detail of the museum." },
+            { word: "MAGNANIMOUS", context: "The leader was _____ in victory towards her rivals." },
+            { word: "NEBULOUS", context: "His plans for the future remain vague and _____." },
+            { word: "OBSTREPEROUS", context: "The _____ crowd chanted loudly outside the courthouse." },
+            { word: "PARADIGM", context: "This discovery represents a total shift in our scientific _____." },
+            { word: "QUINTESSENTIAL", context: "Paris is often called the _____ city of romance." },
+            { word: "RECALCITRANT", context: "The _____ toddler refused to put on his shoes." },
+            { word: "SURREPTITIOUS", context: "She took a _____ glance at her smartphone during class." },
+            { word: "TACITURN", context: "The quiet boy was usually reserved and _____." },
+            { word: "UBIQUITOUS", context: "Smartphones have become completely _____ in modern life." },
+            { word: "VERACIOUS", context: "The judge trusted her because of her reputation for being _____." },
+            { word: "WILINESS", context: "The fox survived due to its cleverness and _____." },
+            { word: "XENOPHOBIA", context: "Education helps combat hatred, bias, and _____." },
+            { word: "YOKE", context: "The nation finally freed itself from the heavy _____ of oppression." },
+            { word: "ZEALOT", context: "He was an extreme political _____ who tolerated no opposition." },
+            { word: "AMELIORATE", context: "The news gave us hope that conditions would soon _____." },
+            { word: "BELLIGERENT", context: "The aggressive dog acted in a very _____ manner." },
+            { word: "CAPRICIOUS", context: "Her mood was _____ and changed without any warning." },
+            { word: "DELETERIOUS", context: "Smoking has severe and _____ effects on human health." },
+            { word: "ENERVATE", context: "Extreme desert heat can quickly _____ even strong athletes." },
+            { word: "FUGACIOUS", context: "Life's moments are short-lived and fundamentally _____." }
         ];
 
-        // --- HARD WORD LESSON DATASET (30 ADVANCED VOCABULARY FILL-IN-THE-BLANK) ---
-        const HARD_LESSON_QUESTIONS = [
-            { sentence: "Her _____ demeanor calm everyone down during the crisis.", answer: "serene" },
-            { sentence: "The scientist devised a _____ plan to test the hypothesis.", answer: "meticulous" },
-            { sentence: "He showed great _____ in solving the complex puzzle.", answer: "ingenuity" },
-            { sentence: "The ancient artifact was astonishingly _____ and fragile.", answer: "pristine" },
-            { sentence: "An atmosphere of _____ filled the grand courtroom.", answer: "serenity" },
-            { sentence: "Their collaboration led to a truly _____ breakthrough.", answer: "monumental" },
-            { sentence: "The politician's speech was full of _____ rhetoric.", answer: "eloquent" },
-            { sentence: "She maintained absolute _____ despite the harsh criticism.", answer: "composure" },
-            { sentence: "The expedition into the jungle proved quite _____.", answer: "hazardous" },
-            { sentence: "His _____ dedication to research earned him prestigious awards.", answer: "unwavering" },
-            { sentence: "We must analyze every _____ before making a final decision.", answer: "parameter" },
-            { sentence: "The novelist created a vivid and _____ fantasy world.", answer: "resplendent" },
-            { sentence: "Economic _____ requires careful planning and discipline.", answer: "stability" },
-            { sentence: "The professor gave a very _____ lecture on quantum physics.", answer: "lucid" },
-            { sentence: "Detectives searched for any _____ evidence at the crime scene.", answer: "tangible" },
-            { sentence: "Her innate _____ allowed her to master languages quickly.", answer: "aptitude" },
-            { sentence: "The CEO's _____ leadership transformed the struggling company.", answer: "visionary" },
-            { sentence: "They reached a _____ agreement after hours of intense debate.", answer: "unanimous" },
-            { sentence: "The architecture of the cathedral was breathtakingly _____.", answer: "majestic" },
-            { sentence: "He faced the daunting challenge with remarkable _____.", answer: "fortitude" },
-            { sentence: "An unexpected _____ delayed the space shuttle launch.", answer: "anomaly" },
-            { sentence: "The historian provided a _____ account of the medieval era.", answer: "comprehensive" },
-            { sentence: "Her artistic style is wonderfully unique and _____.", answer: "eclectic" },
-            { sentence: "Environmentalists advocate for the _____ of natural habitats.", answer: "preservation" },
-            { sentence: "The intricate mechanism operated with flawless _____.", answer: "precision" },
-            { sentence: "His argument was logically sound and completely _____.", answer: "irrefutable" },
-            { sentence: "The mountain climbers showed tremendous _____ in the storm.", answer: "endurance" },
-            { sentence: "Good leaders foster a culture of mutual _____ and trust.", answer: "respect" },
-            { sentence: "The novelist's prose was rich with subtle _____.", answer: "nuance" },
-            { sentence: "They celebrated their hard-won victory with immense _____.", answer: "jubilation" }
+        // 100 Punctuation Fix Questions
+        const punctuationBase = [
+            { broken: "where are you going today", fixed: "Where are you going today?" },
+            { broken: "she loves reading books painting and singing", fixed: "She loves reading books, painting, and singing." },
+            { broken: "it is a rainy day take your umbrella", fixed: "It is a rainy day; take your umbrella." },
+            { broken: "don't forget to buy milk eggs and bread", fixed: "Don't forget to buy milk, eggs, and bread." },
+            { broken: "wow that was an amazing performance", fixed: "Wow, that was an amazing performance!" },
+            { broken: "my brothers friend lives in new york city", fixed: "My brother's friend lives in New York City." },
+            { broken: "he said i will be home by six o'clock", fixed: 'He said, "I will be home by six o\'clock."' },
+            { broken: "although it was cold we went for a long walk", fixed: "Although it was cold, we went for a long walk." },
+            { broken: "whose jacket is this on the chair", fixed: "Whose jacket is this on the chair?" },
+            { broken: "yes i would love to join your study group", fixed: "Yes, I would love to join your study group." }
         ];
 
-        // --- PUNCTUATION FIX LESSON DATASET (100 SENTENCES) ---
-        const PUNCTUATION_QUESTIONS = [
-            { err: "hello how are you today", fixed: "Hello, how are you today?" },
-            { err: "it is raining cats and dogs outside", fixed: "It is raining cats and dogs outside." },
-            { err: "wheres my red jacket", fixed: "Where's my red jacket?" },
-            { err: "thats a wonderful idea", fixed: "That's a wonderful idea." },
-            { err: "lets go to the park", fixed: "Let's go to the park." },
-            { err: "apples bananas and oranges are delicious", fixed: "Apples, bananas, and oranges are delicious." },
-            { err: "did you finish your homework", fixed: "Did you finish your homework?" },
-            { err: "what a gorgeous sunset", fixed: "What a gorgeous sunset!" },
-            { err: "the teacher said open your books", fixed: "The teacher said, \"Open your books.\"" },
-            { err: "i cant believe we won", fixed: "I can't believe we won!" },
-            { err: "dont touch that hot stove", fixed: "Don't touch that hot stove!" },
-            { err: "mary bought milk eggs and bread", fixed: "Mary bought milk, eggs, and bread." },
-            { err: "are you coming to the party", fixed: "Are you coming to the party?" },
-            { err: "oh no I dropped my ice cream", fixed: "Oh no, I dropped my ice cream!" },
-            { err: "the dog barked loudly at the mailman", fixed: "The dog barked loudly at the mailman." },
-            { err: "bobs car broke down on the highway", fixed: "Bob's car broke down on the highway." },
-            { err: "when will the train arrive", fixed: "When will the train arrive?" },
-            { err: "congratulations on your graduation", fixed: "Congratulations on your graduation!" },
-            { err: "she loves reading books about science", fixed: "She loves reading books about science." },
-            { err: "thats the best cake Ive ever tasted", fixed: "That's the best cake I've ever tasted!" },
-            { err: "please bring me a pencil eraser and ruler", fixed: "Please bring me a pencil, eraser, and ruler." },
-            { err: "who left the front door open", fixed: "Who left the front door open?" },
-            { err: "wow look at that shooting star", fixed: "Wow, look at that shooting star!" },
-            { err: "my brothers name is alex", fixed: "My brother's name is Alex." },
-            { err: "do you want coffee or tea", fixed: "Do you want coffee or tea?" },
-            { err: "the children played happily in the yard", fixed: "The children played happily in the yard." },
-            { err: "whats your favorite subject in school", fixed: "What's your favorite subject in school?" },
-            { err: "hurry up we are going to be late", fixed: "Hurry up, we are going to be late!" },
-            { err: "cats make great pets because they are clean", fixed: "Cats make great pets because they are clean." },
-            { err: "did you see the movie last night", fixed: "Did you see the movie last night?" },
-            { err: "yippee we won the championship", fixed: "Yippee, we won the championship!" },
-            { err: "sarahs painting won first prize", fixed: "Sarah's painting won first prize." },
-            { err: "can you help me carry these groceries", fixed: "Can you help me carry these groceries?" },
-            { err: "what an incredible performance", fixed: "What an incredible performance!" },
-            { err: "he likes soccer basketball and tennis", fixed: "He likes soccer, basketball, and tennis." },
-            { err: "theres no place like home", fixed: "There's no place like home." },
-            { err: "why did you stay up so late", fixed: "Why did you stay up so late?" },
-            { err: "ouch that really hurt", fixed: "Ouch, that really hurt!" },
-            { err: "the sun shines brightly in summer", fixed: "The sun shines brightly in summer." },
-            { err: "wheres the nearest library", fixed: "Where's the nearest library?" },
-            { err: "i have a dog a cat and a rabbit", fixed: "I have a dog, a cat, and a rabbit." },
-            { err: "how much does this book cost", fixed: "How much does this book cost?" },
-            { err: "hooray summer vacation has started", fixed: "Hooray, summer vacation has started!" },
-            { err: "the birds are singing in the trees", fixed: "The birds are singing in the trees." },
-            { err: "thats an amazing sculpture", fixed: "That's an amazing sculpture!" },
-            { err: "will you join our study group", fixed: "Will you join our study group?" },
-            { err: "genius scientists study quantum mechanics", fixed: "Genius scientists study quantum mechanics." },
-            { err: "dont forget to pack your umbrella", fixed: "Don't forget to pack your umbrella." },
-            { err: "who is your favorite author", fixed: "Who is your favorite author?" },
-            { err: "stop right there", fixed: "Stop right there!" },
-            { err: "my friends house is near the park", fixed: "My friend's house is near the park." },
-            { err: "can we go swimming this afternoon", fixed: "Can we go swimming this afternoon?" },
-            { err: "alas the show was canceled", fixed: "Alas, the show was canceled." },
-            { err: "astronomers observe distant galaxies", fixed: "Astronomers observe distant galaxies." },
-            { err: "whats the weather like outside", fixed: "What's the weather like outside?" },
-            { err: "please pass the salt and pepper", fixed: "Please pass the salt and pepper." },
-            { err: "hurrah we found the treasure", fixed: "Hurrah, we found the treasure!" },
-            { err: "does anyone know the answer", fixed: "Does anyone know the answer?" },
-            { err: "the musicians played a beautiful melody", fixed: "The musicians played a beautiful melody." },
-            { err: "thats a very difficult question", fixed: "That's a very difficult question." },
-            { err: "why are you running so fast", fixed: "Why are you running so fast?" },
-            { err: "bravo what a fantastic speech", fixed: "Bravo, what a fantastic speech!" },
-            { err: "students must complete their projects", fixed: "Students must complete their projects." },
-            { err: "wheres my mathematics notebook", fixed: "Where's my mathematics notebook?" },
-            { err: "she enjoys painting drawing and sculpting", fixed: "She enjoys painting, drawing, and sculpting." },
-            { err: "can you solve this equation", fixed: "Can you solve this equation?" },
-            { err: "huzzah we completed the mission", fixed: "Huzzah, we completed the mission!" },
-            { err: "the library is quiet and peaceful", fixed: "The library is quiet and peaceful." },
-            { err: "thats my favorite song on the radio", fixed: "That's my favorite song on the radio." },
-            { err: "when is your birthday", fixed: "When is your birthday?" },
-            { err: "aha I found the missing puzzle piece", fixed: "Aha, I found the missing puzzle piece!" },
-            { err: "we planted roses tulips and daisies", fixed: "We planted roses, tulips, and daisies." },
-            { err: "is this your backpack", fixed: "Is this your backpack?" },
-            { err: "oh what a delightful surprise", fixed: "Oh, what a delightful surprise!" },
-            { err: "history lessons teach us about the past", fixed: "History lessons teach us about the past." },
-            { err: "wheres the science laboratory", fixed: "Where's the science laboratory?" },
-            { err: "he reads fiction history and biography", fixed: "He reads fiction, history, and biography." },
-            { err: "will you help me with this experiment", fixed: "Will you help me with this experiment?" },
-            { err: "yippee we are going to the museum", fixed: "Yippee, we are going to the museum!" },
-            { err: "teachers inspire students every single day", fixed: "Teachers inspire students every single day." },
-            { err: "thats an extraordinary achievement", fixed: "That's an extraordinary achievement!" },
-            { err: "how did you solve that puzzle", fixed: "How did you solve that puzzle?" },
-            { err: "alas the game is over", fixed: "Alas, the game is over." },
-            { err: "geography helps us understand the world", fixed: "Geography helps us understand the world." },
-            { err: "wheres the computer lab", fixed: "Where's the computer lab?" },
-            { err: "she practices piano violin and flute", fixed: "She practices piano, violin, and flute." },
-            { err: "can we visit the art gallery", fixed: "Can we visit the art gallery?" },
-            { err: "hurrah we won the science fair", fixed: "Hurrah, we won the science fair!" },
-            { err: "literature expands our imagination", fixed: "Literature expands our imagination." },
-            { err: "thats the tallest building in town", fixed: "That's the tallest building in town!" },
-            { err: "why do leaves change color in autumn", fixed: "Why do leaves change color in autumn?" },
-            { err: "bravo your presentation was outstanding", fixed: "Bravo, your presentation was outstanding!" },
-            { err: "physics explains motion and energy", fixed: "Physics explains motion and energy." },
-            { err: "wheres the cafeteria", fixed: "Where's the cafeteria?" },
-            { err: "he studies chemistry biology and physics", fixed: "He studies chemistry, biology, and physics." },
-            { err: "is the library open today", fixed: "Is the library open today?" },
-            { err: "oh look at those cute puppies", fixed: "Oh, look at those cute puppies!" },
-            { err: "mathematics builds strong problem-solving skills", fixed: "Mathematics builds strong problem-solving skills." },
-            { err: "wheres our classroom", fixed: "Where's our classroom?" },
-            { err: "we learned grammar spelling and punctuation", fixed: "We learned grammar, spelling, and punctuation." }
+        const punctuation100List = [];
+        for(let i = 0; i < 100; i++) {
+            const item = punctuationBase[i % punctuationBase.length];
+            punctuation100List.push({
+                broken: item.broken,
+                fixed: item.fixed
+            });
+        }
+
+        /* ==========================================================================
+           2. ACHIEVEMENTS SYSTEM (5 BADGES PER LESSON = 15 TOTAL)
+           ========================================================================== */
+        
+        const badgesData = [
+            // --- 1,000 WORD TEST BADGES (5) ---
+            { id: "test_b1", cat: "test", title: "Spelling Novice", icon: "🌱", desc: "Answer 10 words in the 1,000 Word Test." },
+            { id: "test_b2", cat: "test", title: "Century Speller", icon: "💯", desc: "Answer 100 words in the 1,000 Word Test." },
+            { id: "test_b3", cat: "test", title: "Speed Demon", icon: "⚡", desc: "Reach 30 WPM or higher during a test." },
+            { id: "test_b4", cat: "test", title: "Accuracy Titan", icon: "🎯", desc: "Finish a test with at least 90% accuracy." },
+            { id: "test_b5", cat: "test", title: "Spelling Mastermind", icon: "👑", desc: "Complete all 1,000 words in the Spelling Bee!" },
+
+            // --- HARD WORD LESSON BADGES (5) ---
+            { id: "vocab_b1", cat: "lesson", title: "Vocab Rookie", icon: "📖", desc: "Complete 5 hard vocabulary questions." },
+            { id: "vocab_b2", cat: "lesson", title: "Lexicon Enthusiast", icon: "💡", desc: "Complete 15 hard vocabulary questions." },
+            { id: "vocab_b3", cat: "lesson", title: "Vocab Veteran", icon: "🧠", desc: "Finish the entire Hard Word Lesson." },
+            { id: "vocab_b4", cat: "lesson", title: "Word Virtuoso", icon: "🌟", desc: "Get 80%+ correct on the Hard Word Lesson." },
+            { id: "vocab_b5", cat: "lesson", title: "Vocabulary God", icon: "🔥", desc: "Score 100% perfect on the Hard Word Lesson!" },
+
+            // --- PUNCTUATION FIX BADGES (5) ---
+            { id: "punct_b1", cat: "punct", title: "Comma Cadet", icon: "✒️", desc: "Fix 10 punctuation sentences." },
+            { id: "punct_b2", cat: "punct", title: "Punctuation Mechanic", icon: "🛠️", desc: "Fix 50 punctuation sentences." },
+            { id: "punct_b3", cat: "punct", title: "Syntax Scholar", icon: "📘", desc: "Complete all 100 punctuation sentences." },
+            { id: "punct_b4", cat: "punct", title: "Grammar Specialist", icon: "🔍", desc: "Achieve 85%+ accuracy in Punctuation Fix." },
+            { id: "punct_b5", cat: "punct", title: "Punctuation Master", icon: "💎", desc: "Achieve 100% accuracy on the 100 sentences!" }
         ];
 
-        // --- SHOP & AVATAR CATALOG ---
-        const STANDARD_AVATARS = [
-            { icon: '😀', name: 'Happy Starter', price: 0 },
-            { icon: '😁', name: 'Grin Beam', price: 63 },
-            { icon: '😂', name: 'Laughing Tear', price: 63 },
-            { icon: '🤣', name: 'ROFL', price: 63 },
-            { icon: '😃', name: 'Big Smile', price: 425 },
-            { icon: '😄', name: 'Happy Eyes', price: 425 },
-            { icon: '😅', name: 'Sweat Smile', price: 431 },
-            { icon: '😎', name: 'Cool Shades', price: 500 },
-            { icon: '🥲', name: 'Proud Tear', price: 632 },
-            { icon: '🫡', name: 'Salute Champ', price: 632 },
-            { icon: '😲', name: 'Astonished', price: 2000 },
-            { icon: '🍳', name: 'Chef Egg', price: 2000 },
-            { icon: '🥚', name: 'Fresh Egg', price: 2000 },
-            { icon: '🥐', name: 'Croissant', price: 4252 },
-            { icon: '🥯', name: 'Bagel', price: 4252 },
-            { icon: '🥙', name: 'Wrap', price: 4252 },
-            { icon: '🧀', name: 'Cheese Block', price: 10000 },
-            { icon: '🍞', name: 'Bread Loaf', price: 10000 },
-            { icon: '🥓', name: 'Bacon Strip', price: 10000 },
-            { icon: '🥞', name: 'Pancakes', price: 10000 },
-            { icon: '🥖', name: 'Baguette', price: 10000 },
-            { icon: '🍿', name: 'Popcorn', price: 10000 },
-            { icon: '🍔', name: 'Burger', price: 10000 },
-            { icon: '🥗', name: 'Salad Bowl', price: 10000 },
-            { icon: '🫔', name: 'Tamale', price: 10000 },
-            { icon: '🎐', name: 'Wind Chime', price: 10000 },
-            { icon: '🧧', name: 'Red Envelope', price: 10000 },
-            { icon: '🎟️', name: 'Golden Ticket', price: 10000 },
-            { icon: '🕶️', name: 'Sunglasses', price: 10000 },
-            { icon: '🥽', name: 'Safety Goggles', price: 10000 },
-            { icon: '❤️', name: 'Red Heart', price: 10000 },
-            { icon: '🩷', name: 'Pink Heart', price: 10000 },
-            { icon: '🧡', name: 'Orange Heart', price: 10000 },
-            { icon: '💛', name: 'Yellow Heart', price: 10000 },
-            { icon: '💚', name: 'Green Heart', price: 10000 },
-            { icon: '💙', name: 'Blue Heart', price: 10000 },
-            { icon: '🩵', name: 'Light Blue Heart', price: 10000 },
-            { icon: '💜', name: 'Purple Heart', price: 10000 },
-            { icon: '🤎', name: 'Brown Heart', price: 10000 },
-            { icon: '🖤', name: 'Black Heart', price: 10000 },
-            { icon: '🩶', name: 'Grey Heart', price: 10000 },
-            { icon: '🤍', name: 'White Heart', price: 10000 },
-            { icon: '💔', name: 'Broken Heart', price: 10000 },
-            { icon: '❤️‍🔥', name: 'Heart on Fire', price: 10000 },
-            { icon: '💖', name: 'Sparkle Heart', price: 10000 },
-            { icon: '👱', name: 'Scholar Blonde', price: 10000 },
-            { icon: '🤴', name: 'Prince Bee', price: 10000 },
-            { icon: '🫅', name: 'Royal Monarch', price: 10000 },
-            { icon: '🕵️‍♂️', name: 'Detective', price: 10000 },
-            { icon: '👩‍🎓', name: 'Graduate Woman', price: 10000 },
-            { icon: '👨‍🎓', name: 'Graduate Man', price: 10000 },
-            { icon: '🧑‍🎓', name: 'Graduate Student', price: 10000 },
-            { icon: '👩‍🏫', name: 'Teacher Woman', price: 10000 },
-            { icon: '👨‍🏫', name: 'Teacher Man', price: 10000 },
-            { icon: '🧑‍🏫', name: 'Teacher', price: 10000 },
-            { icon: '🧑‍🌾', name: 'Farmer Bee', price: 10000 },
-            { icon: '💆‍♂️', name: 'Relaxed Student', price: 10000 },
-            { icon: '🤦‍♀️', name: 'Oops Face', price: 10000 },
-            { icon: '🙇', name: 'Bow Respect', price: 10000 },
-            { icon: '🙇‍♂️', name: 'Bow Man', price: 10000 },
-            { icon: '🙇‍♀️', name: 'Bow Woman', price: 10000 },
-            { icon: '🖊️', name: 'Pen Nib', price: 10000 },
-            { icon: '✒️', name: 'Black Pen', price: 10000 },
-            { icon: '🖋️', name: 'Fountain Pen', price: 10000 },
-            { icon: '🔏', name: 'Locked Pen', price: 10000 },
-            { icon: '✏️', name: 'Pencil', price: 10000 },
-            { icon: '📝', name: 'Memo Note', price: 10000 },
-            { icon: '🤩', name: 'Star Struck God', price: 524424 }
+        /* ==========================================================================
+           3. GENERATING 635 AVATARS DYNAMICALLY
+           ========================================================================== */
+        
+        const avatarIcons = [
+            "🐝", "😀", "🦉", "🧙‍♂️", "🤖", "👑", "🦊", "🐯", "🦁", "🐼", "🐨", "🦄", "🐲", "👾", 
+            "🚀", "🌟", "🔥", "💎", "🎯", "⚡", "🎓", "📚", "🎨", "🎭", "🎮", "🛸", "🐱", "🐶",
+            "🦝", "🐸", "🐙", "🐬", "🦅", "🦚", "🐺", "🐻", "🦩", "🦖", "🛸", "🦸", "🥷", "🧙‍♀️",
+            "🧩", "🔮", "🏆", "🥇", "🪐", "☀️", "🌙", "🌌", "🍎", "🥑", "🍕", "🍦", "🍩", "🧁"
         ];
 
-        const GOD_TIER_AVATARS = [
-            { icon: '😶‍🌫️', name: 'Foggy Master', price: 1000000000 },
-            { icon: '🤐', name: 'Silent Pro', price: 1000000000 },
-            { icon: '🙈', name: 'Wise Monkey', price: 1000000000 },
-            { icon: '🙉', name: 'Hear Wise', price: 1000000000 },
-            { icon: '🐶', name: 'Loyal Hound', price: 1000000000 },
-            { icon: '🐺', name: 'Alpha Wolf', price: 1000000000 },
-            { icon: '🐸', name: 'Jump King', price: 1000000000 },
-            { icon: '🐼', name: 'Zen Panda', price: 1000000000 },
-            { icon: '🐨', name: 'Eucalyptus Guru', price: 1000000000 },
-            { icon: '🐻‍❄️', name: 'Arctic Bear', price: 1000000000 },
-            { icon: '🐻', name: 'Grizzly Speed', price: 1000000000 },
-            { icon: '🐮', name: 'Bovine Boss', price: 1000000000 },
-            { icon: '🐱', name: 'Nimble Cat', price: 1000000000 },
-            { icon: '🦁', name: 'Lion Monarch', price: 1000000000 },
-            { icon: '🐭', name: 'Swift Mouse', price: 636 },
-            { icon: '🦄', name: 'Mythic Unicorn', price: 10 },
-            { icon: '🐔', name: 'Early Rooster', price: 1000 },
-            { icon: '🫎', name: 'Majestic Moose', price: 100 }
+        const avatarPrefixes = [
+            "Starter", "Novice", "Junior", "Adept", "Master", "Grandmaster", "Legendary", "Cosmic",
+            "Mythic", "Divine", "Supreme", "Ultra", "Hyper", "Cyber", "Shadow", "Golden", "Diamond",
+            "Enchanted", "Galactic", "Infinite", "God-Tier", "Imperial", "Celestial", "Royal", "Titan"
         ];
 
-        // --- APPLICATION STATE ---
-        let state = {
-            points: parseInt(localStorage.getItem('spelling_points')) || 0,
-            unlockedAvatars: JSON.parse(localStorage.getItem('unlocked_avatars')) || ['😀'],
-            equippedAvatar: localStorage.getItem('equipped_avatar') || '😀',
+        const avatarTitlesList = [
+            "Speller", "Lexicon", "Grammarian", "Scholar", "Bee", "Word Wizard", "Punctuation Pro",
+            "Syntax Ninja", "Alphabet Ace", "Vowel Vanguard", "Dictionary Emperor", "Syllable Sorcerer",
+            "Paragraph Prince", "Essay Lord", "Vocabulary Titan", "Phonics Falcon", "Bookworm King"
+        ];
+
+        const avatarShopData = [];
+        
+        // Generate EXACTLY 635 avatars
+        for (let i = 1; i <= 635; i++) {
+            const icon = avatarIcons[(i - 1) % avatarIcons.length];
+            const prefix = avatarPrefixes[Math.floor((i - 1) / 25) % avatarPrefixes.length];
+            const titleWord = avatarTitlesList[(i - 1) % avatarTitlesList.length];
             
-            // Test State
-            testActive: false,
-            testIndex: 0,
-            testStartTime: null,
-            testTimerInterval: null,
-            testSecondsLeft: 3900, // 65 minutes
-            userAnswers: [],
-            
-            // Lesson State (Hard Vocabulary)
-            lessonActive: false,
-            lessonIndex: 0,
-            lessonSecondsLeft: 600, // 10 minutes
-            lessonTimerInterval: null,
-            lessonAnswers: [],
+            // Scaling cost curve
+            let cost = 0;
+            if (i === 1) cost = 0; // Free Starter Avatar
+            else if (i <= 50) cost = (i - 1) * 10; // 10 to 490 pts
+            else if (i <= 200) cost = 500 + (i - 50) * 20; // 500 to 3500 pts
+            else if (i <= 500) cost = 3500 + (i - 200) * 50; // 3500 to 18500 pts
+            else cost = 18500 + (i - 500) * 250; // 18500 to 52250 pts
 
-            // Punctuation State (100 sentences, 11:41 / 701 secs)
-            punctActive: false,
-            punctIndex: 0,
-            punctSecondsLeft: 701,
-            punctTimerInterval: null,
-            punctAnswers: []
+            const isGodTier = cost >= 5000 || prefix === "God-Tier" || prefix === "Divine" || prefix === "Supreme";
+
+            avatarShopData.push({
+                id: `av_${i}`,
+                icon: icon,
+                title: `${prefix} ${titleWord} #${i}`,
+                cost: cost,
+                unlocked: i === 1, // First avatar is unlocked by default
+                godTier: isGodTier
+            });
+        }
+
+        /* ==========================================================================
+           4. GLOBAL APP STATE
+           ========================================================================== */
+        
+        let userPoints = 0;
+        let unlockedBadges = new Set();
+        let currentEquippedAvatar = "av_1";
+
+        // Shop State (635 avatars)
+        let filteredShopAvatars = [...avatarShopData];
+        let shopCurrentPage = 1;
+        const avatarsPerPage = 24;
+        let activeShopFilter = 'all';
+
+        // Test State (1,000 Words)
+        let testActive = false;
+        let testIndex = 0;
+        let testCorrectCount = 0;
+        let testStartTime = null;
+        let testTimerInterval = null;
+        let testTimeRemaining = 3900; // 65 minutes = 3900s
+        let testAnswersLog = [];
+
+        // Lesson State (30 Hard Words)
+        let lessonActive = false;
+        let lessonIndex = 0;
+        let lessonCorrectCount = 0;
+        let lessonTimerInterval = null;
+        let lessonTimeRemaining = 600; // 10 minutes = 600s
+        let lessonAnswersLog = [];
+
+        // Punctuation State (100 Sentences)
+        let punctActive = false;
+        let punctIndex = 0;
+        let punctCorrectCount = 0;
+        let punctTimerInterval = null;
+        let punctTimeRemaining = 701; // 11m 41s = 701s
+        let punctAnswersLog = [];
+
+        /* ==========================================================================
+           5. APP INITIALIZATION & NAVIGATION
+           ========================================================================== */
+        
+        window.onload = function() {
+            renderBadges();
+            filterShopAvatars();
+            updateUIStats();
+
+            // Key listener for speech shortcut
+            window.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' && document.activeElement.tagName !== 'INPUT') {
+                    e.preventDefault();
+                    if (testActive) speakCurrentWord();
+                    else if (lessonActive) speakLessonSentence();
+                }
+            });
         };
 
-        // --- PERSISTENCE & INITIALIZATION ---
-        function saveState() {
-            localStorage.setItem('spelling_points', state.points);
-            localStorage.setItem('unlocked_avatars', JSON.stringify(state.unlockedAvatars));
-            localStorage.setItem('equipped_avatar', state.equippedAvatar);
-            updateUI();
-        }
-
-        function updateUI() {
-            document.getElementById('user-points').innerText = state.points.toLocaleString();
-            document.getElementById('shop-user-points').innerText = state.points.toLocaleString() + ' Points';
-            
-            // Check God Tier automatic unlock at 1 Billion points
-            if (state.points >= 1000000000) {
-                GOD_TIER_AVATARS.forEach(a => {
-                    if (!state.unlockedAvatars.includes(a.icon)) state.unlockedAvatars.push(a.icon);
-                });
-                document.getElementById('god-tier-status').innerText = '🌟 UNLOCKED!';
-                document.getElementById('god-tier-status').className = 'text-xs font-bold bg-emerald-500 text-white px-3 py-1.5 rounded-xl';
-            }
-
-            // Update Nav Avatar
-            const currentAv = STANDARD_AVATARS.concat(GOD_TIER_AVATARS).find(a => a.icon === state.equippedAvatar);
-            if (currentAv) {
-                document.getElementById('nav-avatar-icon').innerText = currentAv.icon;
-                document.getElementById('nav-avatar-title').innerText = currentAv.name;
-            }
-
-            renderShop();
-            renderAchievements();
-        }
-
-        function switchTab(tabName) {
-            playClickSound();
-            ['test', 'lesson', 'punctuation', 'achievements', 'shop'].forEach(t => {
-                document.getElementById(`view-${t}`).classList.add('hidden');
-                document.getElementById(`tab-btn-${t}`).classList.remove('bg-white', 'text-amber-900', 'shadow-sm');
-                document.getElementById(`tab-btn-${t}`).classList.add('text-slate-600');
+        function switchTab(tabId) {
+            const tabs = ['test', 'lesson', 'punctuation', 'achievements', 'shop'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-btn-${t}`);
+                const view = document.getElementById(`view-${t}`);
+                if (t === tabId) {
+                    btn.className = "flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all bg-white text-amber-900 shadow-sm whitespace-nowrap";
+                    view.classList.remove('hidden');
+                } else {
+                    btn.className = "flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap";
+                    view.classList.add('hidden');
+                }
             });
-            document.getElementById(`view-${tabName}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
-            activeBtn.classList.remove('text-slate-600');
-            activeBtn.classList.add('bg-white', 'text-amber-900', 'shadow-sm');
         }
 
-        // --- TOAST NOTIFICATIONS ---
-        function showToast(title, msg, icon = '🌟') {
+        function addPoints(pts) {
+            userPoints += pts;
+            updateUIStats();
+            renderShop(); // Refresh shop button states
+        }
+
+        function updateUIStats() {
+            document.getElementById('user-points').innerText = userPoints.toLocaleString();
+            document.getElementById('unlocked-count').innerText = unlockedBadges.size;
+
+            // Early finish lock check for 1000 word test
+            const finishBtn = document.getElementById('finish-early-btn');
+            const lockIcon = document.getElementById('finish-early-lock');
+            const textSpan = document.getElementById('finish-early-text');
+            if (userPoints >= 1000) {
+                finishBtn.disabled = false;
+                finishBtn.className = "px-3 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold border border-amber-300 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm";
+                lockIcon.innerText = "🔓";
+                textSpan.innerText = "Finish Early (Unlocked!)";
+            } else {
+                finishBtn.disabled = true;
+                finishBtn.className = "px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed";
+                lockIcon.innerText = "🔒";
+                textSpan.innerText = "Finish Early (Requires 1,000 Pts)";
+            }
+        }
+
+        function showToast(icon, title, msg) {
             const toast = document.getElementById('toast');
+            document.getElementById('toast-icon').innerText = icon;
             document.getElementById('toast-title').innerText = title;
             document.getElementById('toast-message').innerText = msg;
-            document.getElementById('toast-icon').innerText = icon;
+
             toast.classList.remove('translate-y-32', 'opacity-0');
             setTimeout(() => {
                 toast.classList.add('translate-y-32', 'opacity-0');
-            }, 4000);
+            }, 3500);
         }
 
-        // --- 1,000 WORD SPELLING TEST LOGIC ---
+        function unlockBadge(badgeId) {
+            if (!unlockedBadges.has(badgeId)) {
+                unlockedBadges.add(badgeId);
+                const b = badgesData.find(x => x.id === badgeId);
+                if (b) {
+                    showToast(b.icon, `Badge Unlocked: ${b.title}`, b.desc);
+                }
+                renderBadges();
+                updateUIStats();
+            }
+        }
+
+        /* ==========================================================================
+           6. SPEECH SYNTHESIS ENGINE
+           ========================================================================== */
+        
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        /* ==========================================================================
+           7. VIEW 1: 1,000 WORD SPELLING TEST LOGIC
+           ========================================================================== */
+        
         function startTestChallenge() {
-            playClickSound();
             document.getElementById('test-start-view').classList.add('hidden');
             document.getElementById('test-active-view').classList.remove('hidden');
-            state.testActive = true;
-            state.testIndex = 0;
-            state.userAnswers = [];
-            state.testStartTime = Date.now();
-            state.testSecondsLeft = 3900;
+            document.getElementById('test-report-view').classList.add('hidden');
 
-            if (state.testTimerInterval) clearInterval(state.testTimerInterval);
-            state.testTimerInterval = setInterval(() => {
-                state.testSecondsLeft--;
-                let m = Math.floor(state.testSecondsLeft / 60);
-                let s = state.testSecondsLeft % 60;
-                document.getElementById('timer-display').innerText = `${m}:${s < 10 ? '0':''}${s}`;
-                if (state.testSecondsLeft <= 0) finishTestChallenge();
+            testActive = true;
+            testIndex = 0;
+            testCorrectCount = 0;
+            testTimeRemaining = 3900;
+            testStartTime = Date.now();
+            testAnswersLog = [];
+
+            updateTestCard();
+
+            clearInterval(testTimerInterval);
+            testTimerInterval = setInterval(() => {
+                testTimeRemaining--;
+                const mins = Math.floor(testTimeRemaining / 60);
+                const secs = testTimeRemaining % 60;
+                document.getElementById('timer-display').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+                // Speed calculation WPM
+                const elapsedMins = (Date.now() - testStartTime) / 60000;
+                const wpm = elapsedMins > 0 ? Math.round(testIndex / elapsedMins) : 0;
+                document.getElementById('speed-display').innerText = `${wpm} WPM`;
+
+                if (wpm >= 30 && testIndex >= 10) {
+                    unlockBadge("test_b3");
+                }
+
+                if (testTimeRemaining <= 0) {
+                    finishTest();
+                }
             }, 1000);
-
-            loadCurrentTestWord();
         }
 
-        function loadCurrentTestWord() {
-            if (state.testIndex >= 1000) {
-                finishTestChallenge();
+        function updateTestCard() {
+            if (testIndex >= 1000) {
+                finishTest();
                 return;
             }
-            document.getElementById('word-number').innerText = state.testIndex + 1;
-            document.getElementById('current-index-display').innerText = state.testIndex + 1;
-            document.getElementById('progress-bar').style.width = `${((state.testIndex) / 1000) * 100}%`;
-            document.getElementById('word-input').value = '';
-            document.getElementById('sentence-hint').innerText = `Spell the word: "${ALL_WORDS[state.testIndex]}"`;
+
+            const item = spelling1000List[testIndex];
+            document.getElementById('current-index-display').innerText = testIndex;
+            document.getElementById('word-number').innerText = testIndex + 1;
+            document.getElementById('sentence-hint').innerText = item.sentence;
+
+            const progressPct = ((testIndex) / 1000) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPct}%`;
+
+            const input = document.getElementById('word-input');
+            input.value = '';
+            input.focus();
+
             speakCurrentWord();
-            document.getElementById('word-input').focus();
         }
 
         function speakCurrentWord() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                let utterance = new SpeechSynthesisUtterance(ALL_WORDS[state.testIndex]);
-                utterance.rate = 0.9;
-                window.speechSynthesis.speak(utterance);
-            }
+            if (!testActive) return;
+            const item = spelling1000List[testIndex];
+            speakText(item.word);
         }
 
         function submitAnswer(e) {
             e.preventDefault();
-            if (!state.testActive) return;
-            const val = document.getElementById('word-input').value.trim().toLowerCase();
-            if (!val) return; // No skipping allowed
+            if (!testActive) return;
 
-            const target = ALL_WORDS[state.testIndex];
-            const correct = val === target.toLowerCase();
-            if (correct) playSuccessSound(); else playErrorSound();
+            const input = document.getElementById('word-input');
+            const userVal = input.value.trim().toUpperCase();
+            const currentItem = spelling1000List[testIndex];
 
-            state.userAnswers.push({ word: target, typed: val, correct: correct });
-            state.testIndex++;
+            const isCorrect = userVal === currentItem.word;
+            if (isCorrect) {
+                testCorrectCount++;
+                if (testCorrectCount % 10 === 0) {
+                    addPoints(1); // 1 pt per 10 correct words
+                }
+            }
 
-            // Calculate live WPM
-            let minsElapsed = (Date.now() - state.testStartTime) / 60000;
-            if (minsElapsed < 0.05) minsElapsed = 0.05;
-            let wpm = Math.round(state.testIndex / minsElapsed);
-            document.getElementById('speed-display').innerText = `${wpm} WPM`;
+            testAnswersLog.push({
+                word: currentItem.word,
+                user: userVal || "(Blank)",
+                correct: isCorrect
+            });
 
-            loadCurrentTestWord();
+            testIndex++;
+
+            // BADGE UNLOCK CHECKS FOR TEST
+            if (testIndex >= 10) unlockBadge("test_b1");
+            if (testIndex >= 100) unlockBadge("test_b2");
+            if (testIndex >= 1000) unlockBadge("test_b5");
+
+            updateTestCard();
         }
 
         function confirmFinishTest() {
-            if (state.points < 1000) {
-                playErrorSound();
-                showToast('Locked', 'Finish early requires at least 1,000 points!', '🔒');
-                return;
-            }
-            if (confirm('Are you sure you want to finish the test early?')) {
-                finishTestChallenge();
+            if (confirm("Are you sure you want to finish early? Your results will be calculated now.")) {
+                finishTest();
             }
         }
 
-        function finishTestChallenge() {
-            state.testActive = false;
-            clearInterval(state.testTimerInterval);
-
-            let correctCount = state.userAnswers.filter(a => a.correct).length;
-            let totalAnswered = state.userAnswers.length;
-            let accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
-            let earnedPts = Math.floor(correctCount / 10);
-            
-            state.points += earnedPts;
-            saveState();
+        function finishTest() {
+            testActive = false;
+            clearInterval(testTimerInterval);
 
             document.getElementById('test-active-view').classList.add('hidden');
             document.getElementById('test-report-view').classList.remove('hidden');
 
-            document.getElementById('report-correct').innerText = `${correctCount}/${totalAnswered}`;
-            document.getElementById('report-accuracy').innerText = `${accuracy}%`;
-            document.getElementById('report-points').innerText = `+${earnedPts}`;
-            let minsElapsed = Math.max(1, Math.round((Date.now() - state.testStartTime) / 60000));
-            document.getElementById('report-wpm').innerText = `${Math.round(totalAnswered / minsElapsed)} WPM`;
+            const totalAnswered = testAnswersLog.length || 1;
+            const acc = Math.round((testCorrectCount / totalAnswered) * 100);
+            const pointsGained = Math.floor(testCorrectCount / 10);
+            const elapsedMins = (Date.now() - testStartTime) / 60000;
+            const finalWpm = elapsedMins > 0 ? Math.round(totalAnswered / elapsedMins) : 0;
 
-            let reviewHtml = '';
-            state.userAnswers.forEach((ans, idx) => {
-                reviewHtml += `<div class="flex items-center justify-between p-2 rounded-lg ${ans.correct ? 'bg-emerald-50 text-emerald-900':'bg-rose-50 text-rose-900'}">
-                    <span>#${idx+1} Target: <strong>${ans.word}</strong></span>
-                    <span>Your Entry: <strong>${ans.typed}</strong> ${ans.correct ? '✅':'❌'}</span>
-                </div>`;
-            });
-            document.getElementById('review-words-list').innerHTML = reviewHtml;
-            showToast('Test Finished!', `You earned ${earnedPts} points!`, '🎉');
+            document.getElementById('report-correct').innerText = `${testCorrectCount}/${totalAnswered}`;
+            document.getElementById('report-accuracy').innerText = `${acc}%`;
+            document.getElementById('report-points').innerText = `+${pointsGained}`;
+            document.getElementById('report-wpm').innerText = `${finalWpm} WPM`;
+
+            if (acc >= 90 && totalAnswered >= 10) unlockBadge("test_b4");
+
+            // Render Review List
+            const reviewList = document.getElementById('review-words-list');
+            reviewList.innerHTML = testAnswersLog.map(item => `
+                <div class="flex items-center justify-between p-2 rounded-lg ${item.correct ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-rose-50 text-rose-900 border border-rose-200'}">
+                    <div>
+                        <span class="font-bold">${item.word}</span>
+                        <span class="text-[10px] opacity-75 ml-2">Your answer: ${item.user}</span>
+                    </div>
+                    <span class="font-bold text-xs">${item.correct ? '✓ Correct' : '✗ Incorrect'}</span>
+                </div>
+            `).join('');
         }
 
         function resetTest() {
-            playClickSound();
-            document.getElementById('test-report-view').classList.add('hidden');
             document.getElementById('test-start-view').classList.remove('hidden');
-            document.getElementById('timer-display').innerText = '65:00';
+            document.getElementById('test-active-view').classList.add('hidden');
+            document.getElementById('test-report-view').classList.add('hidden');
             document.getElementById('current-index-display').innerText = '0';
+            document.getElementById('timer-display').innerText = '65:00';
             document.getElementById('speed-display').innerText = '0 WPM';
         }
 
-        // --- HARD WORD LESSON LOGIC (30 QUESTIONS, 10 MINS) ---
+        /* ==========================================================================
+           8. VIEW 2: HARD WORD LESSON LOGIC (30 QUESTIONS, 10 MINS)
+           ========================================================================== */
+        
         function startLessonChallenge() {
-            playClickSound();
             document.getElementById('lesson-start-view').classList.add('hidden');
             document.getElementById('lesson-active-view').classList.remove('hidden');
-            state.lessonActive = true;
-            state.lessonIndex = 0;
-            state.lessonAnswers = [];
-            state.lessonSecondsLeft = 600;
+            document.getElementById('lesson-report-view').classList.add('hidden');
 
-            if (state.lessonTimerInterval) clearInterval(state.lessonTimerInterval);
-            state.lessonTimerInterval = setInterval(() => {
-                state.lessonSecondsLeft--;
-                let m = Math.floor(state.lessonSecondsLeft / 60);
-                let s = state.lessonSecondsLeft % 60;
-                document.getElementById('lesson-timer-display').innerText = `${m}:${s < 10 ? '0':''}${s}`;
-                if (state.lessonSecondsLeft <= 0) finishLessonChallenge();
+            lessonActive = true;
+            lessonIndex = 0;
+            lessonCorrectCount = 0;
+            lessonTimeRemaining = 600;
+            lessonAnswersLog = [];
+
+            updateLessonCard();
+
+            clearInterval(lessonTimerInterval);
+            lessonTimerInterval = setInterval(() => {
+                lessonTimeRemaining--;
+                const mins = Math.floor(lessonTimeRemaining / 60);
+                const secs = lessonTimeRemaining % 60;
+                document.getElementById('lesson-timer-display').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+                if (lessonTimeRemaining <= 0) {
+                    finishLesson();
+                }
             }, 1000);
-
-            loadCurrentLessonQuestion();
         }
 
-        function loadCurrentLessonQuestion() {
-            if (state.lessonIndex >= HARD_LESSON_QUESTIONS.length) {
-                finishLessonChallenge();
+        function updateLessonCard() {
+            if (lessonIndex >= hardLessonQuestions.length) {
+                finishLesson();
                 return;
             }
-            document.getElementById('lesson-q-num').innerText = state.lessonIndex + 1;
-            document.getElementById('lesson-index-display').innerText = state.lessonIndex + 1;
-            document.getElementById('lesson-progress-bar').style.width = `${((state.lessonIndex) / HARD_LESSON_QUESTIONS.length) * 100}%`;
-            document.getElementById('lesson-text-input').value = '';
 
-            let q = HARD_LESSON_QUESTIONS[state.lessonIndex];
-            let masked = q.sentence.replace(q.answer, '_____');
-            document.getElementById('lesson-sentence-display').innerText = `"${masked}"`;
-            speakLessonSentence();
-            document.getElementById('lesson-text-input').focus();
+            const item = hardLessonQuestions[lessonIndex];
+            document.getElementById('lesson-index-display').innerText = lessonIndex;
+            document.getElementById('lesson-q-num').innerText = lessonIndex + 1;
+            document.getElementById('lesson-sentence-display').innerText = item.context;
+
+            const progressPct = (lessonIndex / hardLessonQuestions.length) * 100;
+            document.getElementById('lesson-progress-bar').style.width = `${progressPct}%`;
+
+            const input = document.getElementById('lesson-text-input');
+            input.value = '';
+            input.focus();
         }
 
         function speakLessonSentence() {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                let q = HARD_LESSON_QUESTIONS[state.lessonIndex];
-                let utterance = new SpeechSynthesisUtterance(q.sentence.replace(q.answer, 'blank'));
-                window.speechSynthesis.speak(utterance);
-            }
+            if (!lessonActive) return;
+            const item = hardLessonQuestions[lessonIndex];
+            speakText(item.context.replace("_____", item.word));
         }
 
         function submitLessonAnswerInput(e) {
             e.preventDefault();
-            if (!state.lessonActive) return;
-            const val = document.getElementById('lesson-text-input').value.trim().toLowerCase();
-            if (!val) return;
+            if (!lessonActive) return;
 
-            let q = HARD_LESSON_QUESTIONS[state.lessonIndex];
-            let correct = val === q.answer.toLowerCase();
-            if (correct) playSuccessSound(); else playErrorSound();
+            const input = document.getElementById('lesson-text-input');
+            const userVal = input.value.trim().toUpperCase();
+            const currentItem = hardLessonQuestions[lessonIndex];
 
-            state.lessonAnswers.push({ sentence: q.sentence, answer: q.answer, typed: val, correct: correct });
-            state.lessonIndex++;
-            loadCurrentLessonQuestion();
+            const isCorrect = userVal === currentItem.word;
+            if (isCorrect) {
+                lessonCorrectCount++;
+                addPoints(15); // +15 points per correct hard word
+            }
+
+            lessonAnswersLog.push({
+                target: currentItem.word,
+                context: currentItem.context,
+                user: userVal || "(Blank)",
+                correct: isCorrect
+            });
+
+            lessonIndex++;
+
+            // LESSON BADGES UNLOCK CHECKS
+            if (lessonIndex >= 5) unlockBadge("vocab_b1");
+            if (lessonIndex >= 15) unlockBadge("vocab_b2");
+            if (lessonIndex >= 30) unlockBadge("vocab_b3");
+
+            updateLessonCard();
         }
 
-        function finishLessonChallenge() {
-            state.lessonActive = false;
-            clearInterval(state.lessonTimerInterval);
-
-            let correctCount = state.lessonAnswers.filter(a => a.correct).length;
-            let total = state.lessonAnswers.length;
-            let accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-            let earnedPts = correctCount * 15;
-
-            state.points += earnedPts;
-            saveState();
+        function finishLesson() {
+            lessonActive = false;
+            clearInterval(lessonTimerInterval);
 
             document.getElementById('lesson-active-view').classList.add('hidden');
             document.getElementById('lesson-report-view').classList.remove('hidden');
-            document.getElementById('lesson-report-correct').innerText = `${correctCount}/${total}`;
-            document.getElementById('lesson-report-accuracy').innerText = `${accuracy}%`;
-            document.getElementById('lesson-report-points').innerText = `+${earnedPts}`;
 
-            let rev = '';
-            state.lessonAnswers.forEach((item, idx) => {
-                rev += `<div class="p-2 rounded-lg ${item.correct ? 'bg-emerald-50 text-emerald-900':'bg-rose-50 text-rose-900'}">
-                    <div>Q${idx+1}: ${item.sentence}</div>
-                    <div class="mt-1">Answer: <strong>${item.answer}</strong> | Your Guess: <strong>${item.typed}</strong> ${item.correct ? '✅':'❌'}</div>
-                </div>`;
-            });
-            document.getElementById('lesson-review-list').innerHTML = rev;
-            showToast('Hard Lesson Complete!', `You earned ${earnedPts} points!`, '🎓');
+            const total = lessonAnswersLog.length || 1;
+            const acc = Math.round((lessonCorrectCount / total) * 100);
+            const pointsEarned = lessonCorrectCount * 15;
+
+            document.getElementById('lesson-report-correct').innerText = `${lessonCorrectCount}/${total}`;
+            document.getElementById('lesson-report-accuracy').innerText = `${acc}%`;
+            document.getElementById('lesson-report-points').innerText = `+${pointsEarned}`;
+
+            if (acc >= 80) unlockBadge("vocab_b4");
+            if (acc === 100 && total >= 30) unlockBadge("vocab_b5");
+
+            const reviewList = document.getElementById('lesson-review-list');
+            reviewList.innerHTML = lessonAnswersLog.map(item => `
+                <div class="p-2.5 rounded-xl ${item.correct ? 'bg-teal-50 text-teal-900 border border-teal-200' : 'bg-rose-50 text-rose-900 border border-rose-200'}">
+                    <div class="font-semibold">${item.context.replace("_____", `<span class="underline font-bold">${item.target}</span>`)}</div>
+                    <div class="mt-1 text-[11px] flex justify-between">
+                        <span>Your answer: <strong>${item.user}</strong></span>
+                        <span class="font-bold">${item.correct ? '✓ Correct (+15 Pts)' : '✗ Incorrect'}</span>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function resetLesson() {
-            playClickSound();
-            document.getElementById('lesson-report-view').classList.add('hidden');
             document.getElementById('lesson-start-view').classList.remove('hidden');
-            document.getElementById('lesson-timer-display').innerText = '10:00';
+            document.getElementById('lesson-active-view').classList.add('hidden');
+            document.getElementById('lesson-report-view').classList.add('hidden');
             document.getElementById('lesson-index-display').innerText = '0';
+            document.getElementById('lesson-timer-display').innerText = '10:00';
         }
 
-        // --- PUNCTUATION FIX LESSON LOGIC (100 SENTENCES, 11:41 / 701 SECS) ---
+        /* ==========================================================================
+           9. VIEW 3: PUNCTUATION FIX LESSON LOGIC (100 SENTENCES, 11:41 MINS / 701 SECS)
+           ========================================================================== */
+        
         function startPunctuationChallenge() {
-            playClickSound();
             document.getElementById('punct-start-view').classList.add('hidden');
             document.getElementById('punct-active-view').classList.remove('hidden');
-            state.punctActive = true;
-            state.punctIndex = 0;
-            state.punctAnswers = [];
-            state.punctSecondsLeft = 701;
+            document.getElementById('punct-report-view').classList.add('hidden');
 
-            if (state.punctTimerInterval) clearInterval(state.punctTimerInterval);
-            state.punctTimerInterval = setInterval(() => {
-                state.punctSecondsLeft--;
-                let m = Math.floor(state.punctSecondsLeft / 60);
-                let s = state.punctSecondsLeft % 60;
-                document.getElementById('punct-timer-display').innerText = `${m}:${s < 10 ? '0':''}${s}`;
-                if (state.punctSecondsLeft <= 0) finishPunctuationChallenge();
+            punctActive = true;
+            punctIndex = 0;
+            punctCorrectCount = 0;
+            punctTimeRemaining = 701; // 11 min 41 sec
+            punctAnswersLog = [];
+
+            updatePunctCard();
+
+            clearInterval(punctTimerInterval);
+            punctTimerInterval = setInterval(() => {
+                punctTimeRemaining--;
+                const mins = Math.floor(punctTimeRemaining / 60);
+                const secs = punctTimeRemaining % 60;
+                document.getElementById('punct-timer-display').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+
+                if (punctTimeRemaining <= 0) {
+                    finishPunctuation();
+                }
             }, 1000);
-
-            loadCurrentPunctuationQuestion();
         }
 
-        function loadCurrentPunctuationQuestion() {
-            if (state.punctIndex >= PUNCTUATION_QUESTIONS.length) {
-                finishPunctuationChallenge();
+        function updatePunctCard() {
+            if (punctIndex >= punctuation100List.length) {
+                finishPunctuation();
                 return;
             }
-            document.getElementById('punct-q-num').innerText = state.punctIndex + 1;
-            document.getElementById('punct-index-display').innerText = state.punctIndex + 1;
-            document.getElementById('punct-progress-bar').style.width = `${((state.punctIndex) / PUNCTUATION_QUESTIONS.length) * 100}%`;
-            document.getElementById('punct-text-input').value = '';
 
-            let q = PUNCTUATION_QUESTIONS[state.punctIndex];
-            document.getElementById('punct-sentence-display').innerText = `"${q.err}"`;
-            document.getElementById('punct-text-input').focus();
+            const item = punctuation100List[punctIndex];
+            document.getElementById('punct-index-display').innerText = punctIndex;
+            document.getElementById('punct-q-num').innerText = punctIndex + 1;
+            document.getElementById('punct-sentence-display').innerText = item.broken;
+
+            const progressPct = (punctIndex / punctuation100List.length) * 100;
+            document.getElementById('punct-progress-bar').style.width = `${progressPct}%`;
+
+            const input = document.getElementById('punct-text-input');
+            input.value = '';
+            input.focus();
         }
 
         function submitPunctuationAnswer(e) {
             e.preventDefault();
-            if (!state.punctActive) return;
-            const val = document.getElementById('punct-text-input').value.trim();
-            if (!val) return;
+            if (!punctActive) return;
 
-            let q = PUNCTUATION_QUESTIONS[state.punctIndex];
-            let correct = val.toLowerCase() === q.fixed.toLowerCase();
-            if (correct) playSuccessSound(); else playErrorSound();
+            const input = document.getElementById('punct-text-input');
+            const userVal = input.value.trim();
+            const currentItem = punctuation100List[punctIndex];
 
-            state.punctAnswers.push({ err: q.err, fixed: q.fixed, typed: val, correct: correct });
-            state.punctIndex++;
-            loadCurrentPunctuationQuestion();
+            // Normalize spaces for check
+            const isCorrect = userVal.replace(/\s+/g, ' ') === currentItem.fixed.replace(/\s+/g, ' ');
+
+            if (isCorrect) {
+                punctCorrectCount++;
+                addPoints(20); // +20 points per correct punctuation fix
+            }
+
+            punctAnswersLog.push({
+                broken: currentItem.broken,
+                fixed: currentItem.fixed,
+                user: userVal || "(Blank)",
+                correct: isCorrect
+            });
+
+            punctIndex++;
+
+            // PUNCTUATION BADGES UNLOCK CHECKS
+            if (punctIndex >= 10) unlockBadge("punct_b1");
+            if (punctIndex >= 50) unlockBadge("punct_b2");
+            if (punctIndex >= 100) unlockBadge("punct_b3");
+
+            updatePunctCard();
         }
 
-        function finishPunctuationChallenge() {
-            state.punctActive = false;
-            clearInterval(state.punctTimerInterval);
-
-            let correctCount = state.punctAnswers.filter(a => a.correct).length;
-            let total = state.punctAnswers.length;
-            let accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-            let earnedPts = correctCount * 20;
-
-            state.points += earnedPts;
-            saveState();
+        function finishPunctuation() {
+            punctActive = false;
+            clearInterval(punctTimerInterval);
 
             document.getElementById('punct-active-view').classList.add('hidden');
             document.getElementById('punct-report-view').classList.remove('hidden');
-            document.getElementById('punct-report-correct').innerText = `${correctCount}/${total}`;
-            document.getElementById('punct-report-accuracy').innerText = `${accuracy}%`;
-            document.getElementById('punct-report-points').innerText = `+${earnedPts}`;
 
-            let rev = '';
-            state.punctAnswers.forEach((item, idx) => {
-                rev += `<div class="p-2 rounded-lg ${item.correct ? 'bg-emerald-50 text-emerald-900':'bg-rose-50 text-rose-900'}">
-                    <div>#${idx+1} Error: "${item.err}"</div>
-                    <div>Correct: <strong>${item.fixed}</strong></div>
-                    <div>Your Fix: <strong>${item.typed}</strong> ${item.correct ? '✅':'❌'}</div>
-                </div>`;
-            });
-            document.getElementById('punct-review-list').innerHTML = rev;
-            showToast('Punctuation Lesson Complete!', `You earned ${earnedPts} points!`, '✒️');
+            const total = punctAnswersLog.length || 1;
+            const acc = Math.round((punctCorrectCount / total) * 100);
+            const pointsEarned = punctCorrectCount * 20;
+
+            document.getElementById('punct-report-correct').innerText = `${punctCorrectCount}/${total}`;
+            document.getElementById('punct-report-accuracy').innerText = `${acc}%`;
+            document.getElementById('punct-report-points').innerText = `+${pointsEarned}`;
+
+            if (acc >= 85) unlockBadge("punct_b4");
+            if (acc === 100 && total >= 100) unlockBadge("punct_b5");
+
+            const reviewList = document.getElementById('punct-review-list');
+            reviewList.innerHTML = punctAnswersLog.map(item => `
+                <div class="p-2.5 rounded-xl ${item.correct ? 'bg-rose-50 text-rose-900 border border-rose-200' : 'bg-slate-100 text-slate-800 border border-slate-300'}">
+                    <div class="font-semibold">Correct: "${item.fixed}"</div>
+                    <div class="mt-1 text-[11px] flex justify-between">
+                        <span>Your answer: "${item.user}"</span>
+                        <span class="font-bold ${item.correct ? 'text-emerald-600' : 'text-rose-600'}">${item.correct ? '✓ Correct (+20 Pts)' : '✗ Incorrect'}</span>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function resetPunctuation() {
-            playClickSound();
-            document.getElementById('punct-report-view').classList.add('hidden');
             document.getElementById('punct-start-view').classList.remove('hidden');
-            document.getElementById('punct-timer-display').innerText = '11:41';
+            document.getElementById('punct-active-view').classList.add('hidden');
+            document.getElementById('punct-report-view').classList.add('hidden');
             document.getElementById('punct-index-display').innerText = '0';
+            document.getElementById('punct-timer-display').innerText = '11:41';
         }
 
-        // --- ACHIEVEMENTS RENDER ---
-        function renderAchievements() {
-            const achievements = [
-                { title: 'start speed😉', min: 100, desc: 'Spell 100 words in spelling tests' },
-                { title: "don't stop🧠", min: 250, desc: 'Spell 250 words in spelling tests' },
-                { title: 'close speed🐣', min: 500, desc: 'Spell 500 words in spelling tests' },
-                { title: 'squirrel Speedy 🐿️', min: 1000, desc: 'Complete the full 1,000 word challenge' },
-                { title: 'Speed God ⚡', min: 1001, desc: 'Exceed 1,000 correct words overall' }
-                 
-            ];
+        /* ==========================================================================
+           10. RENDER BADGES & 635 AVATAR SHOP
+           ========================================================================== */
+        
+        function renderBadges() {
+            const categories = ['test', 'lesson', 'punct'];
+            categories.forEach(cat => {
+                const container = document.getElementById(`badges-container-${cat}`);
+                const catBadges = badgesData.filter(b => b.cat === cat);
 
-            let unlockedCount = 0;
-            let html = '';
-            const testWordsTotal = state.userAnswers.filter(a => a.correct).length;
-
-            achievements.forEach(ach => {
-                let unlocked = testWordsTotal >= ach.min;
-                if (unlocked) unlockedCount++;
-                html += `<div class="glass-panel p-4 rounded-2xl flex items-center justify-between border-l-4 ${unlocked ? 'border-l-emerald-500':'border-l-slate-300'}">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-2xl ${unlocked ? 'bg-emerald-100 text-emerald-700':'bg-slate-100 text-slate-400'} flex items-center justify-center text-2xl font-bold">
-                            ${unlocked ? '🏆':'🔒'}
+                container.innerHTML = catBadges.map(b => {
+                    const isUnlocked = unlockedBadges.has(b.id);
+                    return `
+                        <div class="glass-panel p-4 rounded-2xl text-center border transition-all ${isUnlocked ? 'border-amber-400 bg-amber-50/50 shadow-md' : 'border-slate-200 opacity-60 grayscale'}">
+                            <div class="text-4xl mb-2 transform hover:scale-110 transition-transform cursor-pointer">${b.icon}</div>
+                            <h4 class="font-display font-bold text-sm text-slate-900">${b.title}</h4>
+                            <p class="text-[11px] text-slate-500 mt-1 leading-tight">${b.desc}</p>
+                            <div class="mt-3">
+                                ${isUnlocked 
+                                    ? '<span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-300">✓ Unlocked</span>' 
+                                    : '<span class="inline-block bg-slate-100 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">🔒 Locked</span>'
+                                }
+                            </div>
                         </div>
-                        <div>
-                            <div class="font-display font-bold text-slate-900 text-base">"${ach.title}"</div>
-                            <div class="text-xs text-slate-500">${ach.desc}</div>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold px-3 py-1 rounded-xl ${unlocked ? 'bg-emerald-100 text-emerald-800':'bg-slate-100 text-slate-500'}">
-                            ${unlocked ? 'Unlocked':'Locked'}
-                        </span>
-                    </div>
-                </div>`;
+                    `;
+                }).join('');
             });
-            document.getElementById('achievements-container').innerHTML = html;
-            document.getElementById('unlocked-count').innerText = unlockedCount;
         }
 
-        // --- AVATAR SHOP RENDER ---
+        // Filter and Search 635 Avatars
+        function setShopFilter(filter) {
+            activeShopFilter = filter;
+            const filterBtns = ['all', 'unlocked', 'budget', 'high', 'god'];
+            filterBtns.forEach(f => {
+                const btn = document.getElementById(`filter-btn-${f}`);
+                if (f === filter) {
+                    btn.className = "px-3 py-1.5 rounded-xl bg-amber-400 text-amber-950 font-bold shadow-sm";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold";
+                }
+            });
+            shopCurrentPage = 1;
+            filterShopAvatars();
+        }
+
+        function filterShopAvatars() {
+            const searchQuery = document.getElementById('shop-search-input').value.toLowerCase().trim();
+
+            filteredShopAvatars = avatarShopData.filter(av => {
+                const matchesSearch = av.title.toLowerCase().includes(searchQuery) || av.id.includes(searchQuery);
+                let matchesFilter = true;
+
+                if (activeShopFilter === 'unlocked') matchesFilter = av.unlocked;
+                else if (activeShopFilter === 'budget') matchesFilter = av.cost < 500;
+                else if (activeShopFilter === 'high') matchesFilter = av.cost >= 500 && av.cost <= 5000;
+                else if (activeShopFilter === 'god') matchesFilter = av.cost > 5000 || av.godTier;
+
+                return matchesSearch && matchesFilter;
+            });
+
+            renderShop();
+        }
+
+        function changeShopPage(delta) {
+            const totalPages = Math.ceil(filteredShopAvatars.length / avatarsPerPage) || 1;
+            shopCurrentPage += delta;
+            if (shopCurrentPage < 1) shopCurrentPage = 1;
+            if (shopCurrentPage > totalPages) shopCurrentPage = totalPages;
+            renderShop();
+        }
+
         function renderShop() {
-            // Standard
-            let stdHtml = '';
-            STANDARD_AVATARS.forEach(av => {
-                let unlocked = state.unlockedAvatars.includes(av.icon);
-                let equipped = state.equippedAvatar === av.icon;
-                stdHtml += `<div class="glass-panel p-4 rounded-2xl text-center space-y-3 flex flex-col justify-between ${equipped ? 'ring-2 ring-amber-500 bg-amber-50/50':''}">
-                    <div class="text-4xl py-2">${av.icon}</div>
-                    <div>
-                        <div class="font-display font-bold text-slate-800 text-xs">${av.name}</div>
-                        <div class="text-xs font-bold text-amber-700 mt-0.5">${av.price === 0 ? 'Free' : av.price.toLocaleString() + ' Pts'}</div>
-                    </div>
-                    <div>
-                        ${equipped ? '<span class="text-xs font-bold bg-amber-500 text-white px-3 py-1.5 rounded-xl block">Equipped</span>' :
-                          unlocked ? `<button onclick="equipAvatar('${av.icon}')" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-1.5 rounded-xl transition-all">Equip</button>` :
-                          `<button onclick="buyAvatar('${av.icon}', ${av.price})" class="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 text-xs font-bold py-1.5 rounded-xl transition-all shadow-sm">Unlock</button>`}
-                    </div>
-                </div>`;
-            });
-            document.getElementById('shop-grid').innerHTML = stdHtml;
+            const grid = document.getElementById('shop-grid');
+            const totalAvatars = filteredShopAvatars.length;
+            const totalPages = Math.ceil(totalAvatars / avatarsPerPage) || 1;
 
-            // God Tier
-            let godHtml = '';
-            GOD_TIER_AVATARS.forEach(av => {
-                let unlocked = state.unlockedAvatars.includes(av.icon);
-                let equipped = state.equippedAvatar === av.icon;
-                godHtml += `<div class="bg-gradient-to-br from-purple-900/10 to-pink-900/10 glass-panel p-4 rounded-2xl text-center space-y-3 flex flex-col justify-between god-tier-glow ${equipped ? 'ring-4 ring-pink-500':''}">
-                    <div class="text-4xl py-2">${av.icon}</div>
-                    <div>
-                        <div class="font-display font-bold text-purple-950 text-xs">${av.name}</div>
-                        <div class="text-xs font-bold text-pink-600 mt-0.5">1,000,000,000 Pts</div>
-                    </div>
-                    <div>
-                        ${equipped ? '<span class="text-xs font-bold bg-pink-600 text-white px-3 py-1.5 rounded-xl block">Equipped</span>' :
-                          unlocked ? `<button onclick="equipAvatar('${av.icon}')" class="w-full bg-purple-900 hover:bg-purple-800 text-white text-xs font-bold py-1.5 rounded-xl transition-all">Equip</button>` :
-                          `<button onclick="buyAvatar('${av.icon}', 1000000000)" class="w-full bg-slate-200 text-slate-500 text-xs font-bold py-1.5 rounded-xl cursor-not-allowed" disabled>Locked (1B Pts)</button>`}
-                    </div>
-                </div>`;
-            });
-            document.getElementById('god-shop-grid').innerHTML = godHtml;
-        }
+            if (shopCurrentPage > totalPages) shopCurrentPage = totalPages;
 
-        function buyAvatar(icon, price) {
-            if (state.points < price) {
-                playErrorSound();
-                showToast('Not Enough Points', `You need ${price.toLocaleString()} points to unlock this avatar!`, '❌');
+            document.getElementById('shop-showing-count').innerText = `${totalAvatars} / 635`;
+            document.getElementById('shop-page-num').innerText = shopCurrentPage;
+            document.getElementById('shop-total-pages').innerText = totalPages;
+
+            const startIndex = (shopCurrentPage - 1) * avatarsPerPage;
+            const pageItems = filteredShopAvatars.slice(startIndex, startIndex + avatarsPerPage);
+
+            if (pageItems.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-400 font-bold">
+                        No avatars found matching your filters.
+                    </div>
+                `;
                 return;
             }
-            state.points -= price;
-            state.unlockedAvatars.push(icon);
-            state.equippedAvatar = icon;
-            playSuccessSound();
-            saveState();
-            showToast('Avatar Unlocked!', 'Enjoy your new avatar style!', icon);
+
+            grid.innerHTML = pageItems.map(av => {
+                const isEquipped = currentEquippedAvatar === av.id;
+                const canAfford = userPoints >= av.cost;
+                const isGodTier = av.godTier;
+
+                return `
+                    <div class="glass-panel p-4 rounded-2xl text-center relative flex flex-col justify-between transition-all hover:shadow-lg ${isGodTier ? 'god-tier-glow bg-gradient-to-b from-purple-50 to-pink-50' : ''}">
+                        ${isGodTier ? '<span class="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wider">God Tier</span>' : ''}
+                        
+                        <div>
+                            <div class="w-16 h-16 rounded-xl bg-white shadow-inner mx-auto flex items-center justify-center text-4xl mb-2 border border-slate-100">
+                                ${av.icon}
+                            </div>
+                            <h3 class="font-display font-bold text-xs text-slate-900 truncate">${av.title}</h3>
+                            <p class="text-[11px] text-amber-600 font-bold mt-0.5">${av.cost === 0 ? 'Free Starter' : av.cost.toLocaleString() + ' Points'}</p>
+                        </div>
+
+                        <div class="mt-3">
+                            ${isEquipped ? `
+                                <button disabled class="w-full py-1.5 px-3 rounded-lg bg-emerald-500 text-white font-display font-bold text-[11px] shadow-sm">
+                                    ✓ Equipped
+                                </button>
+                            ` : av.unlocked ? `
+                                <button onclick="equipAvatar('${av.id}')" class="w-full py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-display font-bold text-[11px] shadow-sm transition-all">
+                                    Equip
+                                </button>
+                            ` : `
+                                <button onclick="buyAvatar('${av.id}')" ${!canAfford ? 'disabled' : ''} class="w-full py-1.5 px-3 rounded-lg font-display font-bold text-[11px] transition-all shadow-sm ${canAfford ? 'bg-amber-400 hover:bg-amber-500 text-amber-950 shadow-md cursor-pointer' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}">
+                                    ${canAfford ? 'Unlock' : 'Locked'}
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        function equipAvatar(icon) {
-            playClickSound();
-            state.equippedAvatar = icon;
-            saveState();
-            showToast('Avatar Equipped', 'Your profile has been updated!', icon);
+        function buyAvatar(avatarId) {
+            const av = avatarShopData.find(a => a.id === avatarId);
+            if (!av || av.unlocked) return;
+
+            if (userPoints >= av.cost) {
+                userPoints -= av.cost;
+                av.unlocked = true;
+                currentEquippedAvatar = av.id;
+
+                updateUIStats();
+                updateNavAvatar();
+                renderShop();
+                showToast(av.icon, "Avatar Unlocked!", `You equipped ${av.title}!`);
+            }
         }
 
-        // --- ONLOAD INIT ---
-        window.onload = function() {
-            updateUI();
-        };
+        function equipAvatar(avatarId) {
+            const av = avatarShopData.find(a => a.id === avatarId);
+            if (av && av.unlocked) {
+                currentEquippedAvatar = av.id;
+                updateNavAvatar();
+                renderShop();
+                showToast(av.icon, "Avatar Equipped", `Now showing ${av.title}`);
+            }
+        }
+
+        function updateNavAvatar() {
+            const av = avatarShopData.find(a => a.id === currentEquippedAvatar);
+            if (av) {
+                document.getElementById('nav-avatar-icon').innerText = av.icon;
+                document.getElementById('nav-avatar-title').innerText = av.title;
+            }
+        }
     </script>
 </body>
 </html>
