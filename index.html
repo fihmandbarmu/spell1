@@ -1,1466 +1,975 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate School Spelling, Vocabulary & Punctuation Bee</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            purple: '#8b5cf6',
+                            indigo: '#6366f1',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e'
+                        }
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #fef3c7 100%);
-            min-height: 100vh;
-        }
-
-        .font-display {
-            font-family: 'Fredoka', cursive;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        .god-tier-glow {
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.5), 0 0 10px rgba(168, 85, 247, 0.3);
-            border: 2px solid #f472b6;
-        }
-
-        @keyframes pulse-subtle {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-        .animate-pulse-subtle {
-            animation: pulse-subtle 2s infinite ease-in-out;
-        }
-
         .glass-panel {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .glass-panel-dark {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.4);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.7);
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased selection:bg-amber-300">
+<body class="h-full bg-slate-900 text-slate-100 font-sans flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-amber-100/60 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-2xl bg-amber-400 flex items-center justify-center text-2xl shadow-md transform -rotate-3 hover:rotate-0 transition-transform">
-                    🐝
+    <header class="sticky top-0 z-40 w-full glass-panel-dark border-b border-slate-800 px-4 py-3 shadow-lg">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.showScreen('home')">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/30">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="font-display font-bold text-xl text-amber-900 leading-tight">Spelling & Grammar Bee</h1>
-                    <p class="text-xs font-semibold text-amber-600/80">Speed Tests, Hard Vocabulary & Punctuation</p>
+                    <h1 class="font-fredoka font-bold text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
+                        Ultimate Bee Master
+                    </h1>
+                    <p class="text-xs text-slate-400 hidden sm:block">Spelling • Vocab • Punctuation</p>
                 </div>
             </div>
 
-            <!-- Stats & Profile Trigger -->
-            <div class="flex items-center space-x-4">
-                <div class="bg-amber-100/80 border border-amber-300/60 rounded-xl px-3.5 py-1.5 flex items-center space-x-2 shadow-inner">
-                    <span class="text-xl">⭐</span>
-                    <div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-amber-800/70">Points</div>
-                        <div id="user-points" class="font-display font-extrabold text-amber-900 text-sm leading-none">0</div>
-                    </div>
+            <!-- Stats Header Pill -->
+            <div class="flex items-center space-x-3 sm:space-x-6">
+                <!-- Points -->
+                <div class="flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/60">
+                    <i class="fa-solid fa-coins text-amber-400 text-sm"></i>
+                    <span id="nav-points" class="font-bold text-amber-300 text-sm">0</span>
+                    <span class="text-xs text-slate-400 hidden sm:inline">pts</span>
                 </div>
 
-                <button onclick="switchTab('shop')" class="group relative flex items-center space-x-2 bg-white border border-slate-200 hover:border-amber-400 p-1.5 pr-3 rounded-2xl shadow-sm transition-all">
-                    <div id="nav-avatar-icon" class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                        😀
-                    </div>
-                    <div class="text-left hidden sm:block">
-                        <div id="nav-avatar-title" class="text-xs font-bold text-slate-700 truncate max-w-[120px]">Starter Bee #1</div>
-                        <div class="text-[10px] text-amber-600 font-semibold">Avatar Shop (635) &rarr;</div>
-                    </div>
-                </button>
+                <!-- Badges -->
+                <div class="flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/60 cursor-pointer hover:border-purple-500/50 transition-all" onclick="app.showScreen('badges')">
+                    <i class="fa-solid fa-award text-purple-400 text-sm"></i>
+                    <span id="nav-badges" class="font-bold text-purple-300 text-sm">0/36</span>
+                    <span class="text-xs text-slate-400 hidden sm:inline">Badges</span>
+                </div>
+
+                <!-- Equipped Avatar -->
+                <div class="flex items-center space-x-2 bg-slate-800/80 pl-2 pr-3 py-1 rounded-full border border-slate-700/60 cursor-pointer hover:border-indigo-500/50 transition-all" onclick="app.showScreen('shop')">
+                    <span id="nav-avatar-icon" class="text-xl">🎓</span>
+                    <span id="nav-avatar-title" class="text-xs font-semibold text-slate-200 max-w-[80px] sm:max-w-[120px] truncate">Scholar</span>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Application Container -->
-    <main class="max-w-6xl mx-auto px-4 py-6">
-
-        <!-- Navigation Tabs -->
-        <nav class="flex flex-wrap gap-2 mb-6 bg-slate-200/60 p-1.5 rounded-2xl max-w-4xl mx-auto">
-            <button id="tab-btn-test" onclick="switchTab('test')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all bg-white text-amber-900 shadow-sm whitespace-nowrap">
-                ✍️ 1,000 Word Test
-            </button>
-            <button id="tab-btn-lesson" onclick="switchTab('lesson')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
-                📖 Hard Word Lesson
-            </button>
-            <button id="tab-btn-punctuation" onclick="switchTab('punctuation')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
-                ✒️ Punctuation Fix (100)
-            </button>
-            <button id="tab-btn-achievements" onclick="switchTab('achievements')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
-                🏆 Badges (<span id="unlocked-count">0</span>/15)
-            </button>
-            <button id="tab-btn-shop" onclick="switchTab('shop')" class="flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap">
-                🛍️ Avatar Shop (635)
-            </button>
-        </nav>
-
-        <!-- VIEW 1: SPELLING TEST SECTION -->
-        <section id="view-test" class="space-y-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-amber-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Time Remaining</div>
-                    <div id="timer-display" class="font-display font-black text-2xl md:text-3xl text-amber-600">65:00</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">1 Hr 5 Min Total</div>
-                </div>
-
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-blue-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Progress</div>
-                    <div class="font-display font-black text-2xl md:text-3xl text-blue-600">
-                        <span id="current-index-display">0</span><span class="text-slate-400 text-lg">/1000</span>
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 overflow-y-auto custom-scrollbar flex flex-col">
+        
+        <!-- HOME SCREEN -->
+        <section id="screen-home" class="space-y-6 animate-fade-in">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-900 via-purple-900 to-slate-900 p-6 sm:p-10 border border-slate-800 shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-2xl">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-4">
+                        <i class="fa-solid fa-bolt text-amber-400"></i> Complete Master Challenge Suite
+                    </span>
+                    <h2 class="font-fredoka text-3xl sm:text-5xl font-bold text-white leading-tight mb-4">
+                        Master English Skills & Win 36 Trophies!
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
+                        Test your speed, vocabulary, punctuation precision, and spelling accuracy across 4 intensive challenge modes. Unlock 635 unique avatars along your journey!
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="app.showScreen('shop')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-500/25 transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-store"></i>
+                            <span>Avatar Shop (635)</span>
+                        </button>
+                        <button onclick="app.showScreen('badges')" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-sm transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-trophy text-amber-400"></i>
+                            <span>View All Badges (36)</span>
+                        </button>
                     </div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Words Answered</div>
-                </div>
-
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-emerald-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Current Speed</div>
-                    <div id="speed-display" class="font-display font-black text-2xl md:text-3xl text-emerald-600">0 WPM</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Words Per Minute</div>
-                </div>
-
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-purple-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Status Score</div>
-                    <div class="font-display font-black text-2xl md:text-3xl text-purple-600">🔒 Hidden</div>
-                    <div class="text-[10px] text-purple-700 font-semibold mt-0.5">Revealed at Finish!</div>
                 </div>
             </div>
 
-            <!-- Main Test Area Card -->
-            <div id="test-card" class="glass-panel p-6 md:p-10 rounded-3xl shadow-xl max-w-2xl mx-auto border border-white relative overflow-hidden">
-                
-                <!-- START CHALLENGE SCREEN -->
-                <div id="test-start-view" class="text-center space-y-6 py-6">
-                    <div class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center text-5xl mx-auto text-amber-600 shadow-inner animate-bounce">
-                        🐝
-                    </div>
+            <!-- Lessons / Challenge Cards Grid -->
+            <h3 class="font-fredoka text-2xl font-bold text-slate-100 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-indigo-400"></i> Available Lessons & Tests
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Lesson 1: 1,000 Word Test -->
+                <div class="glass-panel-dark rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-indigo-500/40 transition-all shadow-xl group">
                     <div>
-                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Ready for the 1,000 Word Challenge?</h2>
-                        <p class="text-slate-600 text-sm mt-2 max-w-md mx-auto">
-                            Test your spelling speed and accuracy! You have <strong class="text-amber-800">65 minutes</strong> to spell 1,000 words. Listen to each audio pronunciation carefully and type your spelling.
-                        </p>
-                    </div>
-
-                    <div class="bg-amber-50/80 border border-amber-200 p-4 rounded-2xl text-left max-w-md mx-auto space-y-2 text-xs text-amber-900">
-                        <div class="font-bold flex items-center space-x-1.5 text-sm text-amber-950">
-                            <span>📋 Challenge Rules:</span>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 text-2xl group-hover:scale-110 transition-transform">
+                                📝
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                                9 Badges Available
+                            </span>
                         </div>
-                        <p>• <strong>No Skipping Allowed:</strong> You must type an answer for every word.</p>
-                        <p>• <strong>Earn Points:</strong> Receive 1 point for every 10 correct words.</p>
-                        <p>• <strong>Finish Early Lock:</strong> Requires at least <strong>1,000 total points</strong> to unlock early submission.</p>
+                        <h4 class="font-fredoka text-xl font-bold text-white mb-2">1,000 Word Endurance Test</h4>
+                        <p class="text-xs text-slate-400 mb-4">
+                            Ultimate spelling marathon! 1,000 dynamic words to spell. Target time 65 minutes. Unlock early finish button after earning 1,000 pts!
+                        </p>
+                        <div class="flex items-center gap-4 text-xs text-slate-300 mb-6">
+                            <span><i class="fa-solid fa-clock text-indigo-400 mr-1"></i> 65:00 Time Limit</span>
+                            <span><i class="fa-solid fa-list-check text-indigo-400 mr-1"></i> 1,000 Questions</span>
+                        </div>
                     </div>
-
-                    <button type="button" onclick="startTestChallenge()" class="w-full max-w-md bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-display font-extrabold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-lg border-2 border-amber-300">
-                        🚀 Start Challenge Now
+                    <button onclick="app.startLesson('thousand')" class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Start 1,000 Word Test
                     </button>
                 </div>
 
-                <!-- Test Active State -->
-                <div id="test-active-view" class="hidden text-center space-y-6">
-                    <div class="w-full bg-slate-100 rounded-full h-3 mb-8 overflow-hidden p-0.5 border border-slate-200">
-                        <div id="progress-bar" class="bg-gradient-to-r from-amber-400 to-orange-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-                    </div>
-
-                    <div class="inline-block bg-amber-50 text-amber-800 text-xs font-bold px-3 py-1 rounded-full border border-amber-200">
-                        Word #<span id="word-number">1</span> of 1000
-                    </div>
-
-                    <div class="flex flex-col items-center justify-center space-y-3">
-                        <button id="speak-btn" type="button" onclick="speakCurrentWord()" class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 hover:from-amber-500 hover:to-yellow-400 text-amber-950 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 transition-all group border-4 border-white">
-                            <i class="fa-solid fa-volume-high text-4xl group-hover:animate-bounce"></i>
-                        </button>
-                        <p class="text-xs font-bold text-slate-500 flex items-center space-x-1">
-                            <span>Press Space or click to replay audio</span>
+                <!-- Lesson 2: Hard Word Vocabulary -->
+                <div class="glass-panel-dark rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-purple-500/40 transition-all shadow-xl group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-2xl group-hover:scale-110 transition-transform">
+                                📚
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                                9 Badges Available
+                            </span>
+                        </div>
+                        <h4 class="font-fredoka text-xl font-bold text-white mb-2">Hard Word Vocabulary Lesson</h4>
+                        <p class="text-xs text-slate-400 mb-4">
+                            Match challenging academic vocabulary definitions to their accurate terms. Perfect for vocabulary expansion!
                         </p>
-                    </div>
-
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 max-w-md mx-auto">
-                        <p class="text-xs text-slate-400 font-bold uppercase tracking-wide mb-1">Sentence Context</p>
-                        <p id="sentence-hint" class="text-sm font-semibold text-slate-700 italic">"Listen to the word..."</p>
-                    </div>
-
-                    <form onsubmit="submitAnswer(event)" class="max-w-md mx-auto space-y-4">
-                        <div class="relative">
-                            <input type="text" id="word-input" autocomplete="off" spellcheck="false" placeholder="Type spelling here..." class="w-full px-6 py-4 text-center font-display font-bold text-2xl rounded-2xl border-2 border-slate-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 outline-none transition-all shadow-inner uppercase tracking-wider text-slate-800">
+                        <div class="flex items-center gap-4 text-xs text-slate-300 mb-6">
+                            <span><i class="fa-solid fa-clock text-purple-400 mr-1"></i> 10:00 Time Limit</span>
+                            <span><i class="fa-solid fa-list-check text-purple-400 mr-1"></i> 30 Questions</span>
                         </div>
-
-                        <div class="flex space-x-3">
-                            <button type="submit" class="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 font-display font-bold py-3.5 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform active:scale-98 flex items-center justify-center space-x-2 text-base">
-                                <span>Submit Word</span>
-                                <i class="fa-solid fa-arrow-right text-sm"></i>
-                            </button>
-                        </div>
-                    </form>
-
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-semibold">
-                        <span>Press <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-slate-600">Enter ↵</kbd> to submit</span>
-                        
-                        <button id="finish-early-btn" type="button" onclick="confirmFinishTest()" disabled class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed" title="Requires 1,000 Points to Finish Early">
-                            <span id="finish-early-lock">🔒</span>
-                            <span id="finish-early-text">Finish Early (Requires 1,000 Pts)</span>
-                        </button>
                     </div>
+                    <button onclick="app.startLesson('vocab')" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Start Vocabulary Lesson
+                    </button>
                 </div>
 
-                <!-- Test Report View -->
-                <div id="test-report-view" class="hidden text-center space-y-6">
-                    <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-4xl mx-auto text-amber-600 shadow-inner">
-                        🎉
-                    </div>
-
+                <!-- Lesson 3: Punctuation Fix Lesson -->
+                <div class="glass-panel-dark rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl group">
                     <div>
-                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Test Completed!</h2>
-                        <p class="text-slate-500 text-sm mt-1">Here is your official spelling performance summary</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition-transform">
+                                ✍️
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                                9 Badges Available
+                            </span>
+                        </div>
+                        <h4 class="font-fredoka text-xl font-bold text-white mb-2">Punctuation Fix Lesson</h4>
+                        <p class="text-xs text-slate-400 mb-4">
+                            Fix broken sentences by selecting the correctly formatted punctuation option. High precision required!
+                        </p>
+                        <div class="flex items-center gap-4 text-xs text-slate-300 mb-6">
+                            <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i> 11:41 (701s) Time Limit</span>
+                            <span><i class="fa-solid fa-list-check text-amber-400 mr-1"></i> 100 Sentences</span>
+                        </div>
                     </div>
+                    <button onclick="app.startLesson('punctuation')" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Start Punctuation Lesson
+                    </button>
+                </div>
 
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-amber-50/60 p-4 rounded-2xl border border-amber-200/60">
-                        <div class="p-2">
-                            <div class="text-xs text-amber-800/70 font-bold uppercase">Correct</div>
-                            <div id="report-correct" class="font-display font-bold text-2xl text-emerald-600">0</div>
+                <!-- Lesson 4: Click the Right Spelling Lesson -->
+                <div class="glass-panel-dark rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-emerald-500/40 transition-all shadow-xl group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-110 transition-transform">
+                                🎯
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                                9 Badges Available
+                            </span>
                         </div>
-                        <div class="p-2">
-                            <div class="text-xs text-amber-800/70 font-bold uppercase">Accuracy</div>
-                            <div id="report-accuracy" class="font-display font-bold text-2xl text-blue-600">0%</div>
-                        </div>
-                        <div class="p-2">
-                            <div class="text-xs text-amber-800/70 font-bold uppercase">Points Earned</div>
-                            <div id="report-points" class="font-display font-bold text-2xl text-amber-600">+0</div>
-                        </div>
-                        <div class="p-2">
-                            <div class="text-xs text-amber-800/70 font-bold uppercase">Speed</div>
-                            <div id="report-wpm" class="font-display font-bold text-2xl text-purple-600">0 WPM</div>
-                        </div>
-                    </div>
-
-                    <div class="text-left space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h3 class="font-display font-bold text-slate-800 text-sm">Review Word Answers</h3>
-                            <span class="text-xs text-slate-400">Green = Correct, Red = Incorrect</span>
-                        </div>
-                        <div id="review-words-list" class="max-h-48 overflow-y-auto space-y-1.5 p-3 bg-white rounded-xl border border-slate-200 text-xs">
+                        <h4 class="font-fredoka text-xl font-bold text-white mb-2">Click the Right Spelling</h4>
+                        <p class="text-xs text-slate-400 mb-4">
+                            Identify and click the correct spelling among common tricky distractors! Speed & accuracy challenge.
+                        </p>
+                        <div class="flex items-center gap-4 text-xs text-slate-300 mb-6">
+                            <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i> 21:00 Time Limit</span>
+                            <span><i class="fa-solid fa-list-check text-emerald-400 mr-1"></i> 123 Questions</span>
                         </div>
                     </div>
-
-                    <div class="pt-2">
-                        <button type="button" onclick="resetTest()" class="w-full bg-amber-400 hover:bg-amber-500 text-amber-950 font-display font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-base">
-                            🔄 Do It Again! (Restart 1000 Words)
-                        </button>
-                    </div>
+                    <button onclick="app.startLesson('click_spelling')" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> Start Click Spelling Lesson
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW 2: HARD WORD LESSON (30 QUESTIONS, 10 MINS) SECTION -->
-        <section id="view-lesson" class="hidden space-y-6">
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-cyan-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Time Remaining</div>
-                    <div id="lesson-timer-display" class="font-display font-black text-2xl md:text-3xl text-cyan-600">10:00</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">10 Minutes Total</div>
+        <!-- ACTIVE LESSON SCREEN -->
+        <section id="screen-lesson" class="hidden flex-1 flex flex-col justify-between max-w-4xl mx-auto w-full space-y-6">
+            <!-- Header Status Bar -->
+            <div class="glass-panel-dark rounded-2xl p-4 border border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-xl">
+                <div>
+                    <span id="lesson-title-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                        Lesson
+                    </span>
+                    <h3 id="lesson-header-title" class="font-fredoka text-lg font-bold text-white mt-1">Challenge</h3>
                 </div>
 
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-indigo-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Hard Lesson Progress</div>
-                    <div class="font-display font-black text-2xl md:text-3xl text-indigo-600">
-                        <span id="lesson-index-display">0</span><span class="text-slate-400 text-lg">/30</span>
+                <div class="flex items-center space-x-6">
+                    <!-- Timer -->
+                    <div class="text-right">
+                        <div class="text-xs text-slate-400">Time Remaining</div>
+                        <div id="lesson-timer" class="font-mono text-xl font-bold text-amber-400">00:00</div>
                     </div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Advanced Vocabulary</div>
-                </div>
-
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-teal-400 shadow-sm col-span-2 md:col-span-1">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Lesson Reward</div>
-                    <div class="font-display font-black text-2xl md:text-3xl text-teal-600">+15 Pts</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Per Correct Question</div>
+                    <!-- Question Counter -->
+                    <div class="text-right">
+                        <div class="text-xs text-slate-400">Progress</div>
+                        <div id="lesson-progress-text" class="font-fredoka text-xl font-bold text-purple-300">0 / 0</div>
+                    </div>
+                    <!-- Score -->
+                    <div class="text-right">
+                        <div class="text-xs text-slate-400">Lesson Score</div>
+                        <div id="lesson-score" class="font-fredoka text-xl font-bold text-emerald-400">0 pts</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass-panel p-6 md:p-10 rounded-3xl shadow-xl max-w-2xl mx-auto border border-white relative overflow-hidden">
-                <!-- LESSON START VIEW -->
-                <div id="lesson-start-view" class="text-center space-y-6 py-6">
-                    <div class="w-24 h-24 bg-cyan-100 rounded-full flex items-center justify-center text-5xl mx-auto text-cyan-600 shadow-inner animate-bounce">
-                        🔥
-                    </div>
-                    <div>
-                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Hard Word Lesson Challenge</h2>
-                        <p class="text-slate-600 text-sm mt-2 max-w-md mx-auto">
-                            Complete <strong class="text-cyan-800">30 advanced vocabulary questions</strong> in <strong class="text-cyan-800">10 minutes</strong>. Each question features challenging fill-in-the-blank sentences!
-                        </p>
-                    </div>
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden border border-slate-700">
+                <div id="lesson-progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
+            </div>
 
-                    <div class="bg-cyan-50/80 border border-cyan-200 p-4 rounded-2xl text-left max-w-md mx-auto space-y-2 text-xs text-cyan-950">
-                        <div class="font-bold flex items-center space-x-1.5 text-sm text-cyan-950">
-                            <span>💡 Hard Difficulty Rules:</span>
-                        </div>
-                        <p>• Advanced GRE/School Bee Vocabulary.</p>
-                        <p>• 10-minute strict time limit for 30 questions.</p>
-                        <p>• Type the precise missing advanced term.</p>
-                    </div>
-
-                    <button type="button" onclick="startLessonChallenge()" class="w-full max-w-md bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-500 hover:to-teal-500 text-slate-950 font-display font-extrabold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-lg border-2 border-cyan-300">
-                        🔥 Start Hard Word Lesson
+            <!-- Question Card Box -->
+            <div class="glass-panel-dark rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl flex-1 flex flex-col justify-center items-center text-center space-y-6 min-h-[350px]">
+                
+                <!-- Audio Speaker Button (For Spelling / Listening) -->
+                <div id="audio-btn-container" class="hidden">
+                    <button id="speak-word-btn" onclick="app.speakCurrentWord()" class="w-20 h-20 rounded-full bg-indigo-600/30 border-2 border-indigo-500 text-indigo-300 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center text-3xl shadow-lg group">
+                        <i class="fa-solid fa-volume-high group-hover:scale-110 transition-transform"></i>
                     </button>
+                    <p class="text-xs text-slate-400 mt-2">Click to hear word again</p>
                 </div>
 
-                <!-- LESSON ACTIVE VIEW -->
-                <div id="lesson-active-view" class="hidden text-center space-y-6">
-                    <div class="w-full bg-slate-100 rounded-full h-3 mb-6 overflow-hidden p-0.5 border border-slate-200">
-                        <div id="lesson-progress-bar" class="bg-gradient-to-r from-cyan-400 to-teal-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-                    </div>
+                <!-- Prompt Title / Text -->
+                <div id="question-prompt" class="font-fredoka text-2xl sm:text-3xl font-bold text-white max-w-2xl leading-relaxed">
+                    Prompt Goes Here
+                </div>
+                <div id="question-subprompt" class="text-slate-400 text-sm max-w-xl">
+                    Subtext prompt details
+                </div>
 
-                    <div class="inline-block bg-cyan-50 text-cyan-800 text-xs font-bold px-3 py-1 rounded-full border border-cyan-200">
-                        Question #<span id="lesson-q-num">1</span> of 30 • Hard Vocabulary
-                    </div>
-
-                    <div class="flex justify-center">
-                        <button type="button" onclick="speakLessonSentence()" class="px-5 py-2.5 rounded-2xl bg-cyan-100 hover:bg-cyan-200 text-cyan-900 font-bold text-xs flex items-center space-x-2 transition-all shadow-sm">
-                            <i class="fa-solid fa-volume-high text-cyan-600 text-base"></i>
-                            <span>Listen to Sentence</span>
-                        </button>
-                    </div>
-
-                    <div class="bg-white border-2 border-cyan-200 rounded-2xl p-6 shadow-sm">
-                        <p id="lesson-sentence-display" class="font-display font-semibold text-lg md:text-xl text-slate-800 leading-relaxed">
-                            <!-- Populated -->
-                        </p>
-                    </div>
-
-                    <form onsubmit="submitLessonAnswerInput(event)" class="max-w-md mx-auto space-y-3">
-                        <input type="text" id="lesson-text-input" placeholder="Type missing advanced word..." autocomplete="off" spellcheck="false" class="w-full px-6 py-4 text-center font-display font-bold text-xl rounded-2xl border-2 border-slate-200 focus:border-cyan-400 outline-none transition-all uppercase tracking-wider">
-                        <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-display font-bold py-3.5 rounded-2xl transition-all shadow-md">
+                <!-- Input / Multiple Choice Container -->
+                <div id="question-action-area" class="w-full max-w-xl pt-4">
+                    <!-- Text Input for 1,000 Word Test -->
+                    <div id="text-input-container" class="space-y-4">
+                        <input type="text" id="spelling-input" autocomplete="off" placeholder="Type your spelling here..." class="w-full px-5 py-4 rounded-2xl bg-slate-800/90 border-2 border-slate-700 text-white font-bold text-lg focus:outline-none focus:border-indigo-500 transition-all text-center">
+                        <button onclick="app.submitTypedAnswer()" class="w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base shadow-lg transition-all">
                             Submit Answer
                         </button>
-                    </form>
+                    </div>
+
+                    <!-- Multiple Choice Options Container -->
+                    <div id="mc-options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                        <!-- Dynamic Buttons rendered here -->
+                    </div>
                 </div>
+            </div>
 
-                <!-- LESSON REPORT VIEW -->
-                <div id="lesson-report-view" class="hidden text-center space-y-6">
-                    <div class="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center text-4xl mx-auto text-teal-600 shadow-inner">
-                        🎓
-                    </div>
+            <!-- Footer Toolbar inside lesson -->
+            <div class="flex items-center justify-between pt-2">
+                <button onclick="app.confirmQuitLesson()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Quit Lesson
+                </button>
 
-                    <div>
-                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Hard Lesson Finished!</h2>
-                        <p class="text-slate-500 text-sm mt-1">Advanced Vocabulary Report Card</p>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-3 bg-cyan-50/60 p-4 rounded-2xl border border-cyan-200/60">
-                        <div class="p-2">
-                            <div class="text-xs text-cyan-800/70 font-bold uppercase">Correct</div>
-                            <div id="lesson-report-correct" class="font-display font-bold text-2xl text-emerald-600">0</div>
-                        </div>
-                        <div class="p-2">
-                            <div class="text-xs text-cyan-800/70 font-bold uppercase">Accuracy</div>
-                            <div id="lesson-report-accuracy" class="font-display font-bold text-2xl text-blue-600">0%</div>
-                        </div>
-                        <div class="p-2">
-                            <div class="text-xs text-cyan-800/70 font-bold uppercase">Points Earned</div>
-                            <div id="lesson-report-points" class="font-display font-bold text-2xl text-teal-600">+0</div>
-                        </div>
-                    </div>
-
-                    <div class="text-left space-y-2">
-                        <h3 class="font-display font-bold text-slate-800 text-sm">Review Advanced Sentences</h3>
-                        <div id="lesson-review-list" class="max-h-48 overflow-y-auto space-y-2 p-3 bg-white rounded-xl border border-slate-200 text-xs">
-                        </div>
-                    </div>
-
-                    <button type="button" onclick="resetLesson()" class="w-full bg-cyan-400 hover:bg-cyan-500 text-cyan-950 font-display font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base">
-                        🔄 Retake Hard Word Lesson
-                    </button>
-                </div>
+                <!-- Finish Early Button (For 1,000 word test when >= 1000 pts) -->
+                <button id="finish-early-btn" onclick="app.finishLessonEarly()" class="hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs shadow-lg animate-bounce">
+                    <i class="fa-solid fa-flag-checkered mr-1.5"></i> Finish Early (1,000+ Pts Achieved!)
+                </button>
             </div>
         </section>
 
-        <!-- VIEW 3: PUNCTUATION FIX LESSON (100 SENTENCES, 11:41 MINS / 701 SECS) -->
-        <section id="view-punctuation" class="hidden space-y-6">
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-rose-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Time Remaining</div>
-                    <div id="punct-timer-display" class="font-display font-black text-2xl md:text-3xl text-rose-600">11:41</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">11 Min 41 Sec Total (701s)</div>
-                </div>
+        <!-- LESSON RESULTS MODAL / SCREEN -->
+        <section id="screen-results" class="hidden max-w-2xl mx-auto w-full glass-panel-dark rounded-3xl p-8 border border-slate-800 shadow-2xl text-center space-y-6 my-auto">
+            <div class="w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center text-4xl">
+                🏆
+            </div>
+            <h2 class="font-fredoka text-3xl font-bold text-white">Lesson Completed!</h2>
+            <p id="results-subtitle" class="text-slate-300 text-sm">Great effort! Here is your performance summary:</p>
 
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-amber-400 shadow-sm">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Punctuation Progress</div>
-                    <div class="font-display font-black text-2xl md:text-3xl text-amber-600">
-                        <span id="punct-index-display">0</span><span class="text-slate-400 text-lg">/100</span>
-                    </div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Sentences Fixed</div>
+            <div class="grid grid-cols-3 gap-4 bg-slate-800/60 p-4 rounded-2xl border border-slate-700/60">
+                <div>
+                    <div class="text-xs text-slate-400">Score Earned</div>
+                    <div id="res-score" class="font-fredoka text-xl font-bold text-emerald-400">+0 pts</div>
                 </div>
-
-                <div class="glass-panel p-4 rounded-2xl text-center border-b-4 border-b-violet-400 shadow-sm col-span-2 md:col-span-1">
-                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Lesson Reward</div>
-                    <div class="font-display font-black text-2xl md:text-3xl text-violet-600">+20 Pts</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Per Correct Punctuation Fix</div>
+                <div>
+                    <div class="text-xs text-slate-400">Accuracy</div>
+                    <div id="res-accuracy" class="font-fredoka text-xl font-bold text-indigo-400">0%</div>
+                </div>
+                <div>
+                    <div class="text-xs text-slate-400">Time Spent</div>
+                    <div id="res-time" class="font-fredoka text-xl font-bold text-purple-400">0s</div>
                 </div>
             </div>
 
-            <div class="glass-panel p-6 md:p-10 rounded-3xl shadow-xl max-w-2xl mx-auto border border-white relative overflow-hidden">
-                <!-- PUNCTUATION START VIEW -->
-                <div id="punct-start-view" class="text-center space-y-6 py-6">
-                    <div class="w-24 h-24 bg-rose-100 rounded-full flex items-center justify-center text-5xl mx-auto text-rose-600 shadow-inner animate-bounce">
-                        ✒️
-                    </div>
-                    <div>
-                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Punctuation Fix Lesson</h2>
-                        <p class="text-slate-600 text-sm mt-2 max-w-md mx-auto">
-                            Correct the punctuation errors in <strong class="text-rose-800">100 sentences</strong>. You have <strong class="text-rose-800">11 minutes and 41 seconds (701 seconds)</strong>!
-                        </p>
-                    </div>
-
-                    <div class="bg-rose-50/80 border border-rose-200 p-4 rounded-2xl text-left max-w-md mx-auto space-y-2 text-xs text-rose-950">
-                        <div class="font-bold flex items-center space-x-1.5 text-sm text-rose-950">
-                            <span>✒️ Punctuation Rules:</span>
-                        </div>
-                        <p>• Fix missing commas, periods, apostrophes, quotation marks, or question marks.</p>
-                        <p>• Type the fully corrected sentence accurately.</p>
-                    </div>
-
-                    <button type="button" onclick="startPunctuationChallenge()" class="w-full max-w-md bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white font-display font-extrabold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 text-lg border-2 border-rose-300">
-                        ✒️ Start Punctuation Lesson
-                    </button>
+            <!-- Badges Unlocked Section -->
+            <div id="res-badges-section" class="text-left space-y-3">
+                <h4 class="font-fredoka text-sm font-bold text-slate-300 flex items-center gap-2">
+                    <i class="fa-solid fa-award text-amber-400"></i> New Badges Earned (<span id="res-badge-count">0</span>)
+                </h4>
+                <div id="res-badge-list" class="flex flex-wrap gap-2">
+                    <span class="text-xs text-slate-500 italic">No new badges earned this run. Keep trying!</span>
                 </div>
+            </div>
 
-                <!-- PUNCTUATION ACTIVE VIEW -->
-                <div id="punct-active-view" class="hidden text-center space-y-6">
-                    <div class="w-full bg-slate-100 rounded-full h-3 mb-6 overflow-hidden p-0.5 border border-slate-200">
-                        <div id="punct-progress-bar" class="bg-gradient-to-r from-rose-400 to-pink-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-                    </div>
+            <button onclick="app.showScreen('home')" class="w-full py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg transition-all">
+                Return to Dashboard
+            </button>
+        </section>
 
-                    <div class="inline-block bg-rose-50 text-rose-800 text-xs font-bold px-3 py-1 rounded-full border border-rose-200">
-                        Sentence #<span id="punct-q-num">1</span> of 100 • Fix Punctuation
-                    </div>
-
-                    <div class="bg-white border-2 border-rose-200 rounded-2xl p-6 shadow-sm">
-                        <p class="text-xs text-slate-400 font-bold uppercase mb-1">Sentence with Error(s):</p>
-                        <p id="punct-sentence-display" class="font-display font-semibold text-lg md:text-xl text-slate-800 leading-relaxed">
-                            <!-- Populated -->
-                        </p>
-                    </div>
-
-                    <form onsubmit="submitPunctuationAnswer(event)" class="max-w-md mx-auto space-y-3">
-                        <input type="text" id="punct-text-input" placeholder="Type fully corrected sentence..." autocomplete="off" spellcheck="false" class="w-full px-5 py-4 text-center font-display font-bold text-base rounded-2xl border-2 border-slate-200 focus:border-rose-400 outline-none transition-all">
-                        <button type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-display font-bold py-3.5 rounded-2xl transition-all shadow-md">
-                            Submit Corrected Sentence
-                        </button>
-                    </form>
+        <!-- BADGES SCREEN (36 Badges total) -->
+        <section id="screen-badges" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="font-fredoka text-3xl font-bold text-white">Trophy & Badge Gallery</h2>
+                    <p class="text-xs text-slate-400">Unlock all 36 badges across the 4 core challenge modes (9 per mode).</p>
                 </div>
-
-                <!-- PUNCTUATION REPORT VIEW -->
-                <div id="punct-report-view" class="hidden text-center space-y-6">
-                    <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center text-4xl mx-auto text-rose-600 shadow-inner">
-                        🎉
-                    </div>
-
-                    <div>
-                        <h2 class="font-display font-extrabold text-3xl text-slate-900">Punctuation Lesson Complete!</h2>
-                        <p class="text-slate-500 text-sm mt-1">100-Sentence Performance Summary</p>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-3 bg-rose-50/60 p-4 rounded-2xl border border-rose-200/60">
-                        <div class="p-2">
-                            <div class="text-xs text-rose-800/70 font-bold uppercase">Correct</div>
-                            <div id="punct-report-correct" class="font-display font-bold text-2xl text-emerald-600">0</div>
-                        </div>
-                        <div class="p-2">
-                            <div class="text-xs text-rose-800/70 font-bold uppercase">Accuracy</div>
-                            <div id="punct-report-accuracy" class="font-display font-bold text-2xl text-blue-600">0%</div>
-                        </div>
-                        <div class="p-2">
-                            <div class="text-xs text-rose-800/70 font-bold uppercase">Points Earned</div>
-                            <div id="punct-report-points" class="font-display font-bold text-2xl text-rose-600">+0</div>
-                        </div>
-                    </div>
-
-                    <div class="text-left space-y-2">
-                        <h3 class="font-display font-bold text-slate-800 text-sm">Review Punctuation Answers</h3>
-                        <div id="punct-review-list" class="max-h-48 overflow-y-auto space-y-2 p-3 bg-white rounded-xl border border-slate-200 text-xs">
-                        </div>
-                    </div>
-
-                    <button type="button" onclick="resetPunctuation()" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-display font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base">
-                        🔄 Retake Punctuation Lesson
-                    </button>
+                <div class="px-4 py-2 rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-300 font-bold text-sm">
+                    Total Progress: <span id="badge-gallery-counter" class="text-white">0/36</span>
                 </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="badges-grid-container">
+                <!-- Badges populated dynamically -->
             </div>
         </section>
 
-        <!-- VIEW 4: ACHIEVEMENTS / BADGES (5 BADGES PER LESSON = 15 BADGES TOTAL) -->
-        <section id="view-achievements" class="hidden space-y-8 max-w-5xl mx-auto">
-            <div class="text-center space-y-2">
-                <h2 class="font-display font-extrabold text-3xl text-slate-900">Achievement Badges</h2>
-                <p class="text-slate-600 text-sm">Earn 5 badges in each lesson type to master your spelling & grammar skills!</p>
-            </div>
-
-            <!-- CATEGORY 1: 1,000 WORD TEST BADGES -->
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2 border-b border-amber-200 pb-2">
-                    <span class="text-xl">✍️</span>
-                    <h3 class="font-display font-bold text-lg text-amber-900">1,000 Word Test Badges (5)</h3>
+        <!-- AVATAR SHOP SCREEN (635 Avatars) -->
+        <section id="screen-shop" class="hidden space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <h2 class="font-fredoka text-3xl font-bold text-white">Avatar Shop (635)</h2>
+                    <p class="text-xs text-slate-400">Spend your earned points to unlock stylish avatars & titles!</p>
                 </div>
-                <div id="badges-container-test" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    <!-- Dynamic rendering -->
+                <div class="flex items-center space-x-3 bg-slate-800 px-4 py-2 rounded-2xl border border-slate-700">
+                    <span class="text-xs text-slate-400">Your Balance:</span>
+                    <i class="fa-solid fa-coins text-amber-400 text-sm"></i>
+                    <span id="shop-points-balance" class="font-bold text-amber-300">0</span>
                 </div>
             </div>
 
-            <!-- CATEGORY 2: HARD WORD LESSON BADGES -->
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2 border-b border-cyan-200 pb-2">
-                    <span class="text-xl">📖</span>
-                    <h3 class="font-display font-bold text-lg text-cyan-900">Hard Word Lesson Badges (5)</h3>
-                </div>
-                <div id="badges-container-lesson" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    <!-- Dynamic rendering -->
-                </div>
+            <!-- Shop Category Filter Tabs -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-3" id="shop-tabs">
+                <button onclick="app.filterShop('all')" class="shop-tab-btn active px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white transition-all">All (635)</button>
+                <button onclick="app.filterShop('novice')" class="shop-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Novice</button>
+                <button onclick="app.filterShop('scholar')" class="shop-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Scholar</button>
+                <button onclick="app.filterShop('master')" class="shop-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Master</button>
+                <button onclick="app.filterShop('legendary')" class="shop-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Legendary</button>
+                <button onclick="app.filterShop('mythic')" class="shop-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Mythic</button>
             </div>
 
-            <!-- CATEGORY 3: PUNCTUATION FIX BADGES -->
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2 border-b border-rose-200 pb-2">
-                    <span class="text-xl">✒️</span>
-                    <h3 class="font-display font-bold text-lg text-rose-900">Punctuation Fix Badges (5)</h3>
-                </div>
-                <div id="badges-container-punct" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    <!-- Dynamic rendering -->
-                </div>
-            </div>
-        </section>
-
-        <!-- VIEW 5: AVATAR SHOP SECTION (635 AVATARS) -->
-        <section id="view-shop" class="hidden space-y-6 max-w-5xl mx-auto">
-            <div class="text-center space-y-2">
-                <h2 class="font-display font-extrabold text-3xl text-slate-900">Avatar Shop (635 Avatars)</h2>
-                <p class="text-slate-600 text-sm">Explore and unlock 635 unique avatar styles with your hard-earned points!</p>
+            <!-- Avatars Grid -->
+            <div id="avatars-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Dynamic Avatars rendered here -->
             </div>
 
-            <!-- Avatar Search & Filter Bar -->
-            <div class="glass-panel p-4 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4 border border-amber-200">
-                <div class="flex items-center space-x-2 w-full md:w-auto">
-                    <input type="text" id="shop-search-input" oninput="filterShopAvatars()" placeholder="Search 635 avatars..." class="px-4 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-amber-400 w-full md:w-64 font-medium">
-                </div>
-
-                <div class="flex flex-wrap gap-1.5 w-full md:w-auto justify-center text-xs font-bold">
-                    <button id="filter-btn-all" onclick="setShopFilter('all')" class="px-3 py-1.5 rounded-xl bg-amber-400 text-amber-950">All (635)</button>
-                    <button id="filter-btn-unlocked" onclick="setShopFilter('unlocked')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">Unlocked</button>
-                    <button id="filter-btn-budget" onclick="setShopFilter('budget')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">Budget (&lt;500)</button>
-                    <button id="filter-btn-high" onclick="setShopFilter('high')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">High Roller (500-5k)</button>
-                    <button id="filter-btn-god" onclick="setShopFilter('god')" class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200">God Tier (&gt;5k)</button>
-                </div>
-            </div>
-
-            <!-- Pagination & Info -->
-            <div class="flex items-center justify-between text-xs font-bold text-slate-500 px-2">
-                <div>Showing <span id="shop-showing-count">0</span> avatars</div>
-                <div class="flex items-center space-x-2">
-                    <button onclick="changeShopPage(-1)" class="px-3 py-1 bg-white border border-slate-200 rounded-lg hover:bg-slate-50">&larr; Prev</button>
-                    <span>Page <span id="shop-page-num">1</span> of <span id="shop-total-pages">1</span></span>
-                    <button onclick="changeShopPage(1)" class="px-3 py-1 bg-white border border-slate-200 rounded-lg hover:bg-slate-50">Next &rarr;</button>
-                </div>
-            </div>
-
-            <div id="shop-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Populated dynamically via JS (635 avatars) -->
+            <!-- Pagination Load More -->
+            <div class="text-center pt-4" id="shop-load-more-container">
+                <button onclick="app.loadMoreAvatars()" class="px-6 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs transition-all">
+                    Load More Avatars...
+                </button>
             </div>
         </section>
 
     </main>
 
-    <!-- Custom Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="glass-panel border-2 border-amber-400 p-4 rounded-2xl shadow-2xl flex items-center space-x-3 max-w-xs">
-            <div id="toast-icon" class="text-3xl">🏆</div>
-            <div>
-                <div id="toast-title" class="font-display font-bold text-sm text-slate-900">Badge Unlocked!</div>
-                <div id="toast-message" class="text-xs text-slate-600 font-medium">You completed your first lesson!</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Game Logic -->
     <script>
-        /* ==========================================================================
-           1. DATA SETS & CONSTANTS
-           ========================================================================== */
+        /**
+         * Dynamic Data Generators & Global App Controller
+         */
         
-        // Dynamic generation of 1000 Words & Sentences
-        const baseWords = [
-            { w: "ACCOMMODATE", s: "The hotel can accommodate up to five hundred guests." },
-            { w: "ACHIEVEMENT", s: "Winning the bee was a fantastic personal achievement." },
-            { w: "ACQUIESCE", s: "He decided to acquiesce to their demands." },
-            { w: "BENEFICIENT", s: "The beneficient donor gave money to the local library." },
-            { w: "CONSCIENTIOUS", s: "She is a conscientious worker who pays attention to details." },
-            { w: "DEFINITELY", s: "I will definitely come to your birthday party." },
-            { w: "EMBARRASS", s: "Try not to embarrass your sister in front of her friends." },
-            { w: "FLUORESCENT", s: "The bright fluorescent lights illuminated the classroom." },
-            { w: "GOVERNMENT", s: "The government announced a new educational policy." },
-            { w: "HIERARCHY", s: "She worked her way up the corporate hierarchy." },
-            { w: "INDISPENSABLE", s: "A good dictionary is indispensable for learning spelling." },
-            { w: "JUDGMENT", s: "Use your best judgment when making hard decisions." },
-            { w: "KNOWLEDGE", s: "Reading books expands your general knowledge." },
-            { w: "LICENSE", s: "He received his driver's license last month." },
-            { w: "MISCHIEVOUS", s: "The mischievous puppy hid under the sofa." },
-            { w: "NECESSARY", s: "Sleep is necessary for maintaining good health." },
-            { w: "OCCURRENCE", s: "Rain in July is a rare occurrence in this region." },
-            { w: "PERSEVERANCE", s: "Success requires hard work and perseverance." },
-            { w: "QUESTIONNAIRE", s: "Please fill out this short survey questionnaire." },
-            { w: "RECEIPT", s: "Keep the purchase receipt in case you need to return it." }
+        // 1. Comprehensive Badges System (36 Total Badges - 9 per lesson mode)
+        const BADGES_DATA = [
+            // 1,000 Word Test Badges (9)
+            { id: 'b_t1', mode: 'thousand', title: 'First Steps', desc: 'Score 50 points in 1,000 Word Test', icon: '🐣', target: 50, type: 'score' },
+            { id: 'b_t2', mode: 'thousand', title: 'Centurion', desc: 'Score 100 points in 1,000 Word Test', icon: '🛡️', target: 100, type: 'score' },
+            { id: 'b_t3', mode: 'thousand', title: 'Spelling Scholar', desc: 'Score 300 points in 1,000 Word Test', icon: '📜', target: 300, type: 'score' },
+            { id: 'b_t4', mode: 'thousand', title: 'Halfway Hero', desc: 'Score 500 points in 1,000 Word Test', icon: '⚔️', target: 500, type: 'score' },
+            { id: 'b_t5', mode: 'thousand', title: 'Endurance Champion', desc: 'Score 750 points in 1,000 Word Test', icon: '🏆', target: 750, type: 'score' },
+            { id: 'b_t6', mode: 'thousand', title: 'Millennium Master', desc: 'Score 1,000 points in 1,000 Word Test', icon: '👑', target: 1000, type: 'score' },
+            { id: 'b_t7', mode: 'thousand', title: 'Speed Demon', desc: 'Complete test with >80% accuracy', icon: '⚡', target: 80, type: 'acc' },
+            { id: 'b_t8', mode: 'thousand', title: 'Precision Pioneer', desc: 'Complete test with >95% accuracy', icon: '🎯', target: 95, type: 'acc' },
+            { id: 'b_t9', mode: 'thousand', title: 'Early Finisher', desc: 'Finish early with 1,000+ points unlocked', icon: '🚀', target: 1, type: 'special' },
+
+            // Hard Word Vocab Badges (9)
+            { id: 'b_v1', mode: 'vocab', title: 'Vocab Novice', desc: 'Answer 5 vocab questions correctly', icon: '🌱', target: 5, type: 'score' },
+            { id: 'b_v2', mode: 'vocab', title: 'Word Collector', desc: 'Answer 10 vocab questions correctly', icon: '📖', target: 10, type: 'score' },
+            { id: 'b_v3', mode: 'vocab', title: 'Definition Scholar', desc: 'Answer 15 vocab questions correctly', icon: '🔍', target: 15, type: 'score' },
+            { id: 'b_v4', mode: 'vocab', title: 'Lexicon Knight', desc: 'Answer 20 vocab questions correctly', icon: '⚔️', target: 20, type: 'score' },
+            { id: 'b_v5', mode: 'vocab', title: 'Vocab Virtuoso', desc: 'Answer 25 vocab questions correctly', icon: '🎓', target: 25, type: 'score' },
+            { id: 'b_v6', mode: 'vocab', title: 'Dictionary Overlord', desc: 'Complete all 30 vocab questions', icon: '🧠', target: 30, type: 'score' },
+            { id: 'b_v7', mode: 'vocab', title: 'Sharp Mind', desc: 'Achieve >85% accuracy in Vocab', icon: '💡', target: 85, type: 'acc' },
+            { id: 'b_v8', mode: 'vocab', title: 'Flawless Lexicon', desc: 'Achieve 100% accuracy in Vocab', icon: '🌟', target: 100, type: 'acc' },
+            { id: 'b_v9', mode: 'vocab', title: 'Swift Definer', desc: 'Finish Vocab lesson in under 5 minutes', icon: '⏱️', target: 300, type: 'time_under' },
+
+            // Punctuation Fix Badges (9)
+            { id: 'b_p1', mode: 'punctuation', title: 'Comma Cadet', desc: 'Fix 10 punctuation sentences correctly', icon: '✏️', target: 10, type: 'score' },
+            { id: 'b_p2', mode: 'punctuation', title: 'Semicolon Sentry', desc: 'Fix 25 punctuation sentences correctly', icon: '🛡️', target: 25, type: 'score' },
+            { id: 'b_p3', mode: 'punctuation', title: 'Syntax Sentinel', desc: 'Fix 50 punctuation sentences correctly', icon: '🔍', target: 50, type: 'score' },
+            { id: 'b_p4', mode: 'punctuation', title: 'Grammar Guardian', desc: 'Fix 75 punctuation sentences correctly', icon: '🏰', target: 75, type: 'score' },
+            { id: 'b_p5', mode: 'punctuation', title: 'Punctuation Titan', desc: 'Fix all 100 sentences correctly', icon: '💎', target: 100, type: 'score' },
+            { id: 'b_p6', mode: 'punctuation', title: 'Keen Eye', desc: 'Achieve >80% accuracy in Punctuation', icon: '👁️', target: 80, type: 'acc' },
+            { id: 'b_p7', mode: 'punctuation', title: 'Precision Editor', desc: 'Achieve >90% accuracy in Punctuation', icon: '✨', target: 90, type: 'acc' },
+            { id: 'b_p8', mode: 'punctuation', title: 'Flawless Syntax', desc: 'Achieve 100% accuracy in Punctuation', icon: '👑', target: 100, type: 'acc' },
+            { id: 'b_p9', mode: 'punctuation', title: 'Rapid Corrector', desc: 'Finish Punctuation lesson under 8 mins', icon: '⚡', target: 480, type: 'time_under' },
+
+            // Click the Right Spelling Badges (9)
+            { id: 'b_c1', mode: 'click_spelling', title: 'Eagle Eye', desc: 'Spot 15 correct spellings', icon: '🦅', target: 15, type: 'score' },
+            { id: 'b_c2', mode: 'click_spelling', title: 'Spelling Scout', desc: 'Spot 35 correct spellings', icon: '🏹', target: 35, type: 'score' },
+            { id: 'b_c3', mode: 'click_spelling', title: 'Accuracy Ace', desc: 'Spot 60 correct spellings', icon: '🎯', target: 60, type: 'score' },
+            { id: 'b_c4', mode: 'click_spelling', title: 'Spelling Specialist', desc: 'Spot 90 correct spellings', icon: '🏅', target: 90, type: 'score' },
+            { id: 'b_c5', mode: 'click_spelling', title: 'Click Master 123', desc: 'Complete all 123 spelling questions', icon: '👑', target: 123, type: 'score' },
+            { id: 'b_c6', mode: 'click_spelling', title: 'Sharp Shooter', desc: 'Achieve >80% accuracy in Click Spelling', icon: '💫', target: 80, type: 'acc' },
+            { id: 'b_c7', mode: 'click_spelling', title: 'Orthography King', desc: 'Achieve >95% accuracy in Click Spelling', icon: '🌟', target: 95, type: 'acc' },
+            { id: 'b_c8', mode: 'click_spelling', title: 'Perfectionist', desc: 'Achieve 100% accuracy in Click Spelling', icon: '🔥', target: 100, type: 'acc' },
+            { id: 'b_c9', mode: 'click_spelling', title: 'Lightning Clicki', desc: 'Finish 123 questions under 12 mins', icon: '⚡', target: 720, type: 'time_under' }
         ];
 
-        const spelling1000List = [];
-        for (let i = 0; i < 1000; i++) {
-            const base = baseWords[i % baseWords.length];
-            spelling1000List.push({
-                word: base.w,
-                sentence: `[Word #${i+1}] ${base.s}`
+        // 2. Procedural Avatar Generator (Generates exactly 635 Avatars)
+        function generate635Avatars() {
+            const emojis = ['🎓','🐝','🦁','🦊','🐼','🤖','👽','🧙‍♂️','👑','🦄','🐉','🚀','⭐','💎','🔥','⚡','👾','🎨','🎯','🏆','🦉','🐯','🦅','🦈','🔮','🌌'];
+            const prefixes = ['Novice', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond', 'Master', 'Grandmaster', 'Legendary', 'Mythic', 'Celestial', 'Cosmic'];
+            const titles = ['Speller', 'Definer', 'Scribe', 'Scholar', 'Champion', 'Wizard', 'Titan', 'Overlord', 'Guardian', 'Monarch', 'Prodigy', 'Vanguard'];
+
+            const tiers = [
+                { name: 'novice', cost: 0 },
+                { name: 'scholar', cost: 50 },
+                { name: 'master', cost: 150 },
+                { name: 'legendary', cost: 350 },
+                { name: 'mythic', cost: 750 }
+            ];
+
+            const avatars = [];
+            // Default free avatar
+            avatars.push({
+                id: 1,
+                emoji: '🎓',
+                title: 'Default Scholar',
+                tier: 'novice',
+                cost: 0
             });
+
+            for (let i = 2; i <= 635; i++) {
+                const emoji = emojis[i % emojis.length];
+                const prefix = prefixes[i % prefixes.length];
+                const title = titles[(i * 3) % titles.length];
+                const tierObj = tiers[i % tiers.length];
+
+                avatars.push({
+                    id: i,
+                    emoji: emoji,
+                    title: `${prefix} ${title} #${i}`,
+                    tier: tierObj.name,
+                    cost: tierObj.cost + (Math.floor(i / 10) * 5)
+                });
+            }
+            return avatars;
         }
 
-        // 30 Hard Vocabulary Lesson Items
-        const hardLessonQuestions = [
-            { word: "ANACHRONISM", context: "A clock in ancient Rome would be a glaring _____." },
-            { word: "CACOPHONY", context: "The chaotic traffic noise created a terrible _____." },
-            { word: "EPHEMERAL", context: "Youthful beauty is often considered fleeting and _____." },
-            { word: "EQUANIMITY", context: "She handled the crisis with remarkable calm and _____." },
-            { word: "FASTIDIOUS", context: "He was very _____ about keeping his room spotlessly clean." },
-            { word: "GARRULOUS", context: "The _____ old man talked endlessly about his youth." },
-            { word: "HUBRIS", context: "His arrogance and excessive _____ led to his ultimate downfall." },
-            { word: "ICONOCLAST", context: "As an _____, she challenged every traditional belief." },
-            { word: "JUXTAPOSITION", context: "The photo showed a striking _____ of light and dark." },
-            { word: "LOQUACIOUS", context: "The _____ tour guide explained every detail of the museum." },
-            { word: "MAGNANIMOUS", context: "The leader was _____ in victory towards her rivals." },
-            { word: "NEBULOUS", context: "His plans for the future remain vague and _____." },
-            { word: "OBSTREPEROUS", context: "The _____ crowd chanted loudly outside the courthouse." },
-            { word: "PARADIGM", context: "This discovery represents a total shift in our scientific _____." },
-            { word: "QUINTESSENTIAL", context: "Paris is often called the _____ city of romance." },
-            { word: "RECALCITRANT", context: "The _____ toddler refused to put on his shoes." },
-            { word: "SURREPTITIOUS", context: "She took a _____ glance at her smartphone during class." },
-            { word: "TACITURN", context: "The quiet boy was usually reserved and _____." },
-            { word: "UBIQUITOUS", context: "Smartphones have become completely _____ in modern life." },
-            { word: "VERACIOUS", context: "The judge trusted her because of her reputation for being _____." },
-            { word: "WILINESS", context: "The fox survived due to its cleverness and _____." },
-            { word: "XENOPHOBIA", context: "Education helps combat hatred, bias, and _____." },
-            { word: "YOKE", context: "The nation finally freed itself from the heavy _____ of oppression." },
-            { word: "ZEALOT", context: "He was an extreme political _____ who tolerated no opposition." },
-            { word: "AMELIORATE", context: "The news gave us hope that conditions would soon _____." },
-            { word: "BELLIGERENT", context: "The aggressive dog acted in a very _____ manner." },
-            { word: "CAPRICIOUS", context: "Her mood was _____ and changed without any warning." },
-            { word: "DELETERIOUS", context: "Smoking has severe and _____ effects on human health." },
-            { word: "ENERVATE", context: "Extreme desert heat can quickly _____ even strong athletes." },
-            { word: "FUGACIOUS", context: "Life's moments are short-lived and fundamentally _____." }
+        const ALL_AVATARS = generate635Avatars();
+
+        // 3. Question Generators
+        const VOCAB_BANK = [
+            { word: 'Benevolent', def: 'Well meaning and kindly', options: ['Well meaning and kindly', 'Hostile and aggressive', 'Lacking interest', 'Extremely bright'] },
+            { word: 'Ephemeral', def: 'Lasting for a very short time', options: ['Lasting for a very short time', 'Permanent and everlasting', 'Deeply emotional', 'Difficult to understand'] },
+            { word: 'Ubiquitous', def: 'Present, appearing, or found everywhere', options: ['Present, appearing, or found everywhere', 'Rare and valuable', 'Secretive', 'Highly dangerous'] },
+            { word: 'Meticulous', def: 'Showing great attention to detail', options: ['Showing great attention to detail', 'Careless and sloppy', 'Fast-moving', 'Loud and boisterous'] },
+            { word: 'Pragmatic', def: 'Dealing with things sensibly and realistically', options: ['Dealing with things sensibly and realistically', 'Impractical and dreamy', 'Strictly theoretical', 'Angry'] },
+            { word: 'Eloquence', def: 'Fluent or persuasive speaking or writing', options: ['Fluent or persuasive speaking or writing', 'Clumsy speech', 'Silent behavior', 'Confusing explanation'] },
+            { word: 'Resilient', def: 'Able to withstand or recover quickly from difficulties', options: ['Able to withstand or recover quickly from difficulties', 'Fragile and weak', 'Slow to react', 'Stubborn'] }
         ];
 
-        // 100 Punctuation Fix Questions
-        const punctuationBase = [
-            { broken: "where are you going today", fixed: "Where are you going today?" },
-            { broken: "she loves reading books painting and singing", fixed: "She loves reading books, painting, and singing." },
-            { broken: "it is a rainy day take your umbrella", fixed: "It is a rainy day; take your umbrella." },
-            { broken: "don't forget to buy milk eggs and bread", fixed: "Don't forget to buy milk, eggs, and bread." },
-            { broken: "wow that was an amazing performance", fixed: "Wow, that was an amazing performance!" },
-            { broken: "my brothers friend lives in new york city", fixed: "My brother's friend lives in New York City." },
-            { broken: "he said i will be home by six o'clock", fixed: 'He said, "I will be home by six o\'clock."' },
-            { broken: "although it was cold we went for a long walk", fixed: "Although it was cold, we went for a long walk." },
-            { broken: "whose jacket is this on the chair", fixed: "Whose jacket is this on the chair?" },
-            { broken: "yes i would love to join your study group", fixed: "Yes, I would love to join your study group." }
+        const SPELLING_CLICK_BANK = [
+            { correct: 'Accommodate', options: ['Acommodate', 'Accommodate', 'Accomodate', 'Acomodate'] },
+            { correct: 'Necessary', options: ['Neccessary', 'Necessery', 'Necessary', 'Nessasary'] },
+            { correct: 'Embarrass', options: ['Embarass', 'Embarrass', 'Emberrass', 'Embarras'] },
+            { correct: 'Separate', options: ['Seperate', 'Separate', 'Seperet', 'Separait'] },
+            { correct: 'Definitely', options: ['Definately', 'Definitely', 'Definitly', 'Definatly'] },
+            { correct: 'Occurred', options: ['Occured', 'Occurred', 'Ocurred', 'Occcurred'] },
+            { correct: 'Privilege', options: ['Privledge', 'Privilege', 'Privelege', 'Privilage'] },
+            { correct: 'Rhythm', options: ['Rythm', 'Rhythm', 'Rhythim', 'Rithm'] }
         ];
 
-        const punctuation100List = [];
-        for(let i = 0; i < 100; i++) {
-            const item = punctuationBase[i % punctuationBase.length];
-            punctuation100List.push({
-                broken: item.broken,
-                fixed: item.fixed
-            });
-        }
-
-        /* ==========================================================================
-           2. ACHIEVEMENTS SYSTEM (5 BADGES PER LESSON = 15 TOTAL)
-           ========================================================================== */
-        
-        const badgesData = [
-            // --- 1,000 WORD TEST BADGES (5) ---
-            { id: "test_b1", cat: "test", title: "Spelling Novice", icon: "🌱", desc: "Answer 10 words in the 1,000 Word Test." },
-            { id: "test_b2", cat: "test", title: "Century Speller", icon: "💯", desc: "Answer 100 words in the 1,000 Word Test." },
-            { id: "test_b3", cat: "test", title: "Speed Demon", icon: "⚡", desc: "Reach 30 WPM or higher during a test." },
-            { id: "test_b4", cat: "test", title: "Accuracy Titan", icon: "🎯", desc: "Finish a test with at least 90% accuracy." },
-            { id: "test_b5", cat: "test", title: "Spelling Mastermind", icon: "👑", desc: "Complete all 1,000 words in the Spelling Bee!" },
-
-            // --- HARD WORD LESSON BADGES (5) ---
-            { id: "vocab_b1", cat: "lesson", title: "Vocab Rookie", icon: "📖", desc: "Complete 5 hard vocabulary questions." },
-            { id: "vocab_b2", cat: "lesson", title: "Lexicon Enthusiast", icon: "💡", desc: "Complete 15 hard vocabulary questions." },
-            { id: "vocab_b3", cat: "lesson", title: "Vocab Veteran", icon: "🧠", desc: "Finish the entire Hard Word Lesson." },
-            { id: "vocab_b4", cat: "lesson", title: "Word Virtuoso", icon: "🌟", desc: "Get 80%+ correct on the Hard Word Lesson." },
-            { id: "vocab_b5", cat: "lesson", title: "Vocabulary God", icon: "🔥", desc: "Score 100% perfect on the Hard Word Lesson!" },
-
-            // --- PUNCTUATION FIX BADGES (5) ---
-            { id: "punct_b1", cat: "punct", title: "Comma Cadet", icon: "✒️", desc: "Fix 10 punctuation sentences." },
-            { id: "punct_b2", cat: "punct", title: "Punctuation Mechanic", icon: "🛠️", desc: "Fix 50 punctuation sentences." },
-            { id: "punct_b3", cat: "punct", title: "Syntax Scholar", icon: "📘", desc: "Complete all 100 punctuation sentences." },
-            { id: "punct_b4", cat: "punct", title: "Grammar Specialist", icon: "🔍", desc: "Achieve 85%+ accuracy in Punctuation Fix." },
-            { id: "punct_b5", cat: "punct", title: "Punctuation Master", icon: "💎", desc: "Achieve 100% accuracy on the 100 sentences!" }
+        const PUNCTUATION_BANK = [
+            { prompt: 'Fix punctuation: "its raining outside take your umbrella"', correct: 'It\'s raining outside; take your umbrella.', options: ['It\'s raining outside; take your umbrella.', 'Its raining outside, take your umbrella.', 'Its raining outside; take your umbrella', 'It\'s raining outside take your umbrella.'] },
+            { prompt: 'Fix punctuation: "she said i will be there at 5 oclock"', correct: 'She said, "I will be there at 5 o\'clock."', options: ['She said, "I will be there at 5 o\'clock."', 'She said "I will be there at 5 oclock."', 'She said, I will be there at 5 oclock.', 'She said: i will be there at 5 oclock'] },
+            { prompt: 'Fix punctuation: "apples oranges and bananas are on sale"', correct: 'Apples, oranges, and bananas are on sale.', options: ['Apples, oranges, and bananas are on sale.', 'Apples oranges and bananas, are on sale.', 'Apples, oranges and bananas are on sale', 'Apples; oranges and bananas are on sale.'] }
         ];
 
-        /* ==========================================================================
-           3. GENERATING 635 AVATARS DYNAMICALLY
-           ========================================================================== */
-        
-        const avatarIcons = [
-            "🐝", "😀", "🦉", "🧙‍♂️", "🤖", "👑", "🦊", "🐯", "🦁", "🐼", "🐨", "🦄", "🐲", "👾", 
-            "🚀", "🌟", "🔥", "💎", "🎯", "⚡", "🎓", "📚", "🎨", "🎭", "🎮", "🛸", "🐱", "🐶",
-            "🦝", "🐸", "🐙", "🐬", "🦅", "🦚", "🐺", "🐻", "🦩", "🦖", "🛸", "🦸", "🥷", "🧙‍♀️",
-            "🧩", "🔮", "🏆", "🥇", "🪐", "☀️", "🌙", "🌌", "🍎", "🥑", "🍕", "🍦", "🍩", "🧁"
+        const WORDS_1000 = [
+            "abandon", "ability", "absence", "academic", "accept", "accident", "accompany", "accomplish",
+            "account", "accurate", "achieve", "acquire", "action", "active", "activity", "actual",
+            "adaptation", "addition", "address", "adequate", "adjust", "admire", "admit", "advance",
+            "adventure", "advice", "advocate", "affect", "afford", "agency", "agenda", "agreement",
+            "algebra", "algorithm", "alien", "alignment", "allowance", "alphabet", "alteration", "amazing",
+            "ambition", "amendment", "analysis", "ancestor", "anchor", "ancient", "angle", "animation",
+            "announcement", "annual", "answer", "anxiety", "apology", "apparent", "appearance", "application",
+            "appreciate", "approach", "approval", "archaeology", "architect", "argument", "arithmetic", "arrangement"
         ];
 
-        const avatarPrefixes = [
-            "Starter", "Novice", "Junior", "Adept", "Master", "Grandmaster", "Legendary", "Cosmic",
-            "Mythic", "Divine", "Supreme", "Ultra", "Hyper", "Cyber", "Shadow", "Golden", "Diamond",
-            "Enchanted", "Galactic", "Infinite", "God-Tier", "Imperial", "Celestial", "Royal", "Titan"
-        ];
+        // Global App Class
+        class App {
+            constructor() {
+                this.points = parseInt(localStorage.getItem('bee_points') || '0');
+                this.unlockedAvatars = JSON.parse(localStorage.getItem('bee_unlocked_avatars') || '[1]');
+                this.equippedAvatarId = parseInt(localStorage.getItem('bee_equipped_avatar') || '1');
+                this.unlockedBadges = JSON.parse(localStorage.getItem('bee_unlocked_badges') || '[]');
 
-        const avatarTitlesList = [
-            "Speller", "Lexicon", "Grammarian", "Scholar", "Bee", "Word Wizard", "Punctuation Pro",
-            "Syntax Ninja", "Alphabet Ace", "Vowel Vanguard", "Dictionary Emperor", "Syllable Sorcerer",
-            "Paragraph Prince", "Essay Lord", "Vocabulary Titan", "Phonics Falcon", "Bookworm King"
-        ];
+                // Shop pagination
+                this.shopFilter = 'all';
+                this.shopPage = 1;
+                this.shopItemsPerPage = 24;
 
-        const avatarShopData = [];
-        
-        // Generate EXACTLY 635 avatars
-        for (let i = 1; i <= 635; i++) {
-            const icon = avatarIcons[(i - 1) % avatarIcons.length];
-            const prefix = avatarPrefixes[Math.floor((i - 1) / 25) % avatarPrefixes.length];
-            const titleWord = avatarTitlesList[(i - 1) % avatarTitlesList.length];
-            
-            // Scaling cost curve
-            let cost = 0;
-            if (i === 1) cost = 0; // Free Starter Avatar
-            else if (i <= 50) cost = (i - 1) * 10; // 10 to 490 pts
-            else if (i <= 200) cost = 500 + (i - 50) * 20; // 500 to 3500 pts
-            else if (i <= 500) cost = 3500 + (i - 200) * 50; // 3500 to 18500 pts
-            else cost = 18500 + (i - 500) * 250; // 18500 to 52250 pts
+                // Active Lesson State
+                this.currentMode = null; // 'thousand', 'vocab', 'punctuation', 'click_spelling'
+                this.questions = [];
+                this.currentQIndex = 0;
+                this.score = 0;
+                this.correctCount = 0;
+                this.timerInterval = null;
+                this.timeRemaining = 0;
+                this.totalTimeSpent = 0;
 
-            const isGodTier = cost >= 5000 || prefix === "God-Tier" || prefix === "Divine" || prefix === "Supreme";
+                this.initUI();
+            }
 
-            avatarShopData.push({
-                id: `av_${i}`,
-                icon: icon,
-                title: `${prefix} ${titleWord} #${i}`,
-                cost: cost,
-                unlocked: i === 1, // First avatar is unlocked by default
-                godTier: isGodTier
-            });
-        }
+            initUI() {
+                this.updateHeader();
+                this.renderBadgesGallery();
+                this.renderShop();
+                this.showScreen('home');
+            }
 
-        /* ==========================================================================
-           4. GLOBAL APP STATE
-           ========================================================================== */
-        
-        let userPoints = 0;
-        let unlockedBadges = new Set();
-        let currentEquippedAvatar = "av_1";
+            saveState() {
+                localStorage.setItem('bee_points', this.points.toString());
+                localStorage.setItem('bee_unlocked_avatars', JSON.stringify(this.unlockedAvatars));
+                localStorage.setItem('bee_equipped_avatar', this.equippedAvatarId.toString());
+                localStorage.setItem('bee_unlocked_badges', JSON.stringify(this.unlockedBadges));
+            }
 
-        // Shop State (635 avatars)
-        let filteredShopAvatars = [...avatarShopData];
-        let shopCurrentPage = 1;
-        const avatarsPerPage = 24;
-        let activeShopFilter = 'all';
+            updateHeader() {
+                document.getElementById('nav-points').innerText = this.points.toLocaleString();
+                document.getElementById('shop-points-balance').innerText = this.points.toLocaleString();
+                document.getElementById('nav-badges').innerText = `${this.unlockedBadges.length}/36`;
+                
+                const equipped = ALL_AVATARS.find(a => a.id === this.equippedAvatarId) || ALL_AVATARS[0];
+                document.getElementById('nav-avatar-icon').innerText = equipped.emoji;
+                document.getElementById('nav-avatar-title').innerText = equipped.title;
+            }
 
-        // Test State (1,000 Words)
-        let testActive = false;
-        let testIndex = 0;
-        let testCorrectCount = 0;
-        let testStartTime = null;
-        let testTimerInterval = null;
-        let testTimeRemaining = 3900; // 65 minutes = 3900s
-        let testAnswersLog = [];
+            showScreen(screenId) {
+                const screens = ['home', 'lesson', 'results', 'badges', 'shop'];
+                screens.forEach(s => {
+                    const el = document.getElementById(`screen-${s}`);
+                    if (el) el.classList.add('hidden');
+                });
+                const activeEl = document.getElementById(`screen-${screenId}`);
+                if (activeEl) activeEl.classList.remove('hidden');
 
-        // Lesson State (30 Hard Words)
-        let lessonActive = false;
-        let lessonIndex = 0;
-        let lessonCorrectCount = 0;
-        let lessonTimerInterval = null;
-        let lessonTimeRemaining = 600; // 10 minutes = 600s
-        let lessonAnswersLog = [];
+                if (screenId === 'badges') this.renderBadgesGallery();
+                if (screenId === 'shop') this.renderShop();
+            }
 
-        // Punctuation State (100 Sentences)
-        let punctActive = false;
-        let punctIndex = 0;
-        let punctCorrectCount = 0;
-        let punctTimerInterval = null;
-        let punctTimeRemaining = 701; // 11m 41s = 701s
-        let punctAnswersLog = [];
-
-        /* ==========================================================================
-           5. APP INITIALIZATION & NAVIGATION
-           ========================================================================== */
-        
-        window.onload = function() {
-            renderBadges();
-            filterShopAvatars();
-            updateUIStats();
-
-            // Key listener for speech shortcut
-            window.addEventListener('keydown', (e) => {
-                if (e.code === 'Space' && document.activeElement.tagName !== 'INPUT') {
-                    e.preventDefault();
-                    if (testActive) speakCurrentWord();
-                    else if (lessonActive) speakLessonSentence();
+            // Audio Speech Synthesis
+            speakCurrentWord() {
+                if (!this.questions[this.currentQIndex]) return;
+                const item = this.questions[this.currentQIndex];
+                const textToSpeak = item.word || item.correct || item.prompt;
+                
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                    utterance.rate = 0.85;
+                    window.speechSynthesis.speak(utterance);
                 }
-            });
-        };
+            }
 
-        function switchTab(tabId) {
-            const tabs = ['test', 'lesson', 'punctuation', 'achievements', 'shop'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`tab-btn-${t}`);
-                const view = document.getElementById(`view-${t}`);
-                if (t === tabId) {
-                    btn.className = "flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all bg-white text-amber-900 shadow-sm whitespace-nowrap";
-                    view.classList.remove('hidden');
+            // Start Lessons
+            startLesson(mode) {
+                this.currentMode = mode;
+                this.currentQIndex = 0;
+                this.score = 0;
+                this.correctCount = 0;
+                this.totalTimeSpent = 0;
+                
+                const textInputContainer = document.getElementById('text-input-container');
+                const mcContainer = document.getElementById('mc-options-container');
+                const audioBtnContainer = document.getElementById('audio-btn-container');
+                const finishEarlyBtn = document.getElementById('finish-early-btn');
+                
+                finishEarlyBtn.classList.add('hidden');
+
+                if (mode === 'thousand') {
+                    // 1,000 Questions, 65 min limit (3900s)
+                    this.timeRemaining = 3900;
+                    this.questions = Array.from({ length: 1000 }, (_, i) => ({
+                        word: WORDS_1000[i % WORDS_1000.length]
+                    }));
+                    document.getElementById('lesson-title-badge').innerText = '1,000 Word Test';
+                    audioBtnContainer.classList.remove('hidden');
+                    textInputContainer.classList.remove('hidden');
+                    mcContainer.classList.add('hidden');
+                } 
+                else if (mode === 'vocab') {
+                    // 30 Questions, 10 min limit (600s)
+                    this.timeRemaining = 600;
+                    this.questions = Array.from({ length: 30 }, (_, i) => VOCAB_BANK[i % VOCAB_BANK.length]);
+                    document.getElementById('lesson-title-badge').innerText = 'Hard Vocab Lesson';
+                    audioBtnContainer.classList.add('hidden');
+                    textInputContainer.classList.add('hidden');
+                    mcContainer.classList.remove('hidden');
+                }
+                else if (mode === 'punctuation') {
+                    // 100 Sentences, 11 min 41 sec limit (701s)
+                    this.timeRemaining = 701;
+                    this.questions = Array.from({ length: 100 }, (_, i) => PUNCTUATION_BANK[i % PUNCTUATION_BANK.length]);
+                    document.getElementById('lesson-title-badge').innerText = 'Punctuation Fix';
+                    audioBtnContainer.classList.add('hidden');
+                    textInputContainer.classList.add('hidden');
+                    mcContainer.classList.remove('hidden');
+                }
+                else if (mode === 'click_spelling') {
+                    // 123 Questions, 21 min limit (1260s)
+                    this.timeRemaining = 1260;
+                    this.questions = Array.from({ length: 123 }, (_, i) => SPELLING_CLICK_BANK[i % SPELLING_CLICK_BANK.length]);
+                    document.getElementById('lesson-title-badge').innerText = 'Click Right Spelling';
+                    audioBtnContainer.classList.add('hidden');
+                    textInputContainer.classList.add('hidden');
+                    mcContainer.classList.remove('hidden');
+                }
+
+                document.getElementById('lesson-header-title').innerText = `${this.questions.length} Question Challenge`;
+                this.showScreen('lesson');
+                this.startTimer();
+                this.renderCurrentQuestion();
+            }
+
+            startTimer() {
+                clearInterval(this.timerInterval);
+                this.timerInterval = setInterval(() => {
+                    this.timeRemaining--;
+                    this.totalTimeSpent++;
+
+                    const mins = Math.floor(this.timeRemaining / 60);
+                    const secs = this.timeRemaining % 60;
+                    document.getElementById('lesson-timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+                    if (this.timeRemaining <= 0) {
+                        clearInterval(this.timerInterval);
+                        this.endLesson();
+                    }
+                }, 1000);
+            }
+
+            renderCurrentQuestion() {
+                const q = this.questions[this.currentQIndex];
+                const total = this.questions.length;
+                
+                // Update Progress UI
+                document.getElementById('lesson-progress-text').innerText = `${this.currentQIndex + 1} / ${total}`;
+                document.getElementById('lesson-score').innerText = `${this.score} pts`;
+                document.getElementById('lesson-progress-bar').style.width = `${((this.currentQIndex) / total) * 100}%`;
+
+                // Finish early requirement for 1,000 word test (>= 1000 pts)
+                if (this.currentMode === 'thousand' && this.score >= 1000) {
+                    document.getElementById('finish-early-btn').classList.remove('hidden');
+                }
+
+                const promptEl = document.getElementById('question-prompt');
+                const subpromptEl = document.getElementById('question-subprompt');
+
+                if (this.currentMode === 'thousand') {
+                    promptEl.innerText = 'Listen to the word & spell it correctly:';
+                    subpromptEl.innerText = 'Click the speaker button above if you need to hear the word again.';
+                    const input = document.getElementById('spelling-input');
+                    input.value = '';
+                    input.focus();
+                    this.speakCurrentWord();
+                } 
+                else if (this.currentMode === 'vocab') {
+                    promptEl.innerText = `Define: "${q.word}"`;
+                    subpromptEl.innerText = 'Choose the correct definition below:';
+                    this.renderMCOptions(q.options, q.def);
+                } 
+                else if (this.currentMode === 'punctuation') {
+                    promptEl.innerText = q.prompt;
+                    subpromptEl.innerText = 'Select the sentence with proper capitalization and punctuation:';
+                    this.renderMCOptions(q.options, q.correct);
+                } 
+                else if (this.currentMode === 'click_spelling') {
+                    promptEl.innerText = 'Which of the following is spelled correctly?';
+                    subpromptEl.innerText = 'Spot and click the true spelling:';
+                    this.renderMCOptions(q.options, q.correct);
+                }
+            }
+
+            renderMCOptions(options, correctAnswer) {
+                const container = document.getElementById('mc-options-container');
+                container.innerHTML = '';
+                
+                // Shuffle options display
+                const shuffled = [...options].sort(() => Math.random() - 0.5);
+                shuffled.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-full p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-medium text-sm text-left transition-all hover:border-indigo-500/50';
+                    btn.innerText = opt;
+                    btn.onclick = () => this.handleAnswer(opt === correctAnswer);
+                    container.appendChild(btn);
+                });
+            }
+
+            submitTypedAnswer() {
+                const input = document.getElementById('spelling-input');
+                const val = input.value.trim().toLowerCase();
+                const target = this.questions[this.currentQIndex].word.toLowerCase();
+                this.handleAnswer(val === target);
+            }
+
+            handleAnswer(isCorrect) {
+                if (isCorrect) {
+                    this.score += 10;
+                    this.correctCount++;
+                }
+
+                this.currentQIndex++;
+                if (this.currentQIndex < this.questions.length) {
+                    this.renderCurrentQuestion();
                 } else {
-                    btn.className = "flex-1 py-2.5 px-3 rounded-xl font-display font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 whitespace-nowrap";
-                    view.classList.add('hidden');
-                }
-            });
-        }
-
-        function addPoints(pts) {
-            userPoints += pts;
-            updateUIStats();
-            renderShop(); // Refresh shop button states
-        }
-
-        function updateUIStats() {
-            document.getElementById('user-points').innerText = userPoints.toLocaleString();
-            document.getElementById('unlocked-count').innerText = unlockedBadges.size;
-
-            // Early finish lock check for 1000 word test
-            const finishBtn = document.getElementById('finish-early-btn');
-            const lockIcon = document.getElementById('finish-early-lock');
-            const textSpan = document.getElementById('finish-early-text');
-            if (userPoints >= 1000) {
-                finishBtn.disabled = false;
-                finishBtn.className = "px-3 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold border border-amber-300 transition-all flex items-center space-x-1.5 cursor-pointer shadow-sm";
-                lockIcon.innerText = "🔓";
-                textSpan.innerText = "Finish Early (Unlocked!)";
-            } else {
-                finishBtn.disabled = true;
-                finishBtn.className = "px-3 py-1.5 rounded-xl bg-slate-100 text-slate-400 font-bold border border-slate-200 transition-all flex items-center space-x-1.5 cursor-not-allowed";
-                lockIcon.innerText = "🔒";
-                textSpan.innerText = "Finish Early (Requires 1,000 Pts)";
-            }
-        }
-
-        function showToast(icon, title, msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-icon').innerText = icon;
-            document.getElementById('toast-title').innerText = title;
-            document.getElementById('toast-message').innerText = msg;
-
-            toast.classList.remove('translate-y-32', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-32', 'opacity-0');
-            }, 3500);
-        }
-
-        function unlockBadge(badgeId) {
-            if (!unlockedBadges.has(badgeId)) {
-                unlockedBadges.add(badgeId);
-                const b = badgesData.find(x => x.id === badgeId);
-                if (b) {
-                    showToast(b.icon, `Badge Unlocked: ${b.title}`, b.desc);
-                }
-                renderBadges();
-                updateUIStats();
-            }
-        }
-
-        /* ==========================================================================
-           6. SPEECH SYNTHESIS ENGINE
-           ========================================================================== */
-        
-        function speakText(text) {
-            if (!('speechSynthesis' in window)) return;
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 0.9;
-            utterance.pitch = 1.0;
-            window.speechSynthesis.speak(utterance);
-        }
-
-        /* ==========================================================================
-           7. VIEW 1: 1,000 WORD SPELLING TEST LOGIC
-           ========================================================================== */
-        
-        function startTestChallenge() {
-            document.getElementById('test-start-view').classList.add('hidden');
-            document.getElementById('test-active-view').classList.remove('hidden');
-            document.getElementById('test-report-view').classList.add('hidden');
-
-            testActive = true;
-            testIndex = 0;
-            testCorrectCount = 0;
-            testTimeRemaining = 3900;
-            testStartTime = Date.now();
-            testAnswersLog = [];
-
-            updateTestCard();
-
-            clearInterval(testTimerInterval);
-            testTimerInterval = setInterval(() => {
-                testTimeRemaining--;
-                const mins = Math.floor(testTimeRemaining / 60);
-                const secs = testTimeRemaining % 60;
-                document.getElementById('timer-display').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-
-                // Speed calculation WPM
-                const elapsedMins = (Date.now() - testStartTime) / 60000;
-                const wpm = elapsedMins > 0 ? Math.round(testIndex / elapsedMins) : 0;
-                document.getElementById('speed-display').innerText = `${wpm} WPM`;
-
-                if (wpm >= 30 && testIndex >= 10) {
-                    unlockBadge("test_b3");
-                }
-
-                if (testTimeRemaining <= 0) {
-                    finishTest();
-                }
-            }, 1000);
-        }
-
-        function updateTestCard() {
-            if (testIndex >= 1000) {
-                finishTest();
-                return;
-            }
-
-            const item = spelling1000List[testIndex];
-            document.getElementById('current-index-display').innerText = testIndex;
-            document.getElementById('word-number').innerText = testIndex + 1;
-            document.getElementById('sentence-hint').innerText = item.sentence;
-
-            const progressPct = ((testIndex) / 1000) * 100;
-            document.getElementById('progress-bar').style.width = `${progressPct}%`;
-
-            const input = document.getElementById('word-input');
-            input.value = '';
-            input.focus();
-
-            speakCurrentWord();
-        }
-
-        function speakCurrentWord() {
-            if (!testActive) return;
-            const item = spelling1000List[testIndex];
-            speakText(item.word);
-        }
-
-        function submitAnswer(e) {
-            e.preventDefault();
-            if (!testActive) return;
-
-            const input = document.getElementById('word-input');
-            const userVal = input.value.trim().toUpperCase();
-            const currentItem = spelling1000List[testIndex];
-
-            const isCorrect = userVal === currentItem.word;
-            if (isCorrect) {
-                testCorrectCount++;
-                if (testCorrectCount % 10 === 0) {
-                    addPoints(1); // 1 pt per 10 correct words
+                    this.endLesson();
                 }
             }
 
-            testAnswersLog.push({
-                word: currentItem.word,
-                user: userVal || "(Blank)",
-                correct: isCorrect
-            });
-
-            testIndex++;
-
-            // BADGE UNLOCK CHECKS FOR TEST
-            if (testIndex >= 10) unlockBadge("test_b1");
-            if (testIndex >= 100) unlockBadge("test_b2");
-            if (testIndex >= 1000) unlockBadge("test_b5");
-
-            updateTestCard();
-        }
-
-        function confirmFinishTest() {
-            if (confirm("Are you sure you want to finish early? Your results will be calculated now.")) {
-                finishTest();
+            finishLessonEarly() {
+                // Special finish early triggered for 1,000 word test
+                this.endLesson(true);
             }
-        }
 
-        function finishTest() {
-            testActive = false;
-            clearInterval(testTimerInterval);
-
-            document.getElementById('test-active-view').classList.add('hidden');
-            document.getElementById('test-report-view').classList.remove('hidden');
-
-            const totalAnswered = testAnswersLog.length || 1;
-            const acc = Math.round((testCorrectCount / totalAnswered) * 100);
-            const pointsGained = Math.floor(testCorrectCount / 10);
-            const elapsedMins = (Date.now() - testStartTime) / 60000;
-            const finalWpm = elapsedMins > 0 ? Math.round(totalAnswered / elapsedMins) : 0;
-
-            document.getElementById('report-correct').innerText = `${testCorrectCount}/${totalAnswered}`;
-            document.getElementById('report-accuracy').innerText = `${acc}%`;
-            document.getElementById('report-points').innerText = `+${pointsGained}`;
-            document.getElementById('report-wpm').innerText = `${finalWpm} WPM`;
-
-            if (acc >= 90 && totalAnswered >= 10) unlockBadge("test_b4");
-
-            // Render Review List
-            const reviewList = document.getElementById('review-words-list');
-            reviewList.innerHTML = testAnswersLog.map(item => `
-                <div class="flex items-center justify-between p-2 rounded-lg ${item.correct ? 'bg-emerald-50 text-emerald-900 border border-emerald-200' : 'bg-rose-50 text-rose-900 border border-rose-200'}">
-                    <div>
-                        <span class="font-bold">${item.word}</span>
-                        <span class="text-[10px] opacity-75 ml-2">Your answer: ${item.user}</span>
-                    </div>
-                    <span class="font-bold text-xs">${item.correct ? '✓ Correct' : '✗ Incorrect'}</span>
-                </div>
-            `).join('');
-        }
-
-        function resetTest() {
-            document.getElementById('test-start-view').classList.remove('hidden');
-            document.getElementById('test-active-view').classList.add('hidden');
-            document.getElementById('test-report-view').classList.add('hidden');
-            document.getElementById('current-index-display').innerText = '0';
-            document.getElementById('timer-display').innerText = '65:00';
-            document.getElementById('speed-display').innerText = '0 WPM';
-        }
-
-        /* ==========================================================================
-           8. VIEW 2: HARD WORD LESSON LOGIC (30 QUESTIONS, 10 MINS)
-           ========================================================================== */
-        
-        function startLessonChallenge() {
-            document.getElementById('lesson-start-view').classList.add('hidden');
-            document.getElementById('lesson-active-view').classList.remove('hidden');
-            document.getElementById('lesson-report-view').classList.add('hidden');
-
-            lessonActive = true;
-            lessonIndex = 0;
-            lessonCorrectCount = 0;
-            lessonTimeRemaining = 600;
-            lessonAnswersLog = [];
-
-            updateLessonCard();
-
-            clearInterval(lessonTimerInterval);
-            lessonTimerInterval = setInterval(() => {
-                lessonTimeRemaining--;
-                const mins = Math.floor(lessonTimeRemaining / 60);
-                const secs = lessonTimeRemaining % 60;
-                document.getElementById('lesson-timer-display').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-
-                if (lessonTimeRemaining <= 0) {
-                    finishLesson();
+            confirmQuitLesson() {
+                if (confirm('Are you sure you want to quit this lesson? Progress will be lost.')) {
+                    clearInterval(this.timerInterval);
+                    this.showScreen('home');
                 }
-            }, 1000);
-        }
-
-        function updateLessonCard() {
-            if (lessonIndex >= hardLessonQuestions.length) {
-                finishLesson();
-                return;
             }
 
-            const item = hardLessonQuestions[lessonIndex];
-            document.getElementById('lesson-index-display').innerText = lessonIndex;
-            document.getElementById('lesson-q-num').innerText = lessonIndex + 1;
-            document.getElementById('lesson-sentence-display').innerText = item.context;
+            endLesson(earlyFinish = false) {
+                clearInterval(this.timerInterval);
+                this.points += this.score;
 
-            const progressPct = (lessonIndex / hardLessonQuestions.length) * 100;
-            document.getElementById('lesson-progress-bar').style.width = `${progressPct}%`;
+                const totalQ = this.questions.length;
+                const accuracy = Math.round((this.correctCount / Math.max(1, this.currentQIndex)) * 100);
 
-            const input = document.getElementById('lesson-text-input');
-            input.value = '';
-            input.focus();
-        }
+                // Unlock Badges logic for this mode
+                const newlyUnlocked = [];
+                BADGES_DATA.filter(b => b.mode === this.currentMode).forEach(badge => {
+                    if (this.unlockedBadges.includes(badge.id)) return;
 
-        function speakLessonSentence() {
-            if (!lessonActive) return;
-            const item = hardLessonQuestions[lessonIndex];
-            speakText(item.context.replace("_____", item.word));
-        }
+                    let achieved = false;
+                    if (badge.type === 'score' && this.correctCount >= badge.target) achieved = true;
+                    if (badge.type === 'acc' && accuracy >= badge.target) achieved = true;
+                    if (badge.type === 'time_under' && this.totalTimeSpent <= badge.target) achieved = true;
+                    if (badge.type === 'special' && earlyFinish) achieved = true;
 
-        function submitLessonAnswerInput(e) {
-            e.preventDefault();
-            if (!lessonActive) return;
+                    if (achieved) {
+                        this.unlockedBadges.push(badge.id);
+                        newlyUnlocked.push(badge);
+                    }
+                });
 
-            const input = document.getElementById('lesson-text-input');
-            const userVal = input.value.trim().toUpperCase();
-            const currentItem = hardLessonQuestions[lessonIndex];
+                this.saveState();
+                this.updateHeader();
 
-            const isCorrect = userVal === currentItem.word;
-            if (isCorrect) {
-                lessonCorrectCount++;
-                addPoints(15); // +15 points per correct hard word
-            }
+                // Display Results Screen
+                document.getElementById('res-score').innerText = `+${this.score} pts`;
+                document.getElementById('res-accuracy').innerText = `${accuracy}%`;
+                document.getElementById('res-time').innerText = `${this.totalTimeSpent}s`;
 
-            lessonAnswersLog.push({
-                target: currentItem.word,
-                context: currentItem.context,
-                user: userVal || "(Blank)",
-                correct: isCorrect
-            });
-
-            lessonIndex++;
-
-            // LESSON BADGES UNLOCK CHECKS
-            if (lessonIndex >= 5) unlockBadge("vocab_b1");
-            if (lessonIndex >= 15) unlockBadge("vocab_b2");
-            if (lessonIndex >= 30) unlockBadge("vocab_b3");
-
-            updateLessonCard();
-        }
-
-        function finishLesson() {
-            lessonActive = false;
-            clearInterval(lessonTimerInterval);
-
-            document.getElementById('lesson-active-view').classList.add('hidden');
-            document.getElementById('lesson-report-view').classList.remove('hidden');
-
-            const total = lessonAnswersLog.length || 1;
-            const acc = Math.round((lessonCorrectCount / total) * 100);
-            const pointsEarned = lessonCorrectCount * 15;
-
-            document.getElementById('lesson-report-correct').innerText = `${lessonCorrectCount}/${total}`;
-            document.getElementById('lesson-report-accuracy').innerText = `${acc}%`;
-            document.getElementById('lesson-report-points').innerText = `+${pointsEarned}`;
-
-            if (acc >= 80) unlockBadge("vocab_b4");
-            if (acc === 100 && total >= 30) unlockBadge("vocab_b5");
-
-            const reviewList = document.getElementById('lesson-review-list');
-            reviewList.innerHTML = lessonAnswersLog.map(item => `
-                <div class="p-2.5 rounded-xl ${item.correct ? 'bg-teal-50 text-teal-900 border border-teal-200' : 'bg-rose-50 text-rose-900 border border-rose-200'}">
-                    <div class="font-semibold">${item.context.replace("_____", `<span class="underline font-bold">${item.target}</span>`)}</div>
-                    <div class="mt-1 text-[11px] flex justify-between">
-                        <span>Your answer: <strong>${item.user}</strong></span>
-                        <span class="font-bold">${item.correct ? '✓ Correct (+15 Pts)' : '✗ Incorrect'}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function resetLesson() {
-            document.getElementById('lesson-start-view').classList.remove('hidden');
-            document.getElementById('lesson-active-view').classList.add('hidden');
-            document.getElementById('lesson-report-view').classList.add('hidden');
-            document.getElementById('lesson-index-display').innerText = '0';
-            document.getElementById('lesson-timer-display').innerText = '10:00';
-        }
-
-        /* ==========================================================================
-           9. VIEW 3: PUNCTUATION FIX LESSON LOGIC (100 SENTENCES, 11:41 MINS / 701 SECS)
-           ========================================================================== */
-        
-        function startPunctuationChallenge() {
-            document.getElementById('punct-start-view').classList.add('hidden');
-            document.getElementById('punct-active-view').classList.remove('hidden');
-            document.getElementById('punct-report-view').classList.add('hidden');
-
-            punctActive = true;
-            punctIndex = 0;
-            punctCorrectCount = 0;
-            punctTimeRemaining = 701; // 11 min 41 sec
-            punctAnswersLog = [];
-
-            updatePunctCard();
-
-            clearInterval(punctTimerInterval);
-            punctTimerInterval = setInterval(() => {
-                punctTimeRemaining--;
-                const mins = Math.floor(punctTimeRemaining / 60);
-                const secs = punctTimeRemaining % 60;
-                document.getElementById('punct-timer-display').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-
-                if (punctTimeRemaining <= 0) {
-                    finishPunctuation();
+                const badgeListEl = document.getElementById('res-badge-list');
+                document.getElementById('res-badge-count').innerText = newlyUnlocked.length.toString();
+                if (newlyUnlocked.length > 0) {
+                    badgeListEl.innerHTML = newlyUnlocked.map(b => `
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold">
+                            <span>${b.icon}</span> ${b.title}
+                        </span>
+                    `).join('');
+                } else {
+                    badgeListEl.innerHTML = `<span class="text-xs text-slate-500 italic">No new badges earned this run. Keep practicing!</span>`;
                 }
-            }, 1000);
-        }
 
-        function updatePunctCard() {
-            if (punctIndex >= punctuation100List.length) {
-                finishPunctuation();
-                return;
+                this.showScreen('results');
             }
 
-            const item = punctuation100List[punctIndex];
-            document.getElementById('punct-index-display').innerText = punctIndex;
-            document.getElementById('punct-q-num').innerText = punctIndex + 1;
-            document.getElementById('punct-sentence-display').innerText = item.broken;
+            // Badges Screen Renderer
+            renderBadgesGallery() {
+                const container = document.getElementById('badges-grid-container');
+                container.innerHTML = '';
+                document.getElementById('badge-gallery-counter').innerText = `${this.unlockedBadges.length}/36`;
 
-            const progressPct = (punctIndex / punctuation100List.length) * 100;
-            document.getElementById('punct-progress-bar').style.width = `${progressPct}%`;
-
-            const input = document.getElementById('punct-text-input');
-            input.value = '';
-            input.focus();
-        }
-
-        function submitPunctuationAnswer(e) {
-            e.preventDefault();
-            if (!punctActive) return;
-
-            const input = document.getElementById('punct-text-input');
-            const userVal = input.value.trim();
-            const currentItem = punctuation100List[punctIndex];
-
-            // Normalize spaces for check
-            const isCorrect = userVal.replace(/\s+/g, ' ') === currentItem.fixed.replace(/\s+/g, ' ');
-
-            if (isCorrect) {
-                punctCorrectCount++;
-                addPoints(20); // +20 points per correct punctuation fix
-            }
-
-            punctAnswersLog.push({
-                broken: currentItem.broken,
-                fixed: currentItem.fixed,
-                user: userVal || "(Blank)",
-                correct: isCorrect
-            });
-
-            punctIndex++;
-
-            // PUNCTUATION BADGES UNLOCK CHECKS
-            if (punctIndex >= 10) unlockBadge("punct_b1");
-            if (punctIndex >= 50) unlockBadge("punct_b2");
-            if (punctIndex >= 100) unlockBadge("punct_b3");
-
-            updatePunctCard();
-        }
-
-        function finishPunctuation() {
-            punctActive = false;
-            clearInterval(punctTimerInterval);
-
-            document.getElementById('punct-active-view').classList.add('hidden');
-            document.getElementById('punct-report-view').classList.remove('hidden');
-
-            const total = punctAnswersLog.length || 1;
-            const acc = Math.round((punctCorrectCount / total) * 100);
-            const pointsEarned = punctCorrectCount * 20;
-
-            document.getElementById('punct-report-correct').innerText = `${punctCorrectCount}/${total}`;
-            document.getElementById('punct-report-accuracy').innerText = `${acc}%`;
-            document.getElementById('punct-report-points').innerText = `+${pointsEarned}`;
-
-            if (acc >= 85) unlockBadge("punct_b4");
-            if (acc === 100 && total >= 100) unlockBadge("punct_b5");
-
-            const reviewList = document.getElementById('punct-review-list');
-            reviewList.innerHTML = punctAnswersLog.map(item => `
-                <div class="p-2.5 rounded-xl ${item.correct ? 'bg-rose-50 text-rose-900 border border-rose-200' : 'bg-slate-100 text-slate-800 border border-slate-300'}">
-                    <div class="font-semibold">Correct: "${item.fixed}"</div>
-                    <div class="mt-1 text-[11px] flex justify-between">
-                        <span>Your answer: "${item.user}"</span>
-                        <span class="font-bold ${item.correct ? 'text-emerald-600' : 'text-rose-600'}">${item.correct ? '✓ Correct (+20 Pts)' : '✗ Incorrect'}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function resetPunctuation() {
-            document.getElementById('punct-start-view').classList.remove('hidden');
-            document.getElementById('punct-active-view').classList.add('hidden');
-            document.getElementById('punct-report-view').classList.add('hidden');
-            document.getElementById('punct-index-display').innerText = '0';
-            document.getElementById('punct-timer-display').innerText = '11:41';
-        }
-
-        /* ==========================================================================
-           10. RENDER BADGES & 635 AVATAR SHOP
-           ========================================================================== */
-        
-        function renderBadges() {
-            const categories = ['test', 'lesson', 'punct'];
-            categories.forEach(cat => {
-                const container = document.getElementById(`badges-container-${cat}`);
-                const catBadges = badgesData.filter(b => b.cat === cat);
-
-                container.innerHTML = catBadges.map(b => {
-                    const isUnlocked = unlockedBadges.has(b.id);
-                    return `
-                        <div class="glass-panel p-4 rounded-2xl text-center border transition-all ${isUnlocked ? 'border-amber-400 bg-amber-50/50 shadow-md' : 'border-slate-200 opacity-60 grayscale'}">
-                            <div class="text-4xl mb-2 transform hover:scale-110 transition-transform cursor-pointer">${b.icon}</div>
-                            <h4 class="font-display font-bold text-sm text-slate-900">${b.title}</h4>
-                            <p class="text-[11px] text-slate-500 mt-1 leading-tight">${b.desc}</p>
-                            <div class="mt-3">
-                                ${isUnlocked 
-                                    ? '<span class="inline-block bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-300">✓ Unlocked</span>' 
-                                    : '<span class="inline-block bg-slate-100 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200">🔒 Locked</span>'
-                                }
+                BADGES_DATA.forEach(badge => {
+                    const isUnlocked = this.unlockedBadges.includes(badge.id);
+                    const card = document.createElement('div');
+                    card.className = `glass-panel-dark rounded-2xl p-4 border ${isUnlocked ? 'border-amber-500/40 bg-amber-500/5' : 'border-slate-800 opacity-60'} flex items-start space-x-3 transition-all`;
+                    card.innerHTML = `
+                        <div class="w-12 h-12 rounded-xl ${isUnlocked ? 'bg-amber-500/20 text-amber-400' : 'bg-slate-800 text-slate-500'} flex items-center justify-center text-2xl flex-shrink-0">
+                            ${badge.icon}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-fredoka text-sm font-bold ${isUnlocked ? 'text-amber-300' : 'text-slate-400'} truncate">${badge.title}</h4>
+                                ${isUnlocked ? '<i class="fa-solid fa-circle-check text-amber-400 text-xs"></i>' : '<i class="fa-solid fa-lock text-slate-600 text-xs"></i>'}
                             </div>
+                            <p class="text-xs text-slate-400 mt-1 leading-tight">${badge.desc}</p>
+                            <span class="inline-block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mt-2">${badge.mode.replace('_', ' ')}</span>
                         </div>
                     `;
-                }).join('');
-            });
-        }
+                    container.appendChild(card);
+                });
+            }
 
-        // Filter and Search 635 Avatars
-        function setShopFilter(filter) {
-            activeShopFilter = filter;
-            const filterBtns = ['all', 'unlocked', 'budget', 'high', 'god'];
-            filterBtns.forEach(f => {
-                const btn = document.getElementById(`filter-btn-${f}`);
-                if (f === filter) {
-                    btn.className = "px-3 py-1.5 rounded-xl bg-amber-400 text-amber-950 font-bold shadow-sm";
-                } else {
-                    btn.className = "px-3 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold";
+            // Avatar Shop Renderer
+            filterShop(category) {
+                this.shopFilter = category;
+                this.shopPage = 1;
+                
+                document.querySelectorAll('.shop-tab-btn').forEach(btn => {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                event.target.classList.remove('bg-slate-800', 'text-slate-300');
+                event.target.classList.add('bg-indigo-600', 'text-white');
+
+                this.renderShop();
+            }
+
+            loadMoreAvatars() {
+                this.shopPage++;
+                this.renderShop(true);
+            }
+
+            renderShop(append = false) {
+                const container = document.getElementById('avatars-grid');
+                if (!append) container.innerHTML = '';
+
+                let filtered = ALL_AVATARS;
+                if (this.shopFilter !== 'all') {
+                    filtered = ALL_AVATARS.filter(a => a.tier === this.shopFilter);
                 }
-            });
-            shopCurrentPage = 1;
-            filterShopAvatars();
-        }
 
-        function filterShopAvatars() {
-            const searchQuery = document.getElementById('shop-search-input').value.toLowerCase().trim();
+                const visibleItems = filtered.slice(0, this.shopPage * this.shopItemsPerPage);
+                const loadMoreBtnContainer = document.getElementById('shop-load-more-container');
 
-            filteredShopAvatars = avatarShopData.filter(av => {
-                const matchesSearch = av.title.toLowerCase().includes(searchQuery) || av.id.includes(searchQuery);
-                let matchesFilter = true;
+                if (visibleItems.length >= filtered.length) {
+                    loadMoreBtnContainer.classList.add('hidden');
+                } else {
+                    loadMoreBtnContainer.classList.remove('hidden');
+                }
 
-                if (activeShopFilter === 'unlocked') matchesFilter = av.unlocked;
-                else if (activeShopFilter === 'budget') matchesFilter = av.cost < 500;
-                else if (activeShopFilter === 'high') matchesFilter = av.cost >= 500 && av.cost <= 5000;
-                else if (activeShopFilter === 'god') matchesFilter = av.cost > 5000 || av.godTier;
+                const itemsToRender = append ? visibleItems.slice((this.shopPage - 1) * this.shopItemsPerPage) : visibleItems;
 
-                return matchesSearch && matchesFilter;
-            });
+                itemsToRender.forEach(avatar => {
+                    const isUnlocked = this.unlockedAvatars.includes(avatar.id);
+                    const isEquipped = this.equippedAvatarId === avatar.id;
 
-            renderShop();
-        }
-
-        function changeShopPage(delta) {
-            const totalPages = Math.ceil(filteredShopAvatars.length / avatarsPerPage) || 1;
-            shopCurrentPage += delta;
-            if (shopCurrentPage < 1) shopCurrentPage = 1;
-            if (shopCurrentPage > totalPages) shopCurrentPage = totalPages;
-            renderShop();
-        }
-
-        function renderShop() {
-            const grid = document.getElementById('shop-grid');
-            const totalAvatars = filteredShopAvatars.length;
-            const totalPages = Math.ceil(totalAvatars / avatarsPerPage) || 1;
-
-            if (shopCurrentPage > totalPages) shopCurrentPage = totalPages;
-
-            document.getElementById('shop-showing-count').innerText = `${totalAvatars} / 635`;
-            document.getElementById('shop-page-num').innerText = shopCurrentPage;
-            document.getElementById('shop-total-pages').innerText = totalPages;
-
-            const startIndex = (shopCurrentPage - 1) * avatarsPerPage;
-            const pageItems = filteredShopAvatars.slice(startIndex, startIndex + avatarsPerPage);
-
-            if (pageItems.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-12 text-center text-slate-400 font-bold">
-                        No avatars found matching your filters.
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = pageItems.map(av => {
-                const isEquipped = currentEquippedAvatar === av.id;
-                const canAfford = userPoints >= av.cost;
-                const isGodTier = av.godTier;
-
-                return `
-                    <div class="glass-panel p-4 rounded-2xl text-center relative flex flex-col justify-between transition-all hover:shadow-lg ${isGodTier ? 'god-tier-glow bg-gradient-to-b from-purple-50 to-pink-50' : ''}">
-                        ${isGodTier ? '<span class="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wider">God Tier</span>' : ''}
-                        
+                    const card = document.createElement('div');
+                    card.className = `glass-panel-dark rounded-2xl p-4 border ${isEquipped ? 'border-indigo-500 bg-indigo-500/10' : 'border-slate-800'} flex flex-col items-center text-center justify-between space-y-3 hover:border-slate-700 transition-all`;
+                    card.innerHTML = `
+                        <div class="text-4xl">${avatar.emoji}</div>
                         <div>
-                            <div class="w-16 h-16 rounded-xl bg-white shadow-inner mx-auto flex items-center justify-center text-4xl mb-2 border border-slate-100">
-                                ${av.icon}
-                            </div>
-                            <h3 class="font-display font-bold text-xs text-slate-900 truncate">${av.title}</h3>
-                            <p class="text-[11px] text-amber-600 font-bold mt-0.5">${av.cost === 0 ? 'Free Starter' : av.cost.toLocaleString() + ' Points'}</p>
+                            <div class="font-fredoka text-xs font-bold text-white truncate max-w-[110px]">${avatar.title}</div>
+                            <div class="text-[10px] text-slate-400 capitalize">${avatar.tier}</div>
                         </div>
+                        ${
+                            isEquipped 
+                            ? `<span class="w-full py-1.5 rounded-xl bg-indigo-600/30 border border-indigo-500/50 text-indigo-300 font-bold text-[11px]">Equipped</span>`
+                            : isUnlocked 
+                                ? `<button onclick="app.equipAvatar(${avatar.id})" class="w-full py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-[11px]">Equip</button>`
+                                : `<button onclick="app.buyAvatar(${avatar.id})" class="w-full py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-[11px] flex items-center justify-center gap-1">
+                                    <i class="fa-solid fa-coins text-[10px]"></i> ${avatar.cost}
+                                   </button>`
+                        }
+                    `;
+                    container.appendChild(card);
+                });
+            }
 
-                        <div class="mt-3">
-                            ${isEquipped ? `
-                                <button disabled class="w-full py-1.5 px-3 rounded-lg bg-emerald-500 text-white font-display font-bold text-[11px] shadow-sm">
-                                    ✓ Equipped
-                                </button>
-                            ` : av.unlocked ? `
-                                <button onclick="equipAvatar('${av.id}')" class="w-full py-1.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-display font-bold text-[11px] shadow-sm transition-all">
-                                    Equip
-                                </button>
-                            ` : `
-                                <button onclick="buyAvatar('${av.id}')" ${!canAfford ? 'disabled' : ''} class="w-full py-1.5 px-3 rounded-lg font-display font-bold text-[11px] transition-all shadow-sm ${canAfford ? 'bg-amber-400 hover:bg-amber-500 text-amber-950 shadow-md cursor-pointer' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}">
-                                    ${canAfford ? 'Unlock' : 'Locked'}
-                                </button>
-                            `}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
+            equipAvatar(id) {
+                this.equippedAvatarId = id;
+                this.saveState();
+                this.updateHeader();
+                this.renderShop();
+            }
 
-        function buyAvatar(avatarId) {
-            const av = avatarShopData.find(a => a.id === avatarId);
-            if (!av || av.unlocked) return;
+            buyAvatar(id) {
+                const avatar = ALL_AVATARS.find(a => a.id === id);
+                if (!avatar) return;
 
-            if (userPoints >= av.cost) {
-                userPoints -= av.cost;
-                av.unlocked = true;
-                currentEquippedAvatar = av.id;
-
-                updateUIStats();
-                updateNavAvatar();
-                renderShop();
-                showToast(av.icon, "Avatar Unlocked!", `You equipped ${av.title}!`);
+                if (this.points >= avatar.cost) {
+                    this.points -= avatar.cost;
+                    this.unlockedAvatars.push(id);
+                    this.equippedAvatarId = id;
+                    this.saveState();
+                    this.updateHeader();
+                    this.renderShop();
+                } else {
+                    alert('Not enough points to unlock this avatar! Earn points by completing lessons.');
+                }
             }
         }
 
-        function equipAvatar(avatarId) {
-            const av = avatarShopData.find(a => a.id === avatarId);
-            if (av && av.unlocked) {
-                currentEquippedAvatar = av.id;
-                updateNavAvatar();
-                renderShop();
-                showToast(av.icon, "Avatar Equipped", `Now showing ${av.title}`);
-            }
-        }
-
-        function updateNavAvatar() {
-            const av = avatarShopData.find(a => a.id === currentEquippedAvatar);
-            if (av) {
-                document.getElementById('nav-avatar-icon').innerText = av.icon;
-                document.getElementById('nav-avatar-title').innerText = av.title;
-            }
-        }
+        // Initialize Global App Instance on Window Load
+        let app;
+        window.onload = function () {
+            app = new App();
+        };
     </script>
 </body>
 </html>
